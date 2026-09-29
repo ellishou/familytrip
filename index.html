@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>沖繩家族旅遊 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: boarding-pass header → day-by-day timeline on a left rail → stay / car / cost / checklist panels */
+:root {
+  --bg: #f3f6f7;
+  --surface: #ffffff;
+  --ink: #16303a;
+  --muted: #5b727b;
+  --line: #d7e1e4;
+  --sea: #0f6f7c;
+  --sea-soft: #dcecee;
+  --bingata: #e0a526;
+  --bingata-soft: #fbf0d6;
+  --coral: #c8553d;
+  --f-display: "Noto Serif TC", "Songti TC", serif;
+  --f-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1a1f; --surface: #15252c; --ink: #e3eef0; --muted: #93aab1; --line: #27404a;
+    --sea: #5cc2cf; --sea-soft: #173a41; --bingata: #f0bd4f; --bingata-soft: #3a3019; --coral: #ec8a73;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1a1f; --surface: #15252c; --ink: #e3eef0; --muted: #93aab1; --line: #27404a;
+  --sea: #5cc2cf; --sea-soft: #173a41; --bingata: #f0bd4f; --bingata-soft: #3a3019; --coral: #ec8a73;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.7; }
+.wrap { max-width: 880px; margin: 0 auto; padding-inline: 16px; padding-block: 32px 64px; display: grid; gap: 40px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.3; }
+h1 { font-size: clamp(28px, 6vw, 40px); font-weight: 900; }
+h2 { font-size: 22px; font-weight: 900; display: flex; align-items: baseline; gap: 10px; }
+h2 small { font-family: var(--f-body); font-size: 13px; font-weight: 500; color: var(--muted); }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.eyebrow { font-size: 12px; letter-spacing: .12em; color: var(--sea); font-weight: 700; }
+section { display: grid; gap: 16px; }
+
+/* Header */
+header { display: grid; gap: 12px; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 13px; padding: 2px 10px; border-radius: 999px; background: var(--sea-soft); color: var(--ink); }
+.chip.warn { background: var(--bingata-soft); }
+
+/* Boarding passes */
+.passes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.pass { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; display: grid; grid-template-columns: 1fr auto; overflow: hidden; }
+.pass-main { padding: 14px 16px; display: grid; gap: 6px; min-width: 0; }
+.pass-stub { border-left: 2px dashed var(--line); padding: 14px 14px; display: grid; align-content: center; justify-items: center; gap: 2px; background: var(--sea-soft); }
+.pass-stub .mono { font-size: 15px; font-weight: 600; }
+.pass-stub span { font-size: 11px; color: var(--muted); }
+.route { display: flex; align-items: center; gap: 10px; }
+.route .code { font-family: var(--f-mono); font-size: 26px; font-weight: 600; letter-spacing: .02em; }
+.route .arrow { flex: 1; height: 1px; background: var(--line); position: relative; min-width: 24px; }
+.route .arrow::after { content: "✈"; position: absolute; left: 50%; top: -11px; transform: translateX(-50%); font-size: 14px; color: var(--sea); background: var(--surface); padding: 0 4px; }
+.times { display: flex; justify-content: space-between; font-family: var(--f-mono); font-size: 14px; color: var(--muted); }
+.pass-label { font-size: 12px; color: var(--muted); }
+
+.note { background: var(--bingata-soft); border-radius: 8px; padding: 12px 14px; font-size: 14px; display: grid; gap: 4px; }
+.note strong { color: var(--ink); }
+.note ul { margin: 0; padding-left: 1.2em; }
+
+/* Timeline */
+.days { display: grid; gap: 0; }
+.day { display: grid; grid-template-columns: 76px 1fr; gap: 16px; }
+.day-rail { position: relative; display: grid; justify-items: center; align-content: start; padding-top: 4px; }
+.day-rail::after { content: ""; position: absolute; top: 58px; bottom: 0; width: 2px; background: var(--line); }
+.day:last-child .day-rail::after { display: none; }
+.day-num { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.day-date { font-family: var(--f-display); font-weight: 900; font-size: 22px; line-height: 1.1; }
+.day-dow { font-size: 12px; color: var(--muted); }
+.day-body { padding-bottom: 28px; display: grid; gap: 10px; min-width: 0; }
+.day-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.tag { font-size: 12px; padding: 1px 8px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); }
+.tag.bus { border-color: var(--sea); color: var(--sea); }
+.tag.car { border-color: var(--bingata); color: var(--ink); background: var(--bingata-soft); }
+.tag.fly { border-color: var(--coral); color: var(--coral); }
+.stops { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.stops li { display: grid; grid-template-columns: 52px 1fr; gap: 10px; }
+.stops .t { font-family: var(--f-mono); font-size: 13px; color: var(--sea); padding-top: 2px; }
+.stops .t.none { color: transparent; }
+.aside { font-size: 13px; color: var(--muted); }
+.easy { font-size: 13px; color: var(--muted); padding-left: 62px; }
+.easy::before { content: "長輩 · "; color: var(--coral); font-weight: 700; }
+
+/* Panels */
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 14px; }
+dt { color: var(--muted); }
+dd { margin: 0; }
+.panel ul { margin: 0; padding-left: 1.2em; font-size: 14px; }
+
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { padding: 10px 16px; text-align: left; border-bottom: 1px solid var(--line); }
+td.num, th.num { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+tfoot td { font-weight: 700; border-bottom: 0; background: var(--sea-soft); }
+thead th { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: .06em; }
+
+/* Checklist */
+.checks { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 6px 20px; }
+.checks label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; font-size: 14px; padding: 4px 0; }
+.checks input { width: 17px; height: 17px; margin-top: 3px; accent-color: var(--sea); flex: none; }
+.checks input:checked + span { color: var(--muted); text-decoration: line-through; }
+.progress { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+input:focus-visible { outline: 2px solid var(--sea); outline-offset: 2px; }
+
+footer { font-size: 12px; color: var(--muted); }
+
+@media (max-width: 480px) {
+  .day { grid-template-columns: 56px 1fr; gap: 10px; }
+  .day-date { font-size: 18px; }
+  .stops li { grid-template-columns: 44px 1fr; }
+  .easy { padding-left: 0; }
+  .route .code { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">TPE ⇄ OKA · 5 天 4 夜</span>
+  <h1>沖繩家族旅遊</h1>
+  <div class="meta">
+    <span class="chip mono">2026/11/5 – 11/9</span>
+    <span class="chip">3 大 1 小 · 68 / 66 / 36 / 9 歲</span>
+    <span class="chip">全程住那霸同一間飯店</span>
+    <span class="chip warn">長輩步行不超過 30 分鐘</span>
+  </div>
+</header>
+
+<section>
+  <h2>航班 <small>樂桃航空 Peach · 廉價航空</small></h2>
+  <div class="passes">
+    <div class="pass">
+      <div class="pass-main">
+        <span class="pass-label">去程 · 11/5（四）</span>
+        <div class="route"><span class="code">TPE</span><span class="arrow"></span><span class="code">OKA</span></div>
+        <div class="times"><span>15:20 桃園</span><span>17:50 那霸</span></div>
+      </div>
+      <div class="pass-stub"><span>航班</span><span class="mono">MM926</span><span>1h30m</span></div>
+    </div>
+    <div class="pass">
+      <div class="pass-main">
+        <span class="pass-label">回程 · 11/9（一）</span>
+        <div class="route"><span class="code">OKA</span><span class="arrow"></span><span class="code">TPE</span></div>
+        <div class="times"><span>13:35 那霸</span><span>14:20 桃園</span></div>
+      </div>
+      <div class="pass-stub"><span>航班</span><span class="mono">MM925</span><span>1h45m</span></div>
+    </div>
+  </div>
+  <div class="note">
+    <p><strong>長輩從高雄出發：</strong>搭約 <span class="mono">9:30</span> 的左營高鐵到桃園站，轉機場捷運，<span class="mono">13:00</span> 前到機場報到。</p>
+    <ul>
+      <li>託運行李要事先在官網加購；手提行李 7kg、最多 2 件</li>
+      <li>座位要付費選，至少讓小孩和一位大人坐在一起</li>
+      <li>出發前確認樂桃在桃園的航廈</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>每日行程</h2>
+  <div class="days">
+
+    <div class="day">
+      <div class="day-rail"><span class="day-num">DAY 1</span><span class="day-date mono">11/5</span><span class="day-dow">週四</span></div>
+      <div class="day-body">
+        <div class="day-head"><h3>抵達那霸</h3><span class="tag fly">航班</span><span class="tag">機場接送</span></div>
+        <ul class="stops">
+          <li><span class="t">17:50</span><span>落地，大約 18:45 出機場</span></li>
+          <li><span class="t">19:00</span><span>7 人座專車接送到東急 STAY，約 15 分鐘，一台 NT$1,675（司機舉牌接機，免費等候 60 分鐘）</span></li>
+          <li><span class="t">19:30</span><span>晚餐在飯店附近或國際通吃，早點休息</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-rail"><span class="day-num">DAY 2</span><span class="day-date mono">11/6</span><span class="day-dow">週五</span></div>
+      <div class="day-body">
+        <div class="day-head"><h3>北部巴士一日團</h3><span class="tag bus">巴士團</span></div>
+        <ul class="stops">
+          <li><span class="t">08:05</span><span>從飯店出發，走到 RYUBO 百貨（縣廳前）；步行超過 10 分鐘就改搭計程車</span></li>
+          <li><span class="t">08:20</span><span>在 RYUBO 1F 的 BLUE SEAL 久茂地店門口集合，找 Easygo 旗子（遲到視同放棄，不退費）</span></li>
+          <li><span class="t none">—</span><span>萬座毛（約 30 分）：看象鼻岩海景</span></li>
+          <li><span class="t none">—</span><span>古宇利島（約 30 分）：坐車過古宇利大橋、看海灘</span></li>
+          <li><span class="t none">—</span><span>美麗海水族館（約 3 小時）：黑潮之海、鯨鯊、海豚秀；午餐在園區內自理</span></li>
+          <li><span class="t none">—</span><span>北谷美國村（約 1 小時）：逛街、看夕陽</span></li>
+          <li><span class="t">19:00</span><span>回到那霸，在飯店附近吃晚餐</span></li>
+        </ul>
+        <p class="easy">水族館有電梯，可以免費借輪椅；萬座毛如果累了，可以留在停車場那側</p>
+        <p class="aside">已選 <a href="https://www.klook.com/zh-TW/activity/134350-churaumi-aquarium-kouri-island-american-village-one-day-tour/">Klook #134350</a>：中文導遊，含水族館、萬座毛門票，不含午餐，沒有購物站</p>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-rail"><span class="day-num">DAY 3</span><span class="day-date mono">11/7</span><span class="day-dow">週六</span></div>
+      <div class="day-body">
+        <div class="day-head"><h3>南部兜風</h3><span class="tag car">取車</span></div>
+        <ul class="stops">
+          <li><span class="t">09:00</span><span>到旭橋或縣廳前的市區門市取車（Fit、Yaris 等級）</span></li>
+          <li><span class="t none">—</span><span>瀨長島 Umikaji Terrace：看海景、吃午餐</span></li>
+          <li><span class="t none">—</span><span>奧武島：炸天婦羅</span></li>
+          <li><span class="t none">—</span><span>開車經過 Nirai Kanai 橋</span></li>
+          <li><span class="t none">—</span><span>知念岬公園 → 回那霸</span></li>
+        </ul>
+        <p class="easy">以開車看風景為主；知念岬從停車場走到觀景點很短。不排玉泉洞（洞內約 890m）</p>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-rail"><span class="day-num">DAY 4</span><span class="day-date mono">11/8</span><span class="day-dow">週日</span></div>
+      <div class="day-body">
+        <div class="day-head"><h3>中部・購物</h3><span class="tag car">自駕・傍晚還車</span></div>
+        <ul class="stops">
+          <li><span class="t none">—</span><span>海中道路：一路海景，不用下車</span></li>
+          <li><span class="t none">—</span><span>AEON Mall Rycom：買伴手禮、休息，雨天也適合</span></li>
+          <li><span class="t none">—</span><span>港川外人住宅：老美軍宿舍改成的咖啡店和小店，走一小段就好</span></li>
+          <li><span class="t">18:00</span><span>回那霸，在市區門市還車 → 吃晚餐</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-rail"><span class="day-num">DAY 5</span><span class="day-date mono">11/9</span><span class="day-dow">週一</span></div>
+      <div class="day-body">
+        <div class="day-head"><h3>返程</h3><span class="tag">機場接送</span><span class="tag fly">航班</span></div>
+        <ul class="stops">
+          <li><span class="t">08:00</span><span>整理行李、吃早餐</span></li>
+          <li><span class="t">10:45</span><span>7 人座專車從飯店到機場（約 NT$1,675）；或請飯店叫大型計程車</span></li>
+          <li><span class="t">11:30</span><span>到機場報到</span></li>
+          <li><span class="t">13:35</span><span>起飛 → 14:20 抵達桃園，長輩搭高鐵回高雄</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="grid2">
+  <div class="panel">
+    <h2>住宿</h2>
+    <p><strong>東急 STAY 沖繩那霸</strong> · 2 間 × 4 晚</p>
+    <dl>
+      <dt>房 A</dt><dd>爸、媽 · 雙床房</dd>
+      <dt>房 B</dt><dd>我、小孩 · 雙床或大床房</dd>
+    </dl>
+    <ul>
+      <li>訂房時備註兩間<strong>相鄰或同一層</strong></li>
+      <li>房內附洗脫烘洗衣機，可以少帶衣服</li>
+      <li>飯店停車：1 晚 ¥1,000、2 晚 ¥1,800（2026/7 實際入住價）。11/8 傍晚就還車，只需要停 <strong>11/7 一晚，¥1,000</strong></li>
+      <li>替代選擇：JAL City 那霸、Hotel Collective、凱悅那霸</li>
+    </ul>
+  </div>
+  <div class="panel">
+    <h2>租車</h2>
+    <dl>
+      <dt>期間</dt><dd class="mono">11/7 09:00 → 11/8 18:00</dd>
+      <dt>車型</dt><dd>Fit、Yaris 等級（不選 K car：後座擠、上高速吃力）；市區門市取、還車</dd>
+      <dt>要帶</dt><dd>台灣駕照正本 + 日文譯本（監理站當天辦好）</dd>
+      <dt>保險</dt><dd>免責補償 + NOC 全額保險</dd>
+    </dl>
+  </div>
+</div>
+
+<section>
+  <h2>費用概算 <small>新台幣 · 粗估，以實際訂購為準</small></h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>項目</th><th class="num">估算</th></tr></thead>
+      <tbody>
+        <tr><td>樂桃來回 ×4（含託運、選位）</td><td class="num">28,000 – 36,000</td></tr>
+        <tr><td>東急 STAY 2 間 × 4 晚</td><td class="num">20,000 – 30,000</td></tr>
+        <tr><td>北部巴士團 ×4（含水族館門票）</td><td class="num">7,000 – 10,000</td></tr>
+        <tr><td>租車 2 天（Fit 級）+ 保險 + 油費、停車</td><td class="num">3,700 – 5,100</td></tr>
+        <tr><td>餐費（4 人 × 4.5 天）</td><td class="num">25,000 – 32,000</td></tr>
+        <tr><td>長輩高鐵來回（敬老票）</td><td class="num">約 2,700</td></tr>
+        <tr><td>機場接送 7 人座 ×2 趟 + 雜支</td><td class="num">4,400 – 5,400</td></tr>
+      </tbody>
+      <tfoot><tr><td>合計</td><td class="num">91,000 – 121,000</td></tr></tfoot>
+    </table>
+  </div>
+  <p class="aside">不含購物和旅平險；日圓匯率會影響總額。</p>
+</section>
+
+<section>
+  <h2>待辦清單 <small class="progress" id="progress"></small></h2>
+  <ul class="checks" id="checks">
+    <li><label><input type="checkbox" id="c1"><span>訂機票：加購託運行李、選座位</span></label></li>
+    <li><label><input type="checkbox" id="c2"><span>訂東急 STAY 2 間房（備註相鄰）</span></label></li>
+    <li><label><input type="checkbox" id="c3"><span>訂北部巴士團（11/6）</span></label></li>
+    <li><label><input type="checkbox" id="c11"><span>訂機場接送 7 人座（11/5 接機、11/9 送機）</span></label></li>
+    <li><label><input type="checkbox" id="c4"><span>訂租車（11/7 市區取、11/8 傍晚市區還）</span></label></li>
+    <li><label><input type="checkbox" id="c5"><span>到監理站辦駕照日文譯本</span></label></li>
+    <li><label><input type="checkbox" id="c6"><span>護照效期要超過回國日</span></label></li>
+    <li><label><input type="checkbox" id="c7"><span>填 Visit Japan Web</span></label></li>
+    <li><label><input type="checkbox" id="c8"><span>旅平險 + 不便險（長輩提高醫療額度）</span></label></li>
+    <li><label><input type="checkbox" id="c9"><span>長輩常備藥、網卡或 eSIM、日圓</span></label></li>
+    <li><label><input type="checkbox" id="c10"><span>帶薄外套（11 月約 20～25°C，早晚有海風）</span></label></li>
+  </ul>
+</section>
+
+<footer>勾選狀態只存在你這台裝置的瀏覽器裡。</footer>
+</div>
+
+<script>
+(function () {
+  var KEY = 'okinawa2026-checks';
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('#checks input'));
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+  function update() {
+    var done = boxes.filter(function (b) { return b.checked; }).length;
+    document.getElementById('progress').textContent = done + ' / ' + boxes.length;
+  }
+  boxes.forEach(function (b) {
+    if (saved[b.id]) b.checked = true;
+    b.addEventListener('change', function () {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+      update();
+    });
+  });
+  update();
+})();
+</script>
+</body>
+</html>
