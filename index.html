@@ -118,6 +118,16 @@ thead th { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacin
 .progress { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
 input:focus-visible { outline: 2px solid var(--sea); outline-offset: 2px; }
 
+/* Route switcher */
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.tabs button { font: inherit; font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; text-align: left; }
+.tabs button[aria-selected="true"] { border-color: var(--sea); background: var(--sea-soft); color: var(--ink); font-weight: 700; }
+.tabs button b { display: block; font-size: 12px; font-weight: 500; color: var(--muted); }
+.route-panel { display: grid; gap: 40px; }
+.callout { background: var(--sea-soft); border-radius: 8px; padding: 12px 14px; font-size: 14px; display: grid; gap: 4px; }
+.callout ul { margin: 0; padding-left: 1.2em; }
+
 footer { font-size: 12px; color: var(--muted); }
 
 @media (max-width: 480px) {
@@ -139,182 +149,324 @@ footer { font-size: 12px; color: var(--muted); }
   <div class="meta">
     <span class="chip mono">2026/11/5 – 11/9</span>
     <span class="chip">3 大 1 小 · 68 / 66 / 36 / 9 歲</span>
-    <span class="chip">全程住那霸同一間飯店</span>
+    <span class="chip">白天跑行程 · 晚上不開車</span>
     <span class="chip warn">長輩步行不超過 30 分鐘</span>
   </div>
 </header>
 
 <section>
-  <h2>航班 <small>樂桃航空 Peach · 廉價航空</small></h2>
+  <h2>航班 <small>航班待訂 · 只鎖定時段</small></h2>
   <div class="passes">
     <div class="pass">
       <div class="pass-main">
         <span class="pass-label">去程 · 11/5（四）</span>
         <div class="route"><span class="code">TPE</span><span class="arrow"></span><span class="code">OKA</span></div>
-        <div class="times"><span>15:20 桃園</span><span>17:50 那霸</span></div>
+        <div class="times"><span>約 09:30 桃園</span><span>約 12:00 那霸</span></div>
       </div>
-      <div class="pass-stub"><span>航班</span><span class="mono">MM926</span><span>1h30m</span></div>
+      <div class="pass-stub"><span>航班</span><span class="mono">待訂</span><span>中午到</span></div>
     </div>
     <div class="pass">
       <div class="pass-main">
         <span class="pass-label">回程 · 11/9（一）</span>
         <div class="route"><span class="code">OKA</span><span class="arrow"></span><span class="code">TPE</span></div>
-        <div class="times"><span>13:35 那霸</span><span>14:20 桃園</span></div>
+        <div class="times"><span>約 18:00 那霸</span><span>約 19:20 桃園</span></div>
       </div>
-      <div class="pass-stub"><span>航班</span><span class="mono">MM925</span><span>1h45m</span></div>
+      <div class="pass-stub"><span>航班</span><span class="mono">待訂</span><span>傍晚回</span></div>
     </div>
   </div>
   <div class="note">
-    <p><strong>長輩從高雄出發：</strong>搭約 <span class="mono">9:30</span> 的左營高鐵到桃園站，轉機場捷運，<span class="mono">13:00</span> 前到機場報到。</p>
+    <p><strong>⚠️ 長輩的高鐵要重新安排：</strong>中午抵達那霸代表約 <span class="mono">09:30</span> 從桃園起飛、<span class="mono">07:30</span> 報到，長輩要搭約 <span class="mono">05:15</span> 的左營高鐵。<strong>建議 11/4 晚上住桃園機場附近</strong>，不然一早起來接著飛太累。</p>
     <ul>
-      <li>託運行李要事先在官網加購；手提行李 7kg、最多 2 件</li>
-      <li>座位要付費選，至少讓小孩和一位大人坐在一起</li>
-      <li>出發前確認樂桃在桃園的航廈</li>
+      <li>回程約 19:20 落地，長輩轉高鐵回高雄約 22:30 到家，末班車來得及但偏晚</li>
+      <li>原本的樂桃 MM926 / MM925 時段不符，要重選：樂桃、虎航、星宇、長榮、華航、日本越洋都有 TPE–OKA，實際時刻表要上官網確認</li>
+      <li>廉航記得事先加購託運行李、付費選位（讓小孩和一位大人坐一起）</li>
     </ul>
   </div>
 </section>
 
 <section>
-  <h2>每日行程</h2>
-  <div class="days">
+  <h2>兩條路線 <small>住宿排法不同，行程內容一樣</small></h2>
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tab-a" aria-controls="routeA" aria-selected="true">路線 A<b>小祿 2 → 美國村 1 → 國際通 1</b></button>
+    <button role="tab" id="tab-b" aria-controls="routeB" aria-selected="false">路線 B<b>美國村 2 → 國際通 2</b></button>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>比較</th><th>路線 A</th><th>路線 B</th></tr></thead>
+      <tbody>
+        <tr><td>換飯店</td><td>2 次</td><td><strong>1 次</strong></td></tr>
+        <tr><td>美國村</td><td>1 晚</td><td><strong>2 晚</strong></td></tr>
+        <tr><td>巴士團那天</td><td>11/6 · 住小祿，來回要搭單軌</td><td><strong>11/8 · 住國際通，集合和下車都用走的</strong></td></tr>
+        <tr><td>租車</td><td>11/7 – 11/8（2 天）</td><td>11/5 – 11/7（3 天）</td></tr>
+        <tr><td>機場接送</td><td>接機要叫車</td><td><strong>落地就取車，兩頭都不用接送</strong></td></tr>
+        <tr><td>第一天</td><td>不開車，逛國際通緩一下</td><td>下午就要開 40 分鐘到北谷</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="aside">兩條都遵守「白天跑行程、傍晚進飯店、晚上不開車」。路線 B 少搬一次行李、巴士團那天最省力；路線 A 的第一天最輕鬆，適合長輩一早趕飛機後想先休息。</p>
+</section>
 
+<div class="route-panel" id="routeA">
+
+<section>
+  <h2>每日行程 <small>路線 A</small></h2>
+  <div class="days">
     <div class="day">
       <div class="day-rail"><span class="day-num">DAY 1</span><span class="day-date mono">11/5</span><span class="day-dow">週四</span></div>
       <div class="day-body">
-        <div class="day-head"><h3>抵達那霸</h3><span class="tag fly">航班</span><span class="tag">機場接送</span></div>
+        <div class="day-head"><h3>抵達・國際通</h3><span class="tag fly">航班</span><span class="tag ">單軌</span></div>
         <ul class="stops">
-          <li><span class="t">17:50</span><span>落地，大約 18:45 出機場</span></li>
-          <li><span class="t">19:00</span><span>7 人座專車接送到 <strong>Y&rsquo;s Inn 那霸小祿駅前</strong>，約 10 分鐘，一台 NT$1,675（司機舉牌接機，免費等候 60 分鐘）</span></li>
-          <li><span class="t">19:30</span><span>晚餐在小祿站的 AEON 那霸店解決，早點休息</span></li>
+          <li><span class="t">12:00</span><span>落地，約 13:00 出機場</span></li>
+          <li><span class="t">13:20</span><span>7 人座專車或單軌 2 站到 <strong>Y&rsquo;s Inn 那霸小祿駅前</strong>，放行李</span></li>
+          <li><span class="t">14:30</span><span>單軌到縣廳前，逛國際通、第一牧志公設市場</span></li>
+          <li><span class="t">17:30</span><span>國際通吃晚餐 → 單軌回小祿休息</span></li>
         </ul>
+        <p class="easy">第一天不排景點，讓長輩緩一下時差和早起的疲勞</p>
       </div>
     </div>
-
     <div class="day">
       <div class="day-rail"><span class="day-num">DAY 2</span><span class="day-date mono">11/6</span><span class="day-dow">週五</span></div>
       <div class="day-body">
         <div class="day-head"><h3>北部巴士一日團</h3><span class="tag bus">巴士團</span></div>
         <ul class="stops">
-          <li><span class="t">07:45</span><span>小祿站搭單軌到縣廳前，約 10 分鐘（行李留在飯店，今晚續住）</span></li>
-          <li><span class="t">08:20</span><span>在 RYUBO 1F 的 BLUE SEAL 久茂地店門口集合，找 Easygo 旗子（遲到視同放棄，不退費）</span></li>
-          <li><span class="t none">—</span><span>萬座毛（約 30 分）：看象鼻岩海景</span></li>
-          <li><span class="t none">—</span><span>古宇利島（約 30 分）：坐車過古宇利大橋、看海灘</span></li>
-          <li><span class="t none">—</span><span>美麗海水族館（約 3 小時）：黑潮之海、鯨鯊、海豚秀；午餐在園區內自理</span></li>
-          <li><span class="t none">—</span><span>北谷美國村（約 1 小時）：逛街、看夕陽</span></li>
-          <li><span class="t">19:00</span><span>回到那霸，在飯店附近吃晚餐</span></li>
+          <li><span class="t">07:45</span><span>小祿站搭單軌到縣廳前，約 10 分鐘（<strong>行李留在飯店，今晚續住</strong>）</span></li>
+          <li><span class="t">08:20</span><span>RYUBO 1F 的 BLUE SEAL 久茂地店集合，找 Easygo 旗子（遲到不退費）</span></li>
+          <li><span class="t none">—</span><span>萬座毛 30 分 → 古宇利島 30 分 → 美麗海水族館 3 小時 → 北谷美國村 1 小時</span></li>
+          <li><span class="t">19:00</span><span>回到縣廳前 → 單軌回小祿 → 附近吃晚餐</span></li>
         </ul>
-        <p class="easy">水族館有電梯，可以免費借輪椅；萬座毛如果累了，可以留在停車場那側</p>
-        <p class="aside">已選 <a href="https://www.klook.com/zh-TW/activity/134350-churaumi-aquarium-kouri-island-american-village-one-day-tour/">Klook #134350</a>：中文導遊，含水族館、萬座毛門票，不含午餐，沒有購物站</p>
+        <p class="easy">水族館有電梯、可免費借輪椅；萬座毛累了可以留在停車場那側</p>
       </div>
     </div>
-
     <div class="day">
       <div class="day-rail"><span class="day-num">DAY 3</span><span class="day-date mono">11/7</span><span class="day-dow">週六</span></div>
       <div class="day-body">
-        <div class="day-head"><h3>瀨長島・PARCO CITY → 美國村</h3><span class="tag car">取車</span><span class="tag">換飯店</span></div>
+        <div class="day-head"><h3>瀨長島・PARCO CITY → 美國村</h3><span class="tag car">取車</span><span class="tag ">換飯店</span></div>
         <ul class="stops">
           <li><span class="t">08:40</span><span>Y&rsquo;s Inn 退房，走到租車行約 3 分鐘</span></li>
           <li><span class="t">09:00</span><span>沖繩行腳租車（小祿站）取車，<strong>行李直接上車</strong></span></li>
-          <li><span class="t">09:30</span><span>瀨長島 Umikaji Terrace：離小祿約 10 分鐘。看海景、看飛機起降</span></li>
+          <li><span class="t">09:30</span><span>瀨長島 Umikaji Terrace：離小祿約 10 分鐘，看海景、看飛機起降</span></li>
           <li><span class="t">11:30</span><span>在瀨長島吃午餐</span></li>
-          <li><span class="t">13:30</span><span><strong>San-A 浦添西海岸 PARCO CITY</strong>：離瀨長島約 25 分鐘。室內有冷氣、電梯和大量座位，累了隨時坐下</span></li>
+          <li><span class="t">13:30</span><span><strong>San-A 浦添西海岸 PARCO CITY</strong>：約 25 分鐘車程，室內冷氣、電梯、座位多</span></li>
           <li><span class="t">16:00</span><span>開往北谷約 20 分鐘 → <strong>美國村飯店</strong> check in</span></li>
-          <li><span class="t">17:30</span><span>Sunset Beach 看日落（11 月約 17:40），晚餐走路就到，<strong>晚上不開車</strong></span></li>
+          <li><span class="t">17:30</span><span>Sunset Beach 看日落（約 17:40），晚餐走路就到，<strong>晚上不開車</strong></span></li>
         </ul>
-        <p class="easy">白天兩個點都好停車、走動距離短；傍晚就進飯店，晚上在美國村散步吃飯不用再上車。不排玉泉洞（洞內約 890m）</p>
       </div>
     </div>
-
     <div class="day">
       <div class="day-rail"><span class="day-num">DAY 4</span><span class="day-date mono">11/8</span><span class="day-dow">週日</span></div>
       <div class="day-body">
-        <div class="day-head"><h3>中部 → 國際通</h3><span class="tag car">還車</span><span class="tag">換飯店</span></div>
+        <div class="day-head"><h3>中部 → 國際通</h3><span class="tag car">還車</span><span class="tag ">換飯店</span></div>
         <ul class="stops">
           <li><span class="t">09:30</span><span>美國村退房，行李上車</span></li>
           <li><span class="t">10:00</span><span>海中道路：一路海景，開過去就好，不用下車</span></li>
           <li><span class="t">12:00</span><span>AEON Mall Rycom：午餐、買伴手禮，雨天也適合</span></li>
-          <li><span class="t">14:30</span><span>港川外人住宅：老美軍宿舍改成的咖啡店和小店，走一小段就好</span></li>
+          <li><span class="t">14:30</span><span>港川外人住宅：老美軍宿舍改成的咖啡店和小店，走一小段</span></li>
           <li><span class="t">16:00</span><span><strong>先開到國際通飯店卸行李</strong>，長輩先進房休息</span></li>
-          <li><span class="t">16:40</span><span>開約 10 分鐘到小祿，沖繩行腳還車 → 單軌 4 站回縣廳前</span></li>
-          <li><span class="t">18:00</span><span>國際通吃晚餐、逛街，走回飯店就好</span></li>
+          <li><span class="t">16:40</span><span>開約 10 分鐘到小祿還車 → 單軌 4 站回縣廳前</span></li>
+          <li><span class="t">18:00</span><span>國際通吃晚餐、逛街，走回飯店</span></li>
         </ul>
         <p class="easy">先卸行李再還車，長輩不用扛箱子上下單軌</p>
       </div>
     </div>
-
     <div class="day">
       <div class="day-rail"><span class="day-num">DAY 5</span><span class="day-date mono">11/9</span><span class="day-dow">週一</span></div>
       <div class="day-body">
-        <div class="day-head"><h3>返程</h3><span class="tag">機場接送</span><span class="tag fly">航班</span></div>
+        <div class="day-head"><h3>返程</h3><span class="tag ">單軌</span><span class="tag fly">航班</span></div>
         <ul class="stops">
-          <li><span class="t">08:00</span><span>整理行李、吃早餐</span></li>
-          <li><span class="t">10:45</span><span>縣廳前搭單軌到機場約 15 分鐘；行李多就請飯店叫大型計程車（約 ¥2,000）</span></li>
-          <li><span class="t">11:30</span><span>到機場報到</span></li>
-          <li><span class="t">13:35</span><span>起飛 → 14:20 抵達桃園，長輩搭高鐵回高雄</span></li>
+          <li><span class="t">09:00</span><span>早餐、國際通最後補買伴手禮，行李寄飯店櫃台</span></li>
+          <li><span class="t">13:00</span><span>回飯店拿行李</span></li>
+          <li><span class="t">15:30</span><span>縣廳前搭單軌到機場約 15 分鐘（行李多就叫大型計程車，約 ¥2,000）</span></li>
+          <li><span class="t">18:00</span><span>起飛 → 約 19:20 抵達桃園</span></li>
         </ul>
       </div>
     </div>
-
   </div>
 </section>
 
 <div class="grid2">
   <div class="panel">
-    <h2>住宿 <small>每段都 2 間房</small></h2>
+    <h2>住宿 <small>路線 A · 每段 2 間房</small></h2>
     <dl>
       <dt>11/5–11/6</dt><dd><strong>Y&rsquo;s Inn 那霸小祿駅前</strong> · 2 晚 · 小祿站旁，離機場約 10 分鐘、走到租車行約 3 分鐘</dd>
-      <dt>11/7</dt><dd><strong>美國村（北谷）</strong> · 1 晚 · 候選：Hilton 北谷、Vessel Campana、Beach Tower 沖繩</dd>
-      <dt>11/8</dt><dd><strong>國際通</strong> · 1 晚 · 候選：Hotel Collective、JAL City 那霸、東急 STAY 那霸</dd>
+      <dt>11/7</dt><dd><strong>美國村（北谷）</strong> · 1 晚 · 候選：Hilton 北谷、Vessel Campana、Beach Tower</dd>
+      <dt>11/8</dt><dd><strong>國際通</strong> · 1 晚 · 候選：Hotel Collective、JAL City 那霸、東急 STAY</dd>
     </dl>
     <ul>
       <li>每段都訂 <strong>房 A</strong>（爸媽，雙床）+ <strong>房 B</strong>（我和小孩），備註相鄰或同層</li>
-      <li><strong>11/6 不用搬行李</strong>（Y&rsquo;s Inn 續住）；11/7、11/8 行李都在車上，長輩不用自己拖</li>
-      <li>停車只有 11/7 一晚（北谷飯店多半比那霸便宜，有些免費）</li>
-      <li>換三次飯店是這個排法的代價；想少搬一次就改成全程住那霸</li>
+      <li>11/6 不用搬行李（續住）；11/7、11/8 行李都在車上</li>
+      <li>停車只有 11/7 一晚</li>
     </ul>
   </div>
   <div class="panel">
-    <h2>租車</h2>
+    <h2>租車 <small>路線 A</small></h2>
     <dl>
       <dt>期間</dt><dd class="mono">11/7 09:00 → 11/8 約 16:40</dd>
       <dt>租車行</dt><dd>沖繩行腳租車，小祿站（Y&rsquo;s Inn 走路約 3 分鐘）</dd>
-      <dt>車型</dt><dd><strong>Freed / Sienta 級（必要）</strong>：11/7、11/8 兩天行李都在車上，Fit 後車廂裝不下 4 人行李。不選 K car</dd>
-      <dt>要帶</dt><dd>台灣駕照正本 + 日文譯本（監理站當天辦好）</dd>
+      <dt>車型</dt><dd><strong>Freed / Sienta 級（必要）</strong>：兩天行李都在車上，Fit 裝不下。不選 K car</dd>
+      <dt>要帶</dt><dd>台灣駕照正本 + 日文譯本（監理站辦）</dd>
       <dt>保險</dt><dd>免責補償 + NOC 全額保險</dd>
     </dl>
   </div>
 </div>
 
 <section>
-  <h2>費用概算 <small>新台幣 · 粗估，以實際訂購為準</small></h2>
+  <h2>費用概算 <small>路線 A · 新台幣粗估</small></h2>
   <div class="table-wrap">
     <table>
       <thead><tr><th>項目</th><th class="num">估算</th></tr></thead>
       <tbody>
-        <tr><td>樂桃來回 ×4（含託運、選位）</td><td class="num">28,000 – 36,000</td></tr>
+        <tr><td>來回機票 ×4（含託運、選位）</td><td class="num">30,000 – 40,000</td></tr>
         <tr><td>住宿 2 間 × 4 晚（小祿 2 + 北谷 1 + 國際通 1）</td><td class="num">22,000 – 34,000</td></tr>
         <tr><td>北部巴士團 ×4（含水族館門票）</td><td class="num">7,000 – 10,000</td></tr>
-        <tr><td>租車 2 天（Freed / Sienta 級）+ 保險 + 油費、停車</td><td class="num">5,500 – 7,500</td></tr>
-        <tr><td>餐費（4 人 × 4.5 天）</td><td class="num">25,000 – 32,000</td></tr>
-        <tr><td>長輩高鐵來回（敬老票）</td><td class="num">約 2,700</td></tr>
-        <tr><td>接機 7 人座 ×1 趟（送機改搭單軌）+ 雜支</td><td class="num">2,700 – 3,700</td></tr>
+        <tr><td>租車 2 天（Freed / Sienta 級）+ 保險、油、停車</td><td class="num">5,500 – 7,500</td></tr>
+        <tr><td>餐費（4 人 × 5 天）</td><td class="num">27,000 – 34,000</td></tr>
+        <tr><td>長輩高鐵來回 + 11/4 桃園住宿</td><td class="num">5,700 – 7,700</td></tr>
+        <tr><td>接機 7 人座 ×1 趟 + 雜支</td><td class="num">2,700 – 3,700</td></tr>
       </tbody>
-      <tfoot><tr><td>合計</td><td class="num">93,000 – 125,000</td></tr></tfoot>
+      <tfoot><tr><td>合計</td><td class="num">100,000 – 137,000</td></tr></tfoot>
     </table>
   </div>
-  <p class="aside">不含購物和旅平險；日圓匯率會影響總額。</p>
+  <p class="aside">不含購物和旅平險；日圓匯率會影響總額。機票區間變寬是因為中午抵達的時段通常不是最便宜的廉航班次。</p>
 </section>
+
+</div>
+
+<div class="route-panel" id="routeB" hidden>
+
+<section>
+  <h2>每日行程 <small>路線 B</small></h2>
+  <div class="days">
+    <div class="day">
+      <div class="day-rail"><span class="day-num">DAY 1</span><span class="day-date mono">11/5</span><span class="day-dow">週四</span></div>
+      <div class="day-body">
+        <div class="day-head"><h3>抵達 → 直奔美國村</h3><span class="tag fly">航班</span><span class="tag car">取車</span></div>
+        <ul class="stops">
+          <li><span class="t">12:00</span><span>落地，約 13:00 出機場</span></li>
+          <li><span class="t">13:30</span><span>單軌 2 站到小祿（約 6 分鐘），沖繩行腳取車；或請租車行到機場接</span></li>
+          <li><span class="t">14:30</span><span>開往北谷約 40 分鐘 → <strong>美國村飯店</strong> check in，行李放好</span></li>
+          <li><span class="t">16:30</span><span>美國村散步、Depot Island 逛街</span></li>
+          <li><span class="t">17:30</span><span>Sunset Beach 看日落（約 17:40），晚餐走路就到</span></li>
+        </ul>
+        <p class="easy">第一天就定點，之後兩晚都不用搬行李</p>
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-rail"><span class="day-num">DAY 2</span><span class="day-date mono">11/6</span><span class="day-dow">週五</span></div>
+      <div class="day-body">
+        <div class="day-head"><h3>中部海景・購物</h3><span class="tag car">自駕</span></div>
+        <ul class="stops">
+          <li><span class="t">09:30</span><span>海中道路：約 40 分鐘車程，一路海景，開過去就好</span></li>
+          <li><span class="t">11:30</span><span>海の駅あやはし館：休息、吃午餐</span></li>
+          <li><span class="t">13:30</span><span>AEON Mall Rycom：約 30 分鐘車程，買伴手禮、吹冷氣</span></li>
+          <li><span class="t">16:30</span><span>回美國村，車停飯店</span></li>
+          <li><span class="t">17:30</span><span>美國村吃晚餐、看摩天輪夜景，<strong>晚上不開車</strong></span></li>
+        </ul>
+        <p class="easy">全天車程都在 40 分鐘內，每個點都有座位和廁所</p>
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-rail"><span class="day-num">DAY 3</span><span class="day-date mono">11/7</span><span class="day-dow">週六</span></div>
+      <div class="day-body">
+        <div class="day-head"><h3>浦添・瀨長島 → 國際通</h3><span class="tag car">還車</span><span class="tag ">換飯店</span></div>
+        <ul class="stops">
+          <li><span class="t">09:30</span><span>美國村退房，行李上車</span></li>
+          <li><span class="t">10:00</span><span>港川外人住宅：老美軍宿舍改成的咖啡店和小店，走一小段</span></li>
+          <li><span class="t">11:30</span><span><strong>San-A 浦添西海岸 PARCO CITY</strong>：約 5 分鐘車程，午餐 + 逛街</span></li>
+          <li><span class="t">14:30</span><span><strong>先開到國際通飯店卸行李</strong>，長輩可以先進房休息</span></li>
+          <li><span class="t">15:30</span><span>瀨長島 Umikaji Terrace：約 20 分鐘車程，看海、看飛機</span></li>
+          <li><span class="t">17:00</span><span>開 10 分鐘到小祿還車 → 單軌 4 站回縣廳前</span></li>
+          <li><span class="t">18:30</span><span>國際通吃晚餐，走回飯店</span></li>
+        </ul>
+        <p class="easy">唯一一次換飯店，而且行李全程在車上</p>
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-rail"><span class="day-num">DAY 4</span><span class="day-date mono">11/8</span><span class="day-dow">週日</span></div>
+      <div class="day-body">
+        <div class="day-head"><h3>北部巴士一日團</h3><span class="tag bus">巴士團</span></div>
+        <ul class="stops">
+          <li><span class="t">08:05</span><span><strong>從飯店走到 RYUBO 百貨</strong>，國際通上，走路就到</span></li>
+          <li><span class="t">08:20</span><span>RYUBO 1F 的 BLUE SEAL 久茂地店集合，找 Easygo 旗子（遲到不退費）</span></li>
+          <li><span class="t none">—</span><span>萬座毛 30 分 → 古宇利島 30 分 → 美麗海水族館 3 小時 → 北谷美國村 1 小時</span></li>
+          <li><span class="t">19:00</span><span>回到縣廳前，<strong>走回飯店</strong> → 國際通吃晚餐</span></li>
+        </ul>
+        <p class="easy">住國際通參加巴士團最省力：集合和下車都在走路範圍，當天完全不用碰行李</p>
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-rail"><span class="day-num">DAY 5</span><span class="day-date mono">11/9</span><span class="day-dow">週一</span></div>
+      <div class="day-body">
+        <div class="day-head"><h3>返程</h3><span class="tag ">單軌</span><span class="tag fly">航班</span></div>
+        <ul class="stops">
+          <li><span class="t">09:00</span><span>早餐、國際通最後補買伴手禮，行李寄飯店櫃台</span></li>
+          <li><span class="t">13:00</span><span>回飯店拿行李</span></li>
+          <li><span class="t">15:30</span><span>縣廳前搭單軌到機場約 15 分鐘（行李多就叫大型計程車，約 ¥2,000）</span></li>
+          <li><span class="t">18:00</span><span>起飛 → 約 19:20 抵達桃園</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="grid2">
+  <div class="panel">
+    <h2>住宿 <small>路線 B · 每段 2 間房</small></h2>
+    <dl>
+      <dt>11/5–11/6</dt><dd><strong>美國村（北谷）</strong> · 2 晚 · 候選：Hilton 北谷、Vessel Campana、Beach Tower</dd>
+      <dt>11/7–11/8</dt><dd><strong>國際通</strong> · 2 晚 · 候選：Hotel Collective、JAL City 那霸、東急 STAY</dd>
+    </dl>
+    <ul>
+      <li>每段都訂 <strong>房 A</strong>（爸媽，雙床）+ <strong>房 B</strong>（我和小孩），備註相鄰或同層</li>
+      <li><strong>全程只搬一次行李</strong>（11/7 早上，而且直接上車）</li>
+      <li>停車 11/5、11/6 兩晚（北谷飯店多半比那霸便宜，有些免費）</li>
+      <li>巴士團在 11/8，那天住國際通、完全不用碰行李</li>
+    </ul>
+  </div>
+  <div class="panel">
+    <h2>租車 <small>路線 B</small></h2>
+    <dl>
+      <dt>期間</dt><dd class="mono">11/5 約 13:30 → 11/7 約 17:00</dd>
+      <dt>租車行</dt><dd>沖繩行腳租車，小祿站（機場單軌 2 站，約 6 分鐘）</dd>
+      <dt>車型</dt><dd><strong>Freed / Sienta 級（必要）</strong>：落地就拖行李上車，Fit 裝不下。不選 K car</dd>
+      <dt>要帶</dt><dd>台灣駕照正本 + 日文譯本（監理站辦）</dd>
+      <dt>保險</dt><dd>免責補償 + NOC 全額保險</dd>
+    </dl>
+    <p class="aside">要先問沖繩行腳：11/5 下午能不能當天取車、有沒有機場接送。</p>
+  </div>
+</div>
+
+<section>
+  <h2>費用概算 <small>路線 B · 新台幣粗估</small></h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>項目</th><th class="num">估算</th></tr></thead>
+      <tbody>
+        <tr><td>來回機票 ×4（含託運、選位）</td><td class="num">30,000 – 40,000</td></tr>
+        <tr><td>住宿 2 間 × 4 晚（北谷 2 + 國際通 2）</td><td class="num">24,000 – 36,000</td></tr>
+        <tr><td>北部巴士團 ×4（含水族館門票）</td><td class="num">7,000 – 10,000</td></tr>
+        <tr><td>租車 3 天（Freed / Sienta 級）+ 保險、油、停車</td><td class="num">8,000 – 11,000</td></tr>
+        <tr><td>餐費（4 人 × 5 天）</td><td class="num">27,000 – 34,000</td></tr>
+        <tr><td>長輩高鐵來回 + 11/4 桃園住宿</td><td class="num">5,700 – 7,700</td></tr>
+        <tr><td>雜支（機場單軌、停車、零用）</td><td class="num">1,500 – 2,500</td></tr>
+      </tbody>
+      <tfoot><tr><td>合計</td><td class="num">103,000 – 141,000</td></tr></tfoot>
+    </table>
+  </div>
+  <p class="aside">比路線 A 多約 NT$3,000–4,000，主要差在多租一天車、北谷房價通常高一點；但省掉接機、少搬一次行李。</p>
+</section>
+
+</div>
 
 <section>
   <h2>待辦清單 <small class="progress" id="progress"></small></h2>
   <ul class="checks" id="checks">
-    <li><label><input type="checkbox" id="c1"><span>訂機票：加購託運行李、選座位</span></label></li>
-    <li><label><input type="checkbox" id="c2"><span>訂 Y&rsquo;s Inn 小祿 2 間 × 2 晚（11/5、11/6）</span></label></li>
-    <li><label><input type="checkbox" id="c2b"><span>訂美國村飯店 2 間 × 1 晚（11/7）</span></label></li>
-    <li><label><input type="checkbox" id="c2c"><span>訂國際通飯店 2 間 × 1 晚（11/8）</span></label></li>
-    <li><label><input type="checkbox" id="c3"><span>訂北部巴士團（11/6）</span></label></li>
-    <li><label><input type="checkbox" id="c11"><span>訂 11/5 接機 7 人座（送機改搭單軌，省一趟）</span></label></li>
-    <li><label><input type="checkbox" id="c4"><span>訂租車（11/7 市區取、11/8 傍晚市區還）</span></label></li>
+    <li><label><input type="checkbox" id="c0"><span><strong>先跟家人決定走路線 A 還是 B</strong></span></label></li>
+    <li><label><input type="checkbox" id="c1"><span>選定並訂機票（中午到、傍晚回；加購行李選位）</span></label></li>
+    <li><label><input type="checkbox" id="c1b"><span>訂 11/4 桃園機場附近住宿（長輩用）</span></label></li>
+    <li><label><input type="checkbox" id="c2"><span>訂住宿：美國村 2 間房</span></label></li>
+    <li><label><input type="checkbox" id="c2c"><span>訂住宿：國際通 2 間房</span></label></li>
+    <li><label><input type="checkbox" id="c3"><span>訂北部巴士團（A 排 11/6、B 排 11/8）</span></label></li>
+    <li><label><input type="checkbox" id="c4"><span>訂租車：沖繩行腳，指定 Freed / Sienta 級 + NOC 保險</span></label></li>
     <li><label><input type="checkbox" id="c5"><span>到監理站辦駕照日文譯本</span></label></li>
     <li><label><input type="checkbox" id="c6"><span>護照效期要超過回國日</span></label></li>
     <li><label><input type="checkbox" id="c7"><span>填 Visit Japan Web</span></label></li>
@@ -346,6 +498,23 @@ footer { font-size: 12px; color: var(--muted); }
     });
   });
   update();
+
+  var tabs = [
+    { btn: document.getElementById('tab-a'), panel: document.getElementById('routeA') },
+    { btn: document.getElementById('tab-b'), panel: document.getElementById('routeB') }
+  ];
+  var RKEY = 'okinawa2026-route';
+  function show(i) {
+    tabs.forEach(function (t, j) {
+      t.btn.setAttribute('aria-selected', String(i === j));
+      t.panel.hidden = i !== j;
+    });
+    try { localStorage.setItem(RKEY, String(i)); } catch (e) {}
+  }
+  tabs.forEach(function (t, i) { t.btn.addEventListener('click', function () { show(i); }); });
+  var startAt = 0;
+  try { startAt = parseInt(localStorage.getItem(RKEY) || '0', 10) || 0; } catch (e) {}
+  show(startAt);
 })();
 </script>
 </body>
