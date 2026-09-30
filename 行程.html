@@ -118,6 +118,8 @@ thead th { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacin
 .progress { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
 input:focus-visible { outline: 2px solid var(--sea); outline-offset: 2px; }
 
+tr.pick td { background: var(--sea-soft); }
+
 /* Route switcher */
 .tabs { display: flex; gap: 8px; flex-wrap: wrap; }
 .tabs button { font: inherit; font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 8px;
@@ -148,7 +150,7 @@ footer { font-size: 12px; color: var(--muted); }
   <h1>沖繩家族旅遊</h1>
   <div class="meta">
     <span class="chip mono">2026/11/12 – 11/16</span>
-    <span class="chip warn">機票待定</span>
+    <span class="chip warn">機票待訂</span>
     <span class="chip">比原訂延後一週</span>
     <span class="chip">4 大 1 小 · 68 / 66 / 41 / 36 / 9 歲</span>
     <span class="chip">駕駛 2 人 · 41 / 36</span>
@@ -158,42 +160,113 @@ footer { font-size: 12px; color: var(--muted); }
 </header>
 
 <section>
-  <h2>航班 <small>待定 · 先排行程，機票之後再訂</small></h2>
+  <h2>航班候選 <small>2026/7 時刻表 · 訂票前務必上官網再確認</small></h2>
+
   <div class="passes">
     <div class="pass">
       <div class="pass-main">
-        <span class="pass-label">去程 · 11/12（四）</span>
+        <span class="pass-label">去程 · 11/12（四）· 台北 3 人</span>
         <div class="route"><span class="code">TPE</span><span class="arrow"></span><span class="code">OKA</span></div>
-        <div class="times"><span>約 12:20 抵達</span><span>候選 MM922</span></div>
+        <div class="times"><span>09:45 桃園</span><span>12:25 那霸</span></div>
       </div>
-      <div class="pass-stub"><span>候選</span><span class="mono">MM922</span><span>中午到</span></div>
+      <div class="pass-stub"><span>首選</span><span class="mono">MM922</span><span>樂桃</span></div>
     </div>
     <div class="pass">
       <div class="pass-main">
-        <span class="pass-label">回程 · 11/16（一）</span>
-        <div class="route"><span class="code">OKA</span><span class="arrow"></span><span class="code">TPE</span></div>
-        <div class="times"><span>16:45 起飛</span><span>約 17:15 桃園</span></div>
+        <span class="pass-label">去程 · 11/12（四）· 高雄 2 人</span>
+        <div class="route"><span class="code">KHH</span><span class="arrow"></span><span class="code">OKA</span></div>
+        <div class="times"><span>10:10 高雄</span><span>13:00 那霸</span></div>
       </div>
-      <div class="pass-stub"><span>候選</span><span class="mono">MM929</span><span>傍晚回</span></div>
+      <div class="pass-stub"><span>唯一</span><span class="mono">IT288</span><span>虎航</span></div>
+    </div>
+    <div class="pass">
+      <div class="pass-main">
+        <span class="pass-label">回程 · 11/16（一）· 台北 3 人</span>
+        <div class="route"><span class="code">OKA</span><span class="arrow"></span><span class="code">TPE</span></div>
+        <div class="times"><span>16:50 那霸</span><span>17:35 桃園</span></div>
+      </div>
+      <div class="pass-stub"><span>首選</span><span class="mono">MM929</span><span>樂桃</span></div>
+    </div>
+    <div class="pass">
+      <div class="pass-main">
+        <span class="pass-label">回程 · 11/16（一）· 高雄 2 人</span>
+        <div class="route"><span class="code">OKA</span><span class="arrow"></span><span class="code">KHH</span></div>
+        <div class="times"><span>14:00 那霸</span><span>14:55 高雄</span></div>
+      </div>
+      <div class="pass-stub"><span>首選</span><span class="mono">IT289</span><span>虎航</span></div>
     </div>
   </div>
-  <div class="note">
-    <p><strong>✅ 已決定：分兩批飛。</strong></p>
-    <ul>
-      <li><strong>桃園出發（3 人）</strong>：41、36、9 歲 — 候選 MM922 / MM929</li>
-      <li><strong>高雄直飛（2 人）</strong>：爸、媽 — 不用北上、不用早起、不用多住一晚桃園</li>
-      <li>⚠️ <strong>兩批人抵達時間不同，要在那霸機場會合</strong>；高雄–沖繩的航空公司和時刻要另外查</li>
-    </ul>
-    <p><strong>候選班次：樂桃 MM922（約 12:20 抵達）／ MM929（16:45 起飛，約 17:15 回到桃園）。</strong>這組是 2026/7 那趟實際搭過的班次，時段剛好符合；<strong>11 月的班表要再確認</strong>。回程 17:15 落地，長輩轉高鐵回高雄約 20:30–21:00 到家，比原本的安排輕鬆。</p>
-  </div>
+
   <div class="callout">
-    <p><strong>🤝 情境二的會合方式</strong></p>
+    <p><strong>🎯 為什麼是這個組合</strong></p>
     <ul>
-      <li>會合點：<strong>那霸機場入境大廳（國際線到達出口）</strong>，誰先到誰等</li>
-      <li>兩邊都把班機號碼、預計落地時間寫在同一個群組，落地各報一聲</li>
-      <li>如果時間差超過 2 小時，先到的那批可以先去飯店 check in，晚到的直接搭單軌或計程車到飯店會合</li>
-      <li><strong>有兩個駕駛（41、36）</strong>，所以可以一人先去取車、一人留在到達大廳陪長輩，不用全部人等在一起</li>
-      <li>沖繩行腳營業到 <strong>20:00</strong>，所以就算晚一點落地也還取得到車</li>
+      <li><strong>去程兩批人只差 35 分鐘</strong>（12:25 vs 13:00）—— 在那霸機場會合幾乎不用等</li>
+      <li><strong>⚠️ 華航 CI132（高雄線）週四不飛</strong>（班期 D123567），11/12 正好是週四 → <strong>高雄組去程只有虎航 IT288 一個選擇</strong></li>
+      <li>回程長輩搭 IT289，<strong>14:55 就回到高雄</strong>，天還亮著；台北組再等到 16:50</li>
+    </ul>
+  </div>
+
+  <h3>台北（TPE）⇄ 那霸（OKA）· 全部班次</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>航空</th><th>去程</th><th class="num">TPE → OKA</th><th>回程</th><th class="num">OKA → TPE</th><th>班期</th></tr></thead>
+      <tbody>
+        <tr><td>虎航</td><td class="mono">IT230</td><td class="num">06:35 – 08:55</td><td class="mono">IT231</td><td class="num">09:45 – 10:20</td><td>每日</td></tr>
+        <tr><td>長榮</td><td class="mono">BR112</td><td class="num">06:55 – 09:15</td><td class="mono">BR113</td><td class="num">10:15 – 10:55</td><td>每日</td></tr>
+        <tr><td>華航</td><td class="mono">CI120</td><td class="num">08:10 – 10:45</td><td class="mono">CI121</td><td class="num">11:55 – 12:35</td><td>每日</td></tr>
+        <tr class="pick"><td><strong>樂桃</strong></td><td class="mono"><strong>MM922</strong></td><td class="num"><strong>09:45 – 12:25</strong></td><td class="mono">MM921</td><td class="num">08:15 – 08:55</td><td>每日</td></tr>
+        <tr><td>日本越洋</td><td class="mono">NU302</td><td class="num">10:00 – 12:30</td><td class="mono">NU301</td><td class="num">08:00 – 08:45</td><td>每日</td></tr>
+        <tr><td>星宇</td><td class="mono">JX870</td><td class="num">11:40 – 14:15</td><td class="mono">JX871</td><td class="num">15:25 – 16:10</td><td>每日</td></tr>
+        <tr><td>樂桃</td><td class="mono">MM926</td><td class="num">15:20 – 17:50</td><td class="mono">MM925</td><td class="num">13:35 – 14:20</td><td>每日</td></tr>
+        <tr><td>長榮</td><td class="mono">BR186</td><td class="num">16:50 – 19:10</td><td class="mono">BR185</td><td class="num">20:10 – 20:55</td><td>每日</td></tr>
+        <tr><td>華航</td><td class="mono">CI122</td><td class="num">16:50 – 19:20</td><td class="mono">CI123</td><td class="num">20:20 – 21:00</td><td>每日</td></tr>
+        <tr class="pick"><td>樂桃</td><td class="mono">MM928</td><td class="num">18:20 – 20:50</td><td class="mono"><strong>MM929</strong></td><td class="num"><strong>16:50 – 17:35</strong></td><td>每日</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="aside">去程要「中午抵達」→ <strong>MM922（12:25）</strong>或 <strong>NU302（12:30）</strong>。回程要「傍晚起飛」→ <strong>MM929（16:50）</strong>或 JX871（15:25）。BR185 / CI123 / IT233 都超過 20:00 起飛，長輩回到家太晚。</p>
+  <p class="aside">💡 <strong>日本越洋 NU302</strong> 抵達時間跟 MM922 幾乎一樣，而且是全服務航空、<strong>免費託運 2 件共 46 kg</strong>；但回程 NU301 只有早上 08:00，不符合傍晚回。如果不介意混搭不同航空，可以「去程 NU302 + 回程 MM929」。</p>
+
+  <h3>高雄（KHH）⇄ 那霸（OKA）· 全部班次</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>航空</th><th>去程</th><th class="num">KHH → OKA</th><th>回程</th><th class="num">OKA → KHH</th><th>班期</th></tr></thead>
+      <tbody>
+        <tr class="pick"><td><strong>虎航</strong></td><td class="mono"><strong>IT288</strong></td><td class="num"><strong>10:10 – 13:00</strong></td><td class="mono"><strong>IT289</strong></td><td class="num"><strong>14:00 – 14:55</strong></td><td>每日</td></tr>
+        <tr><td>華航</td><td class="mono">CI132</td><td class="num">15:55 – 18:45</td><td class="mono">CI133</td><td class="num">19:45 – 20:30</td><td><strong>一二三五六日（週四停飛）</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">
+    <p><strong>⚠️ 高雄線的三個限制</strong></p>
+    <ul>
+      <li><strong>只有兩家飛</strong>：華航和虎航。長榮、樂桃、星宇都沒有高雄–沖繩</li>
+      <li><strong>11/12 是週四，CI132 停飛</strong> → 長輩去程<strong>只能搭 IT288</strong>，沒有備案。要早點訂</li>
+      <li>虎航是廉航，<strong>長輩的託運行李要另外加購</strong>，訂票時一起買</li>
+      <li>回程如果改搭 CI133（19:45），長輩要在機場等到快 8 點、台北組 16:50 就先飛走了，<strong>不建議</strong></li>
+      <li>捷星日本高雄–那霸 <strong>12/6 才開航</strong>，這趟用不到</li>
+    </ul>
+  </div>
+
+  <h3>11/16 回程的三種配法</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>配法</th><th>台北 3 人</th><th>高雄 2 人</th><th>落差</th><th>評價</th></tr></thead>
+      <tbody>
+        <tr><td><strong>甲（推薦）</strong></td><td class="mono">MM929 16:50</td><td class="mono">IT289 14:00</td><td>長輩早 2h50m</td><td>長輩 14:55 就到高雄，最輕鬆；台北組機場多等</td></tr>
+        <tr><td>乙</td><td class="mono">JX871 15:25</td><td class="mono">IT289 14:00</td><td>長輩早 1h25m</td><td>落差最小，但少玩一個多小時</td></tr>
+        <tr><td>丙</td><td class="mono">MM929 16:50</td><td class="mono">CI133 19:45</td><td>長輩晚 2h55m</td><td>❌ 長輩落單等三小時</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <p><strong>🤝 11/12 那霸機場會合</strong></p>
+    <ul>
+      <li>台北組 12:25 落地 → 約 13:05 出關；高雄組 13:00 落地 → 約 13:40 出關</li>
+      <li><strong>有兩個駕駛，建議分工</strong>：一人 13:05 出關後先搭沖繩行腳接駁去取車，另一人留在到達大廳等長輩</li>
+      <li>取到車約 13:35 → 開回機場接長輩（約 5 分鐘），13:50 全員上車出發</li>
+      <li>兩邊班機號碼放同一個群組，落地各報一聲</li>
     </ul>
   </div>
 </section>
@@ -330,9 +403,10 @@ footer { font-size: 12px; color: var(--muted); }
       <div class="day-body">
         <div class="day-head"><h3>抵達・國際通</h3><span class="tag fly">航班</span><span class="tag ">單軌</span></div>
         <ul class="stops">
-          <li><span class="t">12:20</span><span>桃園那批（41／36／9 歲）落地</span></li>
-          <li><span class="t none">—</span><span><strong>和高雄那批（爸媽）在到達大廳會合</strong>，時間差大的話一人先去取車</span></li>
-          <li><span class="t">13:00</span><span>沖繩行腳<strong>免費接駁</strong>到營業所取車 → 開 5 分鐘到 <strong>Y&rsquo;s Inn 那霸小祿駅前</strong>放行李</span></li>
+          <li><span class="t">12:25</span><span>台北組（41／36／9 歲）<strong>MM922</strong> 落地</span></li>
+          <li><span class="t">13:00</span><span>高雄組（爸媽）<strong>IT288</strong> 落地</span></li>
+          <li><span class="t">13:05</span><span>一位駕駛先搭免費接駁去取車，另一位在到達大廳等長輩</span></li>
+          <li><span class="t">13:50</span><span>開車回機場接長輩 → 全員上車 → 開 5 分鐘到 <strong>Y&rsquo;s Inn 那霸小祿駅前</strong>放行李</span></li>
           <li><span class="t">14:30</span><span>單軌到縣廳前，逛國際通、第一牧志公設市場</span></li>
           <li><span class="t">17:30</span><span>國際通吃晚餐 → 單軌回小祿休息</span></li>
         </ul>
@@ -389,10 +463,11 @@ footer { font-size: 12px; color: var(--muted); }
         <div class="day-head"><h3>返程</h3><span class="tag ">單軌</span><span class="tag fly">航班</span></div>
         <ul class="stops">
           <li><span class="t">09:00</span><span>退房，<strong>行李上車</strong></span></li>
-          <li><span class="t">09:30</span><span>最後採買：AEON 那霸、PARCO CITY 或瀨長島吃早午餐</span></li>
-          <li><span class="t">13:00</span><span><strong>小祿營業所還車</strong>（卡在 4 天整，不跳第 5 天）→ 免費接駁到機場</span></li>
-          <li><span class="t">14:00</span><span>機場報到、吃東西</span></li>
-          <li><span class="t">16:45</span><span>起飛 → 約 17:15 抵達桃園</span></li>
+          <li><span class="t">09:30</span><span>最後採買：AEON 那霸或 PARCO CITY（離機場近，方便 11:30 送機）</span></li>
+          <li><span class="t">11:30</span><span><strong>先開車送長輩到機場</strong>（IT289 14:00 起飛，12:00 報到）</span></li>
+          <li><span class="t">13:00</span><span><strong>小祿營業所還車</strong>（不跳第 5 天）→ 免費接駁到機場</span></li>
+          <li><span class="t">14:00</span><span>台北組報到、吃東西；長輩 14:55 已到高雄</span></li>
+          <li><span class="t">16:50</span><span><strong>MM929</strong> 起飛 → 17:35 抵達桃園</span></li>
         </ul>
         <p class="easy">最後半天還有車，行李不用拖上單軌</p>
       </div>
@@ -418,7 +493,7 @@ footer { font-size: 12px; color: var(--muted); }
   <div class="panel">
     <h2>租車 <small>路線 A</small></h2>
     <dl>
-      <dt>期間</dt><dd class="mono">11/12 13:00 → 11/16 13:00（4 天整）</dd>
+      <dt>期間</dt><dd class="mono">11/12 13:30 → 11/16 13:00</dd><dt></dt><dd>計費 4 天（配合高雄組 13:00 落地）</dd>
       <dt>取／還</dt><dd>機場免費接駁取車 → 小祿營業所還車 → 免費送機</dd>
       <dt>車型</dt><dd><strong>新款 SIENTA（7 人座，¥56,500）</strong>：第三排折下來 = 5 座 + 行李空間。<br>SUV（5 人座，¥50,500）便宜 ¥6,000 但空間固定</dd>
       <dt>駕駛</dt><dd>41 歲 + 36 歲，<strong>兩人都登記</strong>可以輪流開</dd>
@@ -458,9 +533,10 @@ footer { font-size: 12px; color: var(--muted); }
       <div class="day-body">
         <div class="day-head"><h3>抵達 → 直奔美國村</h3><span class="tag fly">航班</span><span class="tag car">取車</span></div>
         <ul class="stops">
-          <li><span class="t">12:20</span><span>桃園那批（41／36／9 歲）落地</span></li>
-          <li><span class="t none">—</span><span><strong>和高雄那批（爸媽）在到達大廳會合</strong>；時間差大的話，一個駕駛先去取車、另一個陪長輩等</span></li>
-          <li><span class="t">13:00</span><span>沖繩行腳<strong>免費接駁</strong>到營業所取車（上次實績：12:20 落地 → 13:00 取到車）</span></li>
+          <li><span class="t">12:25</span><span>台北組（41／36／9 歲）<strong>MM922</strong> 落地</span></li>
+          <li><span class="t">13:00</span><span>高雄組（爸媽）<strong>IT288</strong> 落地</span></li>
+          <li><span class="t">13:05</span><span>一位駕駛先搭免費接駁去取車，另一位在到達大廳等長輩</span></li>
+          <li><span class="t">13:50</span><span>開車回機場接長輩 → 全員上車出發</span></li>
           <li><span class="t">14:30</span><span>開往北谷約 40 分鐘 → <strong>美國村飯店</strong> check in，行李放好</span></li>
           <li><span class="t">16:30</span><span>美國村散步、Depot Island 逛街</span></li>
           <li><span class="t">17:30</span><span>Sunset Beach 看日落（約 17:40），晚餐走路就到</span></li>
@@ -517,10 +593,11 @@ footer { font-size: 12px; color: var(--muted); }
         <div class="day-head"><h3>返程</h3><span class="tag ">單軌</span><span class="tag fly">航班</span></div>
         <ul class="stops">
           <li><span class="t">09:00</span><span>退房，<strong>行李上車</strong></span></li>
-          <li><span class="t">09:30</span><span>最後採買：AEON 那霸、PARCO CITY 或瀨長島吃早午餐</span></li>
-          <li><span class="t">13:00</span><span><strong>小祿營業所還車</strong>（卡在 4 天整，不跳第 5 天）→ 免費接駁到機場</span></li>
-          <li><span class="t">14:00</span><span>機場報到、吃東西</span></li>
-          <li><span class="t">16:45</span><span>起飛 → 約 17:15 抵達桃園</span></li>
+          <li><span class="t">09:30</span><span>最後採買：AEON 那霸或 PARCO CITY（離機場近，方便 11:30 送機）</span></li>
+          <li><span class="t">11:30</span><span><strong>先開車送長輩到機場</strong>（IT289 14:00 起飛，12:00 報到）</span></li>
+          <li><span class="t">13:00</span><span><strong>小祿營業所還車</strong>（不跳第 5 天）→ 免費接駁到機場</span></li>
+          <li><span class="t">14:00</span><span>台北組報到、吃東西；長輩 14:55 已到高雄</span></li>
+          <li><span class="t">16:50</span><span><strong>MM929</strong> 起飛 → 17:35 抵達桃園</span></li>
         </ul>
         <p class="easy">最後半天還有車，行李不用拖上單軌</p>
       </div>
@@ -546,7 +623,7 @@ footer { font-size: 12px; color: var(--muted); }
   <div class="panel">
     <h2>租車 <small>路線 B</small></h2>
     <dl>
-      <dt>期間</dt><dd class="mono">11/12 13:00 → 11/16 13:00（4 天整）</dd>
+      <dt>期間</dt><dd class="mono">11/12 13:30 → 11/16 13:00</dd><dt></dt><dd>計費 4 天（配合高雄組 13:00 落地）</dd>
       <dt>取／還</dt><dd>機場免費接駁取車 → 小祿營業所還車 → 免費送機</dd>
       <dt>車型</dt><dd><strong>新款 SIENTA（7 人座，¥56,500）</strong>：第三排折下來 = 5 座 + 行李空間。<br>SUV（5 人座，¥50,500）便宜 ¥6,000 但空間固定</dd>
       <dt>駕駛</dt><dd>41 歲 + 36 歲，<strong>兩人都登記</strong>可以輪流開</dd>
@@ -581,8 +658,9 @@ footer { font-size: 12px; color: var(--muted); }
   <h2>待辦清單 <small class="progress" id="progress"></small></h2>
   <ul class="checks" id="checks">
     <li><label><input type="checkbox" id="c0"><span><strong>先跟家人決定走路線 A 還是 B</strong></span></label></li>
-    <li><label><input type="checkbox" id="c1"><span>訂桃園出發機票 ×3（41／36／9 歲，候選 MM922 / MM929）</span></label></li>
-    <li><label><input type="checkbox" id="c1c"><span>查並訂<strong>高雄–沖繩</strong>機票 ×2（爸媽）</span></label></li>
+    <li><label><input type="checkbox" id="c1"><span>訂台北機票 ×3：<strong>去 MM922 / 回 MM929</strong>（或去程改 NU302）</span></label></li>
+    <li><label><input type="checkbox" id="c1c"><span>訂高雄機票 ×2：<strong>去 IT288 / 回 IT289</strong> —— 去程沒有備案，要早訂</span></label></li>
+    <li><label><input type="checkbox" id="c1e"><span>虎航是廉航，<strong>長輩的託運行李要加購</strong></span></label></li>
     <li><label><input type="checkbox" id="c1d"><span>兩邊班機號碼、落地時間放同一個群組，落地各報一聲</span></label></li>
     <li><label><input type="checkbox" id="c2"><span>訂住宿：美國村 <strong>3 間房</strong></span></label></li>
     <li><label><input type="checkbox" id="c2c"><span>訂住宿：國際通 <strong>3 間房</strong></span></label></li>
