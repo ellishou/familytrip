@@ -135,7 +135,7 @@ input:focus-visible { outline: 2px solid var(--sea); outline-offset: 2px; }
 .tabbar.sub { position: static; border-bottom: 0; padding-block: 0; margin-block: 0; }
 .tabbar.sub button { font-size: 14px; padding: 6px 14px; }
 .daypanel[hidden] { display: none; }
-.maprow { display: grid; grid-template-columns: minmax(180px, 240px) 1fr; gap: 20px; align-items: start;
+.maprow { display: grid; grid-template-columns: minmax(300px, 1.25fr) minmax(230px, 1fr); gap: 20px; align-items: start;
   background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
 .map { width: 100%; height: auto; }
 .map .isle { fill: var(--sea-soft); stroke: var(--sea); stroke-width: 1.5; stroke-linejoin: round; }
@@ -149,7 +149,9 @@ input:focus-visible { outline: 2px solid var(--sea); outline-offset: 2px; }
   display: grid; place-items: center; font-size: 11px; font-weight: 700; font-family: var(--f-mono); }
 .mstops a { color: var(--ink); text-underline-offset: 3px; }
 .mstops .bd { font-size: 11px; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; white-space: nowrap; }
-@media (max-width: 560px) { .maprow { grid-template-columns: 1fr; } .map { max-width: 240px; margin: 0 auto; } }
+.mapbox { display: grid; gap: 6px; }
+.osm { width: 100%; height: 320px; border: 1px solid var(--line); border-radius: 8px; background: var(--sea-soft); }
+@media (max-width: 680px) { .maprow { grid-template-columns: 1fr; } .osm { height: 260px; } }
 
 .legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; color: var(--muted); align-items: center; }
 
@@ -511,11 +513,11 @@ footer { font-size: 12px; color: var(--muted); }
   <section>
     <h2>Day 1 <small class="mono">1/14（週四）· 抵達 · 住小祿</small></h2>
     <div class="maprow">
-      <svg viewBox="0 0 300 320" class="map" role="img" aria-label="抵達 · 住小祿 路線示意圖">
-  <path d="M 46,292 L 42,266 L 56,244 L 72,222 L 92,196 L 114,168 L 136,140 L 156,116 L 166,98 L 148,86 L 126,74 L 118,58 L 132,50 L 156,58 L 180,72 L 198,78 L 220,72 L 244,62 L 266,68 L 276,88 L 266,110 L 244,128 L 220,148 L 198,168 L 176,190 L 154,212 L 132,234 L 108,256 L 84,278 L 62,296 Z" class="isle"/>
-  <text x="186" y="30" class="geo">古宇利島</text><text x="104" y="44" class="geo">本部半島</text><text x="250" y="150" class="geo">東海岸</text><text x="34" y="306" class="geo">那霸</text><circle cx="232" cy="46" r="8" class="isle"/>
-  <line x1="60" y1="274" x2="74" y2="262" class="rt"/><line x1="74" y1="262" x2="90" y2="246" class="rt"/><g class="pin"><circle cx="60" cy="274" r="9"/><text x="60" y="277.5">1</text></g><g class="pin"><circle cx="74" cy="262" r="9"/><text x="74" y="265.5">2</text></g><g class="pin"><circle cx="90" cy="246" r="9"/><text x="90" y="249.5">3</text></g>
-</svg>
+      <div class="mapbox">
+        <iframe class="osm" loading="lazy" title="Day 1 路線範圍地圖"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=127.630,26.178,127.712,26.238&amp;layer=mapnik&amp;marker=26.1936%2C127.6593"></iframe>
+        <p class="aside"><a href="https://www.openstreetmap.org/?mlat=26.1936&amp;mlon=127.6593#map=13/26.207/127.670" target="_blank" rel="noopener">在 OpenStreetMap 開啟大圖 ↗</a>　·　圖釘標的是 <strong>Y's Inn 那霸小祿駅前</strong>；OSM 嵌入只支援一個圖釘，其餘地點請點下方清單</p>
+      </div>
       <div>
         <p class="aside"><strong>範圍</strong>：那霸市區　·　<strong>車程</strong>：不開車</p>
         <ol class="mstops"><li><span class="no">1</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E9%82%A3%E8%A6%87%E7%A9%BA%E6%B8%AF" target="_blank" rel="noopener">那霸機場</a> <span class="bd">抵達</span></span></li><li><span class="no">2</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%AF%E3%82%A4%E3%82%BA%E3%82%A4%E3%83%B3%E9%82%A3%E8%A6%87%E5%B0%8F%E7%A6%84%E9%A7%85%E5%89%8D" target="_blank" rel="noopener">Y's Inn 那霸小祿駅前</a> <span class="bd">住宿</span></span></li><li><span class="no">3</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E5%9B%BD%E9%9A%9B%E9%80%9A%E3%82%8A%20%E9%82%A3%E8%A6%87" target="_blank" rel="noopener">國際通散策</a> <span class="bd">晚上</span></span></li></ol>
@@ -548,11 +550,11 @@ footer { font-size: 12px; color: var(--muted); }
   <section>
     <h2>Day 2 <small class="mono">1/15（週五）· 取車 → 一路向北 → 美國村</small></h2>
     <div class="maprow">
-      <svg viewBox="0 0 300 320" class="map" role="img" aria-label="取車 → 一路向北 → 美國村 路線示意圖">
-  <path d="M 46,292 L 42,266 L 56,244 L 72,222 L 92,196 L 114,168 L 136,140 L 156,116 L 166,98 L 148,86 L 126,74 L 118,58 L 132,50 L 156,58 L 180,72 L 198,78 L 220,72 L 244,62 L 266,68 L 276,88 L 266,110 L 244,128 L 220,148 L 198,168 L 176,190 L 154,212 L 132,234 L 108,256 L 84,278 L 62,296 Z" class="isle"/>
-  <text x="186" y="30" class="geo">古宇利島</text><text x="104" y="44" class="geo">本部半島</text><text x="250" y="150" class="geo">東海岸</text><text x="34" y="306" class="geo">那霸</text><circle cx="232" cy="46" r="8" class="isle"/>
-  <line x1="74" y1="262" x2="52" y2="290" class="rt"/><line x1="52" y1="290" x2="82" y2="234" class="rt"/><line x1="82" y1="234" x2="100" y2="222" class="rt"/><line x1="100" y1="222" x2="124" y2="190" class="rt"/><g class="pin"><circle cx="74" cy="262" r="9"/><text x="74" y="265.5">1</text></g><g class="pin"><circle cx="52" cy="290" r="9"/><text x="52" y="293.5">2</text></g><g class="pin"><circle cx="82" cy="234" r="9"/><text x="82" y="237.5">3</text></g><g class="pin"><circle cx="100" cy="222" r="9"/><text x="100" y="225.5">4</text></g><g class="pin"><circle cx="124" cy="190" r="9"/><text x="124" y="193.5">5</text></g>
-</svg>
+      <div class="mapbox">
+        <iframe class="osm" loading="lazy" title="Day 2 路線範圍地圖"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=127.618,26.160,127.792,26.340&amp;layer=mapnik&amp;marker=26.3160%2C127.7570"></iframe>
+        <p class="aside"><a href="https://www.openstreetmap.org/?mlat=26.3160&amp;mlon=127.7570#map=11/26.250/127.705" target="_blank" rel="noopener">在 OpenStreetMap 開啟大圖 ↗</a>　·　圖釘標的是 <strong>美國村（北谷）</strong>；OSM 嵌入只支援一個圖釘，其餘地點請點下方清單</p>
+      </div>
       <div>
         <p class="aside"><strong>範圍</strong>：那霸 → 浦添 → 北谷　·　<strong>車程</strong>：約 65 分鐘</p>
         <ol class="mstops"><li><span class="no">1</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E6%B2%96%E7%B8%84%E7%9C%8C%E9%82%A3%E8%A6%87%E5%B8%82%E9%87%91%E5%9F%8E3-8-11" target="_blank" rel="noopener">沖繩行腳取車</a> <span class="bd">09:00</span></span></li><li><span class="no">2</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E7%80%AC%E9%95%B7%E5%B3%B6%E3%82%A6%E3%83%9F%E3%82%AB%E3%82%B8%E3%83%86%E3%83%A9%E3%82%B9" target="_blank" rel="noopener">瀨長島 Umikaji Terrace</a> <span class="bd">必訪</span></span></li><li><span class="no">3</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E6%B3%8A%E3%81%84%E3%82%86%E3%81%BE%E3%81%A1" target="_blank" rel="noopener">泊港漁市場（泊いゆまち）</a> <span class="bd">午餐</span></span></li><li><span class="no">4</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%B5%E3%83%B3%E3%82%A8%E3%83%BC%E6%B5%A6%E6%B7%BB%E8%A5%BF%E6%B5%B7%E5%B2%B8%20PARCO%20CITY" target="_blank" rel="noopener">San-A 浦添西海岸 PARCO CITY</a> <span class="bd">必訪</span></span></li><li><span class="no">5</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E7%BE%8E%E6%B5%9C%E3%82%A2%E3%83%A1%E3%83%AA%E3%82%AB%E3%83%B3%E3%83%93%E3%83%AC%E3%83%83%E3%82%B8" target="_blank" rel="noopener">美國村（北谷）</a> <span class="bd">住宿</span></span></li></ol>
@@ -585,11 +587,11 @@ footer { font-size: 12px; color: var(--muted); }
   <section>
     <h2>Day 3 <small class="mono">1/16（週六）· 北部：美麗海 · 古宇利</small></h2>
     <div class="maprow">
-      <svg viewBox="0 0 300 320" class="map" role="img" aria-label="北部：美麗海 · 古宇利 路線示意圖">
-  <path d="M 46,292 L 42,266 L 56,244 L 72,222 L 92,196 L 114,168 L 136,140 L 156,116 L 166,98 L 148,86 L 126,74 L 118,58 L 132,50 L 156,58 L 180,72 L 198,78 L 220,72 L 244,62 L 266,68 L 276,88 L 266,110 L 244,128 L 220,148 L 198,168 L 176,190 L 154,212 L 132,234 L 108,256 L 84,278 L 62,296 Z" class="isle"/>
-  <text x="186" y="30" class="geo">古宇利島</text><text x="104" y="44" class="geo">本部半島</text><text x="250" y="150" class="geo">東海岸</text><text x="34" y="306" class="geo">那霸</text><circle cx="232" cy="46" r="8" class="isle"/>
-  <line x1="124" y1="190" x2="150" y2="80" class="rt"/><line x1="150" y1="80" x2="232" y2="46" class="rt"/><line x1="232" y1="46" x2="124" y2="190" class="rt"/><g class="pin"><circle cx="124" cy="190" r="12"/><text x="124" y="193.5" style="font-size:10px">1·4</text></g><g class="pin"><circle cx="150" cy="80" r="9"/><text x="150" y="83.5">2</text></g><g class="pin"><circle cx="232" cy="46" r="9"/><text x="232" y="49.5">3</text></g>
-</svg>
+      <div class="mapbox">
+        <iframe class="osm" loading="lazy" title="Day 3 路線範圍地圖"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=127.700,26.285,128.060,26.730&amp;layer=mapnik&amp;marker=26.6944%2C127.8779"></iframe>
+        <p class="aside"><a href="https://www.openstreetmap.org/?mlat=26.6944&amp;mlon=127.8779#map=10/26.510/127.880" target="_blank" rel="noopener">在 OpenStreetMap 開啟大圖 ↗</a>　·　圖釘標的是 <strong>美麗海水族館</strong>；OSM 嵌入只支援一個圖釘，其餘地點請點下方清單</p>
+      </div>
       <div>
         <p class="aside"><strong>範圍</strong>：北谷 → 本部 → 今歸仁　·　<strong>車程</strong>：約 3 小時 15 分</p>
         <ol class="mstops"><li><span class="no">1</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E7%BE%8E%E6%B5%9C%E3%82%A2%E3%83%A1%E3%83%AA%E3%82%AB%E3%83%B3%E3%83%93%E3%83%AC%E3%83%83%E3%82%B8" target="_blank" rel="noopener">美國村出發</a> <span class="bd">08:00</span></span></li><li><span class="no">2</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E6%B2%96%E7%B8%84%E7%BE%8E%E3%82%89%E6%B5%B7%E6%B0%B4%E6%97%8F%E9%A4%A8" target="_blank" rel="noopener">美麗海水族館</a> <span class="bd">必訪</span></span></li><li><span class="no">3</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E5%8F%A4%E5%AE%87%E5%88%A9%E5%A4%A7%E6%A9%8B" target="_blank" rel="noopener">古宇利島・古宇利大橋</a> <span class="bd">彈性</span></span></li><li><span class="no">4</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E7%BE%8E%E6%B5%9C%E3%82%A2%E3%83%A1%E3%83%AA%E3%82%AB%E3%83%B3%E3%83%93%E3%83%AC%E3%83%83%E3%82%B8" target="_blank" rel="noopener">回美國村</a> <span class="bd">16:20</span></span></li></ol>
@@ -621,11 +623,11 @@ footer { font-size: 12px; color: var(--muted); }
   <section>
     <h2>Day 4 <small class="mono">1/17（週日）· 南下 → 國際通</small></h2>
     <div class="maprow">
-      <svg viewBox="0 0 300 320" class="map" role="img" aria-label="南下 → 國際通 路線示意圖">
-  <path d="M 46,292 L 42,266 L 56,244 L 72,222 L 92,196 L 114,168 L 136,140 L 156,116 L 166,98 L 148,86 L 126,74 L 118,58 L 132,50 L 156,58 L 180,72 L 198,78 L 220,72 L 244,62 L 266,68 L 276,88 L 266,110 L 244,128 L 220,148 L 198,168 L 176,190 L 154,212 L 132,234 L 108,256 L 84,278 L 62,296 Z" class="isle"/>
-  <text x="186" y="30" class="geo">古宇利島</text><text x="104" y="44" class="geo">本部半島</text><text x="250" y="150" class="geo">東海岸</text><text x="34" y="306" class="geo">那霸</text><circle cx="232" cy="46" r="8" class="isle"/>
-  <line x1="124" y1="190" x2="148" y2="194" class="rt"/><line x1="148" y1="194" x2="106" y2="214" class="rt"/><line x1="106" y1="214" x2="70" y2="248" class="rt"/><line x1="70" y1="248" x2="90" y2="246" class="rt"/><g class="pin"><circle cx="124" cy="190" r="9"/><text x="124" y="193.5">1</text></g><g class="pin"><circle cx="148" cy="194" r="9"/><text x="148" y="197.5">2</text></g><g class="pin"><circle cx="106" cy="214" r="9"/><text x="106" y="217.5">3</text></g><g class="pin"><circle cx="70" cy="248" r="9"/><text x="70" y="251.5">4</text></g><g class="pin"><circle cx="90" cy="246" r="9"/><text x="90" y="249.5">5</text></g>
-</svg>
+      <div class="mapbox">
+        <iframe class="osm" loading="lazy" title="Day 4 路線範圍地圖"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=127.630,26.190,127.800,26.335&amp;layer=mapnik&amp;marker=26.2200%2C127.6680"></iframe>
+        <p class="aside"><a href="https://www.openstreetmap.org/?mlat=26.2200&amp;mlon=127.6680#map=11/26.262/127.715" target="_blank" rel="noopener">在 OpenStreetMap 開啟大圖 ↗</a>　·　圖釘標的是 <strong>波上宮</strong>；OSM 嵌入只支援一個圖釘，其餘地點請點下方清單</p>
+      </div>
       <div>
         <p class="aside"><strong>範圍</strong>：北谷 → 浦添 → 那霸　·　<strong>車程</strong>：約 85 分鐘</p>
         <ol class="mstops"><li><span class="no">1</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E7%BE%8E%E6%B5%9C%E3%82%A2%E3%83%A1%E3%83%AA%E3%82%AB%E3%83%B3%E3%83%93%E3%83%AC%E3%83%83%E3%82%B8" target="_blank" rel="noopener">美國村退房</a> <span class="bd">09:30</span></span></li><li><span class="no">2</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%A4%E3%82%AA%E3%83%B3%E3%83%A2%E3%83%BC%E3%83%AB%E6%B2%96%E7%B8%84%E3%83%A9%E3%82%A4%E3%82%AB%E3%83%A0" target="_blank" rel="noopener">AEON Mall Rycom</a> <span class="bd">必訪</span></span></li><li><span class="no">3</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E6%B8%AF%E5%B7%9D%E5%A4%96%E4%BA%BA%E4%BD%8F%E5%AE%85%E8%A1%97" target="_blank" rel="noopener">港川外人住宅</a> <span class="bd">彈性</span></span></li><li><span class="no">4</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E6%B3%A2%E4%B8%8A%E5%AE%AE" target="_blank" rel="noopener">波上宮</a> <span class="bd">必訪</span></span></li><li><span class="no">5</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E5%9B%BD%E9%9A%9B%E9%80%9A%E3%82%8A%20%E9%82%A3%E8%A6%87" target="_blank" rel="noopener">國際通（住宿 + 散策）</a> <span class="bd">住宿</span></span></li></ol>
@@ -657,11 +659,11 @@ footer { font-size: 12px; color: var(--muted); }
   <section>
     <h2>Day 5 <small class="mono">1/18（週一）· 返程</small></h2>
     <div class="maprow">
-      <svg viewBox="0 0 300 320" class="map" role="img" aria-label="返程 路線示意圖">
-  <path d="M 46,292 L 42,266 L 56,244 L 72,222 L 92,196 L 114,168 L 136,140 L 156,116 L 166,98 L 148,86 L 126,74 L 118,58 L 132,50 L 156,58 L 180,72 L 198,78 L 220,72 L 244,62 L 266,68 L 276,88 L 266,110 L 244,128 L 220,148 L 198,168 L 176,190 L 154,212 L 132,234 L 108,256 L 84,278 L 62,296 Z" class="isle"/>
-  <text x="186" y="30" class="geo">古宇利島</text><text x="104" y="44" class="geo">本部半島</text><text x="250" y="150" class="geo">東海岸</text><text x="34" y="306" class="geo">那霸</text><circle cx="232" cy="46" r="8" class="isle"/>
-  <line x1="90" y1="246" x2="100" y2="222" class="rt"/><line x1="100" y1="222" x2="74" y2="262" class="rt"/><line x1="74" y1="262" x2="60" y2="274" class="rt"/><g class="pin"><circle cx="90" cy="246" r="9"/><text x="90" y="249.5">1</text></g><g class="pin"><circle cx="100" cy="222" r="9"/><text x="100" y="225.5">2</text></g><g class="pin"><circle cx="74" cy="262" r="9"/><text x="74" y="265.5">3</text></g><g class="pin"><circle cx="60" cy="274" r="9"/><text x="60" y="277.5">4</text></g>
-</svg>
+      <div class="mapbox">
+        <iframe class="osm" loading="lazy" title="Day 5 路線範圍地圖"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=127.618,26.180,127.722,26.280&amp;layer=mapnik&amp;marker=26.2064%2C127.6467"></iframe>
+        <p class="aside"><a href="https://www.openstreetmap.org/?mlat=26.2064&amp;mlon=127.6467#map=12/26.230/127.670" target="_blank" rel="noopener">在 OpenStreetMap 開啟大圖 ↗</a>　·　圖釘標的是 <strong>那霸機場</strong>；OSM 嵌入只支援一個圖釘，其餘地點請點下方清單</p>
+      </div>
       <div>
         <p class="aside"><strong>範圍</strong>：那霸市區 → 機場　·　<strong>車程</strong>：約 30 分鐘</p>
         <ol class="mstops"><li><span class="no">1</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E5%9B%BD%E9%9A%9B%E9%80%9A%E3%82%8A%20%E9%82%A3%E8%A6%87" target="_blank" rel="noopener">國際通退房</a> <span class="bd">09:00</span></span></li><li><span class="no">2</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%B5%E3%83%B3%E3%82%A8%E3%83%BC%E6%B5%A6%E6%B7%BB%E8%A5%BF%E6%B5%B7%E5%B2%B8%20PARCO%20CITY" target="_blank" rel="noopener">最後採買</a> <span class="bd">09:30</span></span></li><li><span class="no">3</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E6%B2%96%E7%B8%84%E7%9C%8C%E9%82%A3%E8%A6%87%E5%B8%82%E9%87%91%E5%9F%8E3-8-11" target="_blank" rel="noopener">沖繩行腳還車</a> <span class="bd">13:00</span></span></li><li><span class="no">4</span><span><a href="https://www.google.com/maps/search/?api=1&query=%E9%82%A3%E8%A6%87%E7%A9%BA%E6%B8%AF" target="_blank" rel="noopener">那霸機場</a> <span class="bd">返程</span></span></li></ol>
