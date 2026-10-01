@@ -944,8 +944,13 @@ footer { font-size: 12px; color: var(--muted); }
       if (!d.pts[i].leg) continue;
       var a = lls[i - 1], b = lls[i];
       if (a[0] === b[0] && a[1] === b[1]) continue;
-      L.marker([(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], {
+      // 來回同一條路線時，標籤往垂直方向錯開，才不會疊在一起
+      var dy = b[0] - a[0], dx = b[1] - a[1];
+      var len = Math.sqrt(dx * dx + dy * dy) || 1;
+      var k = Math.min(0.018, len * 0.16) * (i % 2 ? 1 : -1);
+      L.marker([(a[0] + b[0]) / 2 + (dx / len) * k, (a[1] + b[1]) / 2 - (dy / len) * k], {
         interactive: false,
+        zIndexOffset: -1000,
         icon: L.divIcon({ className: '', iconSize: [0, 0],
           html: '<div class="leg-lbl">\u{1F697} ' + d.pts[i].leg + '</div>' })
       }).addTo(map);
@@ -970,7 +975,7 @@ footer { font-size: 12px; color: var(--muted); }
         '" target="_blank" rel="noopener">在 Google 地圖開啟 \u2197</a></div>');
     });
 
-    map.fitBounds(L.latLngBounds(lls).pad(0.22));
+    map.fitBounds(L.latLngBounds(lls).pad(0.3));
     setTimeout(function () { map.invalidateSize(); }, 60);
   }
 
