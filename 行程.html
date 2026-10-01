@@ -118,6 +118,9 @@ thead th { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacin
 .progress { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
 input:focus-visible { outline: 2px solid var(--sea); outline-offset: 2px; }
 
+.must { font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 4px; background: var(--coral); color: #fff; margin-left: 6px; vertical-align: 2px; white-space: nowrap; }
+.flex { font-size: 11px; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); margin-left: 6px; vertical-align: 2px; white-space: nowrap; }
+
 tr.pick td { background: var(--sea-soft); }
 
 /* Route switcher */
@@ -477,6 +480,18 @@ footer { font-size: 12px; color: var(--muted); }
       <li>晚上一律<strong>散策</strong>：Day 2、3 在美國村，Day 4 在國際通，全部走路不開車</li>
     </ul>
   </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>日</th><th>必訪（不能砍）</th><th>彈性（時間不夠就砍）</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">1/15</td><td><strong>瀨長島</strong>、<strong>PARCO CITY</strong></td><td>泊港漁市場<br><span class="aside">不去就在瀨長島或 PARCO CITY 吃午餐</span></td></tr>
+        <tr><td class="mono">1/16</td><td><strong>美麗海水族館</strong></td><td>古宇利島・古宇利大橋<br><span class="aside">砍掉少開約 50 分鐘，15:00 前就回得到北谷</span></td></tr>
+        <tr><td class="mono">1/17</td><td><strong>AEON Mall Rycom</strong>、<strong>波上宮</strong></td><td>港川外人住宅<br><span class="aside">砍掉可以早點進國際通休息</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="aside">👉 <strong>必訪 5 個點全部室內或平路</strong>，下雨、太冷、長輩走不動都不受影響。真正會被天氣影響的是古宇利島（海風大）和港川（戶外巷弄），剛好都是彈性項目。</p>
+
   <div class="days">
     <div class="day">
       <div class="day-rail"><span class="day-num">DAY 1</span><span class="day-date mono">1/14</span><span class="day-dow">週四</span></div>
@@ -499,11 +514,11 @@ footer { font-size: 12px; color: var(--muted); }
         <ul class="stops">
           <li><span class="t">08:40</span><span>Y&rsquo;s Inn 退房，<strong>走路 3 分鐘到沖繩行腳營業所</strong></span></li>
           <li><span class="t">09:00</span><span>取車，行李直接上車</span></li>
-          <li><span class="t">09:15</span><span><strong>瀨長島 Umikaji Terrace</strong>（約 10 分）—— 看海、看飛機起降、泡溫泉足湯；店家 10:00 開門</span></li>
+          <li><span class="t">09:15</span><span><strong>瀨長島 Umikaji Terrace</strong><span class="must">必訪</span>（約 10 分）—— 看海、看飛機起降、泡溫泉足湯；店家 10:00 開門</span></li>
           <li><span class="t">11:00</span><span>出發</span></li>
-          <li><span class="t">11:20</span><span><strong>泊港漁市場（泊いゆまち）</strong>（約 20 分）—— 生魚片、海膽、海鮮丼，<strong>在這裡吃午餐</strong></span></li>
+          <li><span class="t">11:20</span><span><strong>泊港漁市場（泊いゆまち）</strong><span class="flex">彈性</span>（約 20 分）—— 生魚片、海膽、海鮮丼，<strong>在這裡吃午餐</strong>；不去的話午餐改在瀨長島或 PARCO CITY</span></li>
           <li><span class="t">13:00</span><span>出發</span></li>
-          <li><span class="t">13:15</span><span><strong>San-A 浦添西海岸 PARCO CITY</strong>（約 15 分）—— 室內冷暖氣、電梯、座位多</span></li>
+          <li><span class="t">13:15</span><span><strong>San-A 浦添西海岸 PARCO CITY</strong><span class="must">必訪</span>（約 15 分）—— 室內冷暖氣、電梯、座位多</span></li>
           <li><span class="t">15:30</span><span>出發</span></li>
           <li><span class="t">15:50</span><span><strong>美國村飯店</strong> check in（約 20 分）</span></li>
           <li><span class="t">17:40</span><span>Sunset Beach 看日落（1 月約 18:00）</span></li>
@@ -518,9 +533,9 @@ footer { font-size: 12px; color: var(--muted); }
         <div class="day-head"><h3>北部：美麗海 · 古宇利</h3><span class="tag car">自駕</span><span class="tag ">最長車程</span></div>
         <ul class="stops">
           <li><span class="t">08:00</span><span>美國村出發（走沖繩自動車道）</span></li>
-          <li><span class="t">09:15</span><span><strong>美麗海水族館</strong>（約 1 小時 15 分）—— 黑潮之海、海豚秀；<strong>早上人最少</strong>，室內、有電梯、可免費借輪椅</span></li>
+          <li><span class="t">09:15</span><span><strong>美麗海水族館</strong><span class="must">必訪</span>（約 1 小時 15 分）—— 黑潮之海、海豚秀；<strong>早上人最少</strong>，室內、有電梯、可免費借輪椅</span></li>
           <li><span class="t">12:30</span><span>園區內或本部町吃午餐</span></li>
-          <li><span class="t">13:15</span><span><strong>古宇利島・古宇利大橋</strong>（約 40 分）—— 開過全長 2km 的跨海大橋，島上看海</span></li>
+          <li><span class="t">13:15</span><span><strong>古宇利島・古宇利大橋</strong><span class="flex">彈性</span>（約 40 分）—— 開過全長 2km 的跨海大橋，島上看海；<strong>砍掉可少開約 50 分鐘</strong>，15:00 前就能回北谷</span></li>
           <li><span class="t">15:00</span><span>出發回北谷</span></li>
           <li><span class="t">16:20</span><span>回到美國村，先回房休息</span></li>
           <li><span class="t">17:30</span><span><strong>美國村散策</strong>：晚餐、摩天輪夜景 —— 一樣全部走路</span></li>
@@ -534,11 +549,11 @@ footer { font-size: 12px; color: var(--muted); }
         <div class="day-head"><h3>南下 → 國際通</h3><span class="tag car">自駕</span><span class="tag ">換飯店</span></div>
         <ul class="stops">
           <li><span class="t">09:30</span><span>美國村退房，<strong>行李上車</strong></span></li>
-          <li><span class="t">10:00</span><span><strong>AEON Mall Rycom</strong>（約 20 分）—— 沖繩最大商場，伴手禮一次買齊、吹暖氣</span></li>
+          <li><span class="t">10:00</span><span><strong>AEON Mall Rycom</strong><span class="must">必訪</span>（約 20 分）—— 沖繩最大商場，伴手禮一次買齊、吹暖氣</span></li>
           <li><span class="t">12:00</span><span>Rycom 美食街午餐</span></li>
-          <li><span class="t">13:30</span><span><strong>港川外人住宅</strong>（約 25 分）—— 老美軍宿舍改成的咖啡店和小店，走一小段就好</span></li>
+          <li><span class="t">13:30</span><span><strong>港川外人住宅</strong><span class="flex">彈性</span>（約 25 分）—— 老美軍宿舍改成的咖啡店和小店，走一小段就好；砍掉可以早點進國際通</span></li>
           <li><span class="t">15:00</span><span>出發</span></li>
-          <li><span class="t">15:30</span><span><strong>波上宮</strong>（約 20 分）—— 沖繩總鎮守，建在斷崖上俯瞰波之上海灘，境內平坦好走</span></li>
+          <li><span class="t">15:30</span><span><strong>波上宮</strong><span class="must">必訪</span>（約 20 分）—— 沖繩總鎮守，建在斷崖上俯瞰波之上海灘，境內平坦好走</span></li>
           <li><span class="t">16:30</span><span><strong>國際通飯店</strong> check in，車停飯店</span></li>
           <li><span class="t">18:00</span><span><strong>國際通散策</strong>：第一牧志公設市場、商店街、晚餐 —— 全部走路，<strong>晚上不開車</strong></span></li>
         </ul>
