@@ -975,6 +975,7 @@ footer { font-size: 12px; color: var(--muted); }
   }
 
   function buildVisible() {
+    if (typeof TRIP === 'undefined' || !TRIP) return;   // 分頁初始化可能早於這段
     TRIP.forEach(function (d) {
       var panel = document.getElementById('d' + d.n);
       if (panel && !panel.hidden) buildMap(d);
@@ -1018,6 +1019,8 @@ footer { font-size: 12px; color: var(--muted); }
     });
   });
   update();
+
+  buildVisible();
 })();
 </script>
 </body>
