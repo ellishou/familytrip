@@ -134,12 +134,18 @@ tr.pick td { background: var(--sea-soft); }
 
 footer { font-size: 12px; color: var(--muted); }
 
+/* Tabs */
+.tabbar { position: sticky; top: 0; z-index: 10; background: var(--bg); padding-block: 10px; margin-block: -10px; display: flex; gap: 6px; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
+.tabbar button { font: inherit; font-size: 15px; font-weight: 700; font-family: var(--f-display); padding: 8px 18px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; }
+.tabbar button[aria-selected="true"] { border-color: var(--sea); background: var(--sea); color: #fff; }
+.tabbar button small { font-family: var(--f-body); font-size: 11px; font-weight: 500; opacity: .75; margin-left: 6px; }
+.tabpanel { display: grid; gap: 40px; }
+.tabpanel[hidden] { display: none; }
+
 @media (max-width: 480px) {
-  .day { grid-template-columns: 56px 1fr; gap: 10px; }
-  .day-date { font-size: 18px; }
-  .stops li { grid-template-columns: 44px 1fr; }
-  .easy { padding-left: 0; }
-  .route .code { font-size: 22px; }
+  .tabbar button { padding: 7px 12px; font-size: 14px; }
+  .tabbar button small { display: none; }
 }
 </style>
 </head>
@@ -152,170 +158,93 @@ footer { font-size: 12px; color: var(--muted); }
   <h1>沖繩家族旅遊</h1>
   <div class="meta">
     <span class="chip mono">2027/1/14 – 1/18</span>
-    <span class="chip warn">機票待訂</span>
     <span class="chip">4 大 1 小 · 68 / 66 / 41 / 36 / 9 歲</span>
     <span class="chip">駕駛 2 人 · 41 / 36</span>
-    <span class="chip">白天跑行程 · 晚上不開車</span>
     <span class="chip warn">長輩步行不超過 30 分鐘</span>
   </div>
 </header>
 
-<section>
-  <h2>航班候選 <small>2026/7 夏季班表 · 2027/1 走冬季班表，務必再確認</small></h2>
+<div class="tabbar" role="tablist">
+  <button role="tab" id="tab-0" aria-controls="p0" aria-selected="true">機票<small>暫定樂桃</small></button>
+  <button role="tab" id="tab-1" aria-controls="p1" aria-selected="false">交通<small>沖繩行腳</small></button>
+  <button role="tab" id="tab-2" aria-controls="p2" aria-selected="false">行程<small>Day 1–5</small></button>
+  <button role="tab" id="tab-3" aria-controls="p3" aria-selected="false">檢查清單<small>行前</small></button>
+</div>
 
+
+<!-- ══════════════ 機票 ══════════════ -->
+<div class="tabpanel" id="p0">
+
+<section>
+  <h2>暫定班次 <small>全員台北出發，同一班樂桃</small></h2>
   <div class="passes">
     <div class="pass">
       <div class="pass-main">
-        <span class="pass-label">去程 · 1/14（四）· 台北 2 人</span>
+        <span class="pass-label">去程 · 1/14（四）· 全員 5 人</span>
         <div class="route"><span class="code">TPE</span><span class="arrow"></span><span class="code">OKA</span></div>
-        <div class="times"><span>09:45 桃園</span><span>12:25 那霸</span></div>
+        <div class="times"><span>15:20 桃園</span><span>17:50 那霸</span></div>
       </div>
-      <div class="pass-stub"><span>首選</span><span class="mono">MM922</span><span>樂桃</span></div>
+      <div class="pass-stub"><span>暫定</span><span class="mono">MM926</span><span>樂桃</span></div>
     </div>
     <div class="pass">
       <div class="pass-main">
-        <span class="pass-label">去程 · 1/14（四）· 高雄 3 人</span>
-        <div class="route"><span class="code">KHH</span><span class="arrow"></span><span class="code">OKA</span></div>
-        <div class="times"><span>10:10 高雄</span><span>13:00 那霸</span></div>
-      </div>
-      <div class="pass-stub"><span>唯一</span><span class="mono">IT288</span><span>虎航</span></div>
-    </div>
-    <div class="pass">
-      <div class="pass-main">
-        <span class="pass-label">回程 · 1/18（一）· 台北 2 人</span>
+        <span class="pass-label">回程 · 1/18（一）· 全員 5 人</span>
         <div class="route"><span class="code">OKA</span><span class="arrow"></span><span class="code">TPE</span></div>
         <div class="times"><span>16:50 那霸</span><span>17:35 桃園</span></div>
       </div>
-      <div class="pass-stub"><span>首選</span><span class="mono">MM929</span><span>樂桃</span></div>
-    </div>
-    <div class="pass">
-      <div class="pass-main">
-        <span class="pass-label">回程 · 1/18（一）· 高雄 3 人</span>
-        <div class="route"><span class="code">OKA</span><span class="arrow"></span><span class="code">KHH</span></div>
-        <div class="times"><span>14:00 那霸</span><span>14:55 高雄</span></div>
-      </div>
-      <div class="pass-stub"><span>首選</span><span class="mono">IT289</span><span>虎航</span></div>
-    </div>
-  </div>
-
-  <div class="grid2">
-    <div class="panel">
-      <h3>🛫 台北視角 <small>我 + 小孩，2 人</small></h3>
-      <dl>
-        <dt>1/14 去</dt><dd><strong class="mono">MM922</strong> 樂桃<br><span class="mono">09:45 桃園 → 12:25 那霸</span></dd>
-        <dt>1/18 回</dt><dd><strong class="mono">MM929</strong> 樂桃<br><span class="mono">16:50 那霸 → 17:35 桃園</span></dd>
-      </dl>
-      <ul>
-        <li>去程 07:45 前到桃園機場報到</li>
-        <li>落地後<strong>直接叫計程車到小祿的 Y&rsquo;s Inn</strong>（5–8 分鐘，約 ¥1,200）—— 第一天不用車</li>
-        <li>回程高雄組 14:00 先飛，之後就剩我和小孩在機場</li>
-        <li>替代去程：<strong class="mono">NU302</strong> 日本越洋 <span class="mono">10:00 → 12:30</span>，免費託運 2 件 46kg</li>
-      </ul>
-    </div>
-    <div class="panel">
-      <h3>🛫 高雄視角 <small>爸、媽、哥，3 人</small></h3>
-      <dl>
-        <dt>1/14 去</dt><dd><strong class="mono">IT288</strong> 虎航<br><span class="mono">10:10 高雄 → 13:00 那霸</span></dd>
-        <dt>1/18 回</dt><dd><strong class="mono">IT289</strong> 虎航<br><span class="mono">14:00 那霸 → 14:55 高雄</span></dd>
-      </dl>
-      <ul>
-        <li>去程 08:10 前到小港機場報到，<strong>完全不用北上、不用早起</strong></li>
-        <li>✅ <strong>哥全程陪爸媽同班機</strong>，長輩不會自己搭機</li>
-        <li>13:40 出關 → 搭大型計程車到小祿飯店（約 ¥1,500–2,000），<strong>不用等人、不用對時間</strong></li>
-        <li>備案：SL390 泰獅 <span class="mono">08:15 → 10:55</span>（但要在機場等台北組 1.5 小時）</li>
-        <li>回程 12:00 前報到，<strong>14:55 就回到高雄</strong>；也可改華航 CI133（19:45 → 20:30，含託運行李）</li>
-        <li>⚠️ <strong>虎航是廉航，託運行李要加購</strong></li>
-      </ul>
+      <div class="pass-stub"><span>暫定</span><span class="mono">MM929</span><span>樂桃</span></div>
     </div>
   </div>
 
   <div class="callout">
-    <p><strong>🤝 1/14 根本不用「會合」</strong></p>
+    <p><strong>✅ 為什麼選 15:20 這班</strong></p>
     <ul>
-      <li>第一晚住<strong>小祿</strong>、第一天<strong>不租車</strong>，所以兩批人不必碰頭</li>
-      <li>台北組 12:25 落地 → 出關搭計程車 → 約 13:20 進飯店</li>
-      <li>高雄組 13:00 落地 → 出關搭計程車 → 約 14:00 進飯店</li>
-      <li>⚠️ <strong>不走單軌</strong>：小祿站電梯只有一座，5 個人帶行李很難動。計程車 5–8 分鐘就到，不用預約</li>
-      <li>💡 <strong>這天完全不受班機時間影響</strong> —— 就算有人延誤三小時，其他人也照常休息</li>
-      <li>班機號碼還是放同一個群組，落地各報一聲</li>
+      <li><strong>MM926 15:20 起飛 → 13:20 報到</strong>：長輩從左營搭約 <span class="mono">09:30</span> 的高鐵就來得及 —— <strong>不用清晨早起、不用前一晚住桃園</strong></li>
+      <li>5 個人同進同出，報到、登機、領行李都在一起，<strong>不用分批、不用在那霸會合</strong></li>
+      <li>回程 MM929 <span class="mono">16:50 → 17:35</span>，長輩轉高鐵回高雄約 20:30 到家</li>
     </ul>
   </div>
 
   <div class="note">
-    <p><strong>⚠️ 高雄線的限制</strong></p>
+    <p><strong>⚠️ 代價</strong></p>
     <ul>
-      <li>高雄–沖繩共 <strong>5 家</strong>：虎航、華航、泰國獅子，加上捷星日本（2026/12 開航）和<strong>星宇（2027/1/1 開航，每日一班）</strong></li>
-      <li><strong>1/14 是週四，華航 CI132 和捷星日本都沒班</strong> → 中午抵達的只剩 <strong>IT288</strong>，建議早訂（同日還有 SL390 08:15 和 JX362 17:15，但時間不理想）</li>
-      <li>捷星日本<strong>只飛週三、五、日</strong>，泰國獅子<strong>只飛週二、四、六、日</strong> → 1/18（週一）兩家都沒班</li>
+      <li><strong>17:50 才落地，Day 1 等於純移動日</strong> —— 不過第一天本來就不租車、只到小祿，影響有限</li>
+      <li>樂桃是廉航：<strong>5 個人的託運行李都要加購</strong>、座位要付費選（至少讓小孩和一位大人坐一起）</li>
+      <li>⚠️ 這是 <strong>2026/7 夏季班表</strong>；2027/1 走冬季班表，<strong>訂票前務必上樂桃官網重新確認</strong></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>兩個替代方向</h2>
+
+  <div class="callout">
+    <p><strong>🔁 想換全服務航空：NU302 + JX871</strong></p>
+    <ul>
+      <li><strong class="mono">NU302</strong> 日本越洋 <span class="mono">10:00 → 12:30</span>　/　<strong class="mono">JX871</strong> 星宇 <span class="mono">15:25 → 16:10</span></li>
+      <li>✅ <strong>免費託運 2 件共 46kg</strong>，5 個人的行李費全省；有餐食、座位舒服</li>
+      <li>✅ <strong>中午就到，Day 1 還能用半天</strong>（可以排瀨長島或國際通）</li>
+      <li>❌ 要 <span class="mono">07:45</span> 報到 → 長輩得搭 <span class="mono">05:15</span> 高鐵，或前一晚住桃園</li>
+      <li>👉 本質是<strong>拿「長輩早起」換「Day 1 多半天 + 免費行李」</strong></li>
     </ul>
   </div>
 
-  <section>
-    <h3>❓ 高雄組全走傳統航空，有中午到的嗎？</h3>
-    <div class="note">
-      <p><strong>沒有。高雄–沖繩的傳統航空只有兩家，兩家都是傍晚才到。</strong></p>
-      <ul>
-        <li><strong class="mono">CI132</strong> 華航 <span class="mono">15:55 → 18:45</span>　·　<strong>而且週四停飛，1/14 根本沒班</strong></li>
-        <li><strong class="mono">JX362</strong> 星宇 <span class="mono">17:15 → 20:00</span>（2027/1/1 起每日）</li>
-        <li>長榮、樂桃都沒有高雄–沖繩；<strong>日本越洋（JTA）只飛台北，不飛高雄</strong></li>
-      </ul>
-      <p>→ <strong>1/14 那天，高雄出發的傳統航空就只有 JX362 一班，20:00 才到那霸。</strong>中午抵達的班次全部是廉航（IT288 13:00、SL390 10:55）。</p>
-    </div>
+  <div class="callout">
+    <p><strong>🅰️ 備案：長輩還是從高雄飛（分兩批）</strong></p>
+    <ul>
+      <li>去程：台北 2 人 <span class="mono">MM922 12:25</span>／高雄 3 人 <span class="mono">IT288 13:00</span></li>
+      <li>回程：台北 2 人 <span class="mono">MM929 16:50</span>／高雄 3 人 <span class="mono">IT289 14:00</span> 或 <span class="mono">CI133 19:45</span></li>
+      <li>✅ 長輩完全不用北上，<strong>中午就到、Day 1 能用半天</strong></li>
+      <li><strong>以機場會合為主</strong>：台北組 13:05 出關後在到達大廳等，高雄組 13:40 出關，<strong>13:45 一起搭計程車到小祿</strong></li>
+      <li>反正當天只到小祿，<strong>在機場多待一會完全無妨</strong> —— 那霸機場有美食街和商店</li>
+      <li>⚠️ 1/14 是週四，高雄線中午抵達<strong>只有 IT288 一班</strong>，要早訂</li>
+      <li>⚠️ 回程選 CI133 的話長輩要在機場等到 19:45，但<strong>華航含託運行李、20:30 直達小港</strong>，也是可行的</li>
+    </ul>
+  </div>
+</section>
 
-    <p>如果照 JX362 走，Day 1 會變成這樣：長輩 20:00 落地、20:40 出關，你得從美國村開 40 分鐘回機場接，再開 40 分鐘回去，<strong>等於摸黑來回 80 分鐘</strong>，而且長輩當天完全沒行程。這和「晚上不開車」直接衝突。</p>
-
-    <h4>那就變成兩種方向</h4>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th></th><th>甲 · 分兩批（長輩高雄進出）</th><th>乙 · 全員台北同班機</th></tr></thead>
-        <tbody>
-          <tr><td>去程</td><td class="mono">台北 2 人 MM922 12:25<br>高雄 3 人 IT288 13:00</td><td class="mono"><strong>全員 NU302</strong><br>10:00 → 12:30</td></tr>
-          <tr><td>回程</td><td class="mono">台北 2 人 MM929 16:50<br>高雄 3 人 CI133 19:45</td><td class="mono"><strong>全員 JX871</strong><br>15:25 → 16:10</td></tr>
-          <tr><td>航空</td><td>去程廉航 + 回程華航</td><td><strong>去回都全服務</strong>（日本越洋 + 星宇）</td></tr>
-          <tr><td>託運行李</td><td>去程 3 人要加購</td><td><strong>全部內含</strong>（NU 免費 2 件共 46kg）</td></tr>
-          <tr><td>長輩怎麼到機場</td><td><strong>小港機場，30 分鐘就到</strong></td><td>❌ 左營 05:15 高鐵北上，或前一晚住桃園</td></tr>
-          <tr><td>長輩怎麼回家</td><td><strong>20:30 直達小港，21:00 到家</strong></td><td>16:10 桃園 → 高鐵 → 約 19:30 到家</td></tr>
-          <tr><td>抵達那霸後</td><td>你先取車 → 13:50 接到長輩</td><td>全員一起搭接駁 → 13:40 出發</td></tr>
-          <tr><td>Day 5 早上</td><td>4 小時（13:00 還車）</td><td>2 小時（11:00 還車）</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="grid2">
-      <div class="callout">
-        <p><strong>甲的優勢</strong></p>
-        <ul>
-          <li>長輩<strong>完全不用北上</strong>，去程 08:10 到小港報到就好</li>
-          <li>回程 <strong>20:30 直達小港</strong>，不用再轉高鐵</li>
-          <li>Day 5 早上多 2.5 小時（PARCO CITY 或首里城排得進去）</li>
-          <li>你早落地 35 分鐘剛好拿來取車，長輩出關就有車</li>
-        </ul>
-      </div>
-      <div class="callout">
-        <p><strong>乙的優勢</strong></p>
-        <ul>
-          <li><strong>全家同進同出</strong>，報到、登機、領行李都在一起，長輩最省心</li>
-          <li>去回都是<strong>全服務航空</strong>，有餐食、座位舒服</li>
-          <li><strong>行李全部內含</strong> —— 5 個人的加購費全省，這筆不小</li>
-          <li>不用分兩批訂票、不用對時間</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="note">
-      <p><strong>⚖️ 真正的取捨</strong></p>
-      <ul>
-        <li><strong>甲</strong>：長輩交通最輕鬆（家 → 小港 30 分鐘），但去程要坐廉航、行李要加購</li>
-        <li><strong>乙</strong>：飛行體驗最好、行李全包，但長輩<strong>去程要清晨 4 點半起床</strong>（除非前一晚住桃園），回程落地後還要再搭 3 小時高鐵回高雄</li>
-        <li>👉 <strong>如果長輩本來就不排斥前一晚上台北（例如住你家），選乙；否則選甲。</strong></li>
-        <li>⚠️ 選乙的話要跟沖繩行腳確認：<strong>5 個人 + 全部行李，免費接駁車坐不坐得下</strong>（甲只有 2 個人搭接駁，沒這問題）</li>
-      </ul>
-    </div>
-
-    <p class="aside">❌ <strong>「全程走高雄的傳統航空」不可行</strong>：1/14 唯一的 JX362 20:00 才到，Day 1 報銷還要摸黑接送 80 分鐘。</p>
-  </section>
-
-  <h3>台北（TPE）⇄ 那霸（OKA）· 全部班次</h3>
+<section>
+  <h2>台北（TPE）⇄ 那霸（OKA）· 全部班次</h2>
   <div class="table-wrap">
     <table>
       <thead><tr><th>航空</th><th>去程</th><th class="num">TPE → OKA</th><th>回程</th><th class="num">OKA → TPE</th><th>班期</th></tr></thead>
@@ -323,30 +252,30 @@ footer { font-size: 12px; color: var(--muted); }
         <tr><td>虎航</td><td class="mono">IT230</td><td class="num">06:35 – 08:55</td><td class="mono">IT231</td><td class="num">09:45 – 10:20</td><td>每日</td></tr>
         <tr><td>長榮</td><td class="mono">BR112</td><td class="num">06:55 – 09:15</td><td class="mono">BR113</td><td class="num">10:15 – 10:55</td><td>每日</td></tr>
         <tr><td>華航</td><td class="mono">CI120</td><td class="num">08:10 – 10:45</td><td class="mono">CI121</td><td class="num">11:55 – 12:35</td><td>每日</td></tr>
-        <tr class="pick"><td><strong>樂桃</strong></td><td class="mono"><strong>MM922</strong></td><td class="num"><strong>09:45 – 12:25</strong></td><td class="mono">MM921</td><td class="num">08:15 – 08:55</td><td>每日</td></tr>
+        <tr><td>樂桃</td><td class="mono">MM922</td><td class="num">09:45 – 12:25</td><td class="mono">MM921</td><td class="num">08:15 – 08:55</td><td>每日</td></tr>
         <tr><td>日本越洋</td><td class="mono">NU302</td><td class="num">10:00 – 12:30</td><td class="mono">NU301</td><td class="num">08:00 – 08:45</td><td>每日</td></tr>
         <tr><td>星宇</td><td class="mono">JX870</td><td class="num">11:40 – 14:15</td><td class="mono">JX871</td><td class="num">15:25 – 16:10</td><td>每日</td></tr>
-        <tr><td>樂桃</td><td class="mono">MM926</td><td class="num">15:20 – 17:50</td><td class="mono">MM925</td><td class="num">13:35 – 14:20</td><td>每日</td></tr>
+        <tr class="pick"><td><strong>樂桃</strong></td><td class="mono"><strong>MM926</strong></td><td class="num"><strong>15:20 – 17:50</strong></td><td class="mono">MM925</td><td class="num">13:35 – 14:20</td><td>每日</td></tr>
         <tr><td>長榮</td><td class="mono">BR186</td><td class="num">16:50 – 19:10</td><td class="mono">BR185</td><td class="num">20:10 – 20:55</td><td>每日</td></tr>
         <tr><td>華航</td><td class="mono">CI122</td><td class="num">16:50 – 19:20</td><td class="mono">CI123</td><td class="num">20:20 – 21:00</td><td>每日</td></tr>
         <tr class="pick"><td>樂桃</td><td class="mono">MM928</td><td class="num">18:20 – 20:50</td><td class="mono"><strong>MM929</strong></td><td class="num"><strong>16:50 – 17:35</strong></td><td>每日</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="aside">去程要「中午抵達」→ <strong>MM922（12:25）</strong>或 <strong>NU302（12:30）</strong>。回程要「傍晚起飛」→ <strong>MM929（16:50）</strong>或 JX871（15:25）。BR185 / CI123 / IT233 都超過 20:00 起飛，長輩回到家太晚。</p>
-  <p class="aside">💡 <strong>日本越洋 NU302</strong> 抵達時間跟 MM922 幾乎一樣，而且是全服務航空、<strong>免費託運 2 件共 46 kg</strong>；但回程 NU301 只有早上 08:00，不符合傍晚回。如果不介意混搭不同航空，可以「去程 NU302 + 回程 MM929」。</p>
+</section>
 
-  <h3>高雄（KHH）⇄ 那霸（OKA）· 全部班次</h3>
-  <p class="aside">高雄線共有 <strong>5 家</strong>航空：虎航、華航、泰國獅子航空，加上 2026/12 開航的捷星日本和 <strong>2027/1/1 開航的星宇</strong>。</p>
+<section>
+  <h2>高雄（KHH）⇄ 那霸（OKA）· 全部班次</h2>
+  <p class="aside">高雄線共 <strong>5 家</strong>：虎航、華航、泰國獅子，加上 2026/12 開航的捷星日本和 <strong>2027/1/1 開航的星宇</strong>。</p>
   <div class="table-wrap">
     <table>
       <thead><tr><th>航空</th><th>班號</th><th class="num">KHH → OKA</th><th>班期</th><th>1/14（四）</th></tr></thead>
       <tbody>
         <tr><td>泰國獅子</td><td class="mono">SL390</td><td class="num">08:15 – 10:55</td><td>二四六日</td><td>✅ 但比台北組早 1.5 小時到</td></tr>
-        <tr class="pick"><td><strong>虎航</strong></td><td class="mono"><strong>IT288</strong></td><td class="num"><strong>10:10 – 13:00</strong></td><td>每日</td><td>⭐ <strong>最合適</strong></td></tr>
+        <tr class="pick"><td><strong>虎航</strong></td><td class="mono"><strong>IT288</strong></td><td class="num"><strong>10:10 – 13:00</strong></td><td>每日</td><td>⭐ 備案的最佳選擇</td></tr>
         <tr><td>捷星日本</td><td class="mono">GK</td><td class="num">14:35 – 17:15</td><td>三五日</td><td>❌ 週四沒班</td></tr>
         <tr><td>華航</td><td class="mono">CI132</td><td class="num">15:55 – 18:45</td><td>一二三五六日</td><td>❌ <strong>週四停飛</strong></td></tr>
-        <tr><td>星宇</td><td class="mono">JX362</td><td class="num">17:15 – 20:00</td><td>每日（2027/1/1 起）</td><td>✅ 但太晚，整個下午報銷</td></tr>
+        <tr><td>星宇</td><td class="mono">JX362</td><td class="num">17:15 – 20:00</td><td>每日（2027/1/1 起）</td><td>✅ 但太晚</td></tr>
       </tbody>
     </table>
   </div>
@@ -356,41 +285,91 @@ footer { font-size: 12px; color: var(--muted); }
       <tbody>
         <tr><td>泰國獅子</td><td class="mono">SL391</td><td class="num">11:50 – 12:40</td><td>二四六日</td><td>❌ 週一沒班</td></tr>
         <tr><td>捷星日本</td><td class="mono">GK</td><td class="num">12:40 – 13:35</td><td>三五日</td><td>❌ 週一沒班</td></tr>
-        <tr class="pick"><td><strong>虎航</strong></td><td class="mono"><strong>IT289</strong></td><td class="num"><strong>14:00 – 14:55</strong></td><td>每日</td><td>⭐ <strong>最合適</strong></td></tr>
-        <tr><td>華航</td><td class="mono">CI133</td><td class="num">19:45 – 20:30</td><td>一二三五六日</td><td>✅ <strong>可行</strong>，直達高雄 20:30，全服務含行李</td></tr>
-        <tr><td>星宇</td><td class="mono">JX363</td><td class="num">21:00 – 22:05</td><td>每日（2027/1/1 起）</td><td>✅ 但 22:05 才到高雄，太晚</td></tr>
+        <tr class="pick"><td><strong>虎航</strong></td><td class="mono"><strong>IT289</strong></td><td class="num"><strong>14:00 – 14:55</strong></td><td>每日</td><td>⭐ 最早到家</td></tr>
+        <tr class="pick"><td><strong>華航</strong></td><td class="mono"><strong>CI133</strong></td><td class="num"><strong>19:45 – 20:30</strong></td><td>一二三五六日</td><td>✅ 全服務含行李，直達小港</td></tr>
+        <tr><td>星宇</td><td class="mono">JX363</td><td class="num">21:00 – 22:05</td><td>每日（2027/1/1 起）</td><td>✅ 但 22:05 才到</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="aside">⭐ <strong>IT288 / IT289 還是最好的組合</strong>：去程 13:00 抵達剛好接上取車，回程 14:55 就到高雄。但<strong>不是唯一選擇</strong> —— 1/14 那天 SL390 和 JX362 也有飛，1/18 還有 CI133 和 JX363，只是時間都不理想。萬一 IT288 訂不到，備案是有的。</p>
+  <div class="note">
+    <p><strong>❓ 高雄全走傳統航空，有中午到的嗎 → 沒有</strong></p>
+    <ul>
+      <li>傳統航空只有華航 <span class="mono">CI132 18:45 到</span>（且週四停飛）和星宇 <span class="mono">JX362 20:00 到</span></li>
+      <li>長榮、樂桃沒有高雄–沖繩；<strong>日本越洋只飛台北</strong></li>
+      <li>→ <strong>中午抵達的班次全部是廉航</strong>。所以備案才會是「去程虎航 + 回程華航」的混搭</li>
+    </ul>
+  </div>
+</section>
 
+</div>
+
+
+<!-- ══════════════ 交通 ══════════════ -->
+<div class="tabpanel" id="p1" hidden>
+
+<section>
+  <h2>租車 <small>沖繩行腳租車 · 依 2025 / 2026 兩次實際訂單</small></h2>
+  <div class="grid2">
+    <div class="panel">
+      <h3>這次的安排</h3>
+      <dl>
+        <dt>期間</dt><dd class="mono">1/15 09:00 → 1/18 約 13:00</dd>
+        <dt></dt><dd>3 天 4 小時 → <strong>計費 4 天</strong></dd>
+        <dt>取／還</dt><dd>小祿營業所（Y&rsquo;s Inn 走路 3 分鐘）；還車後<strong>免費接駁到機場</strong></dd>
+        <dt>車型</dt><dd><strong>新款 SIENTA（7 人座，¥56,500）</strong></dd>
+        <dt>駕駛</dt><dd>41 歲 + 36 歲，<strong>兩人都登記</strong>；1/16 北部那天務必輪流</dd>
+      </dl>
+    </div>
+    <div class="callout">
+      <p><strong>🔑 第一天不租車</strong></p>
+      <ul>
+        <li>1/14 只要進小祿的飯店，<strong>用不到車</strong></li>
+        <li>隔天早上<strong>走路 3 分鐘</strong>到營業所取車</li>
+        <li>→ 省下一天停車費，而且<strong>抵達日不受班機延誤影響</strong></li>
+        <li>⚠️ <strong>不走單軌</strong>：小祿站電梯只有一座，5 人帶行李很難動 → <strong>計程車</strong>，機場到小祿 5–8 分鐘</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <section>
-  <h2>租車實務 <small>沖繩行腳租車 · 依 2025 / 2026 兩次實際訂單整理</small></h2>
-
-  <div class="callout">
-    <p><strong>⏱ 計費是 24 小時制，不足一天進位</strong></p>
+  <h2>⏱ 計費是 24 小時制，不足一天進位</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>那一單</th><th class="num">取車 → 還車</th><th class="num">實際</th><th>計費</th></tr></thead>
+      <tbody>
+        <tr><td>2026/7</td><td class="num">07/29 13:00 → 08/02 13:00</td><td class="num">96 小時</td><td><strong>4 天</strong>（用好用滿）</td></tr>
+        <tr><td>2025/7</td><td class="num">07/17 10:00 → 07/20 17:00</td><td class="num">3 天 7 小時</td><td><strong>4 天</strong>（進位，多付一天）</td></tr>
+        <tr class="pick"><td><strong>這次</strong></td><td class="num"><strong>1/15 09:00 → 1/18 13:00</strong></td><td class="num">3 天 4 小時</td><td><strong>4 天</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">
+    <p><strong>💰 能不能壓到 3 天？</strong></p>
     <ul>
-      <li>2026/7 那單：<span class="mono">07/29 13:00 → 08/02 13:00</span> = 整整 96 小時 = <strong>4 天</strong>（用好用滿）</li>
-      <li>2025/7 那單：<span class="mono">07/17 10:00 → 07/20 17:00</span> = 3 天 7 小時 → <strong>進位算 4 天</strong>（多付一天）</li>
-      <li>這次抓 <strong>1/15 09:00 取 → 1/18 約 13:00 還</strong>（第一天不租車，搭計程車進飯店）= 3 天 4 小時 → <strong>計費 4 天</strong></li>
-      <li>要壓到 3 天，還車得在 <strong>1/18 09:00</strong> 前，那樣最後一天早上就全沒了，不划算</li>
-      <li>⚠️ <strong>提前還車，尾款不退</strong> —— 租期不要訂太長</li>
+      <li>要壓到 3 天，還車得在 <span class="mono">1/18 09:00</span> 前 —— 最後一天早上就全沒了，不划算</li>
+      <li>另一招是 <strong>1/17 傍晚就還車</strong>（省 <strong>¥11,000</strong>），但 1/18 要自己帶 5 人份行李去機場</li>
+      <li>👉 <strong>不建議</strong>。留著車，還車後有免費接駁直接送機場，行李全程在車上最輕鬆</li>
+      <li>⚠️ <strong>提前還車尾款不退</strong>，租期不要訂太長</li>
     </ul>
   </div>
+</section>
 
+<section>
+  <h2>🚐 機場和小祿站接駁「免費」</h2>
   <div class="callout">
-    <p><strong>🚐 機場和小祿站接駁「免費」</strong></p>
     <ul>
-      <li>取車、還車都在營業所，可要求機場或單軌小祿站接送，<strong>預訂時就要告知，工作人員要登記</strong></li>
-      <li><strong>機場接：</strong>國際線出口施工期間改在<strong>國內線 3 樓 5 號出口</strong>；拿到行李後用 Line / WhatsApp 通知工作人員（出發前再確認現在的集合點）</li>
+      <li>取車、還車都在營業所，可要求機場或單軌小祿站接送 —— <strong>預訂時就要告知，工作人員要登記</strong></li>
+      <li><strong>機場接：</strong>國際線出口施工期間改在<strong>國內線 3 樓 5 號出口</strong>；拿到行李後用 Line / WhatsApp 通知（出發前再確認集合點）</li>
       <li><strong>單軌接：</strong>到<strong>壺川站</strong>時通知，<strong>小祿站</strong>下車，往金城方向北出口下到一樓等接駁</li>
       <li>實績：<span class="mono">12:20 落地 → 13:00 取到車</span>，40 分鐘夠用</li>
+      <li>營業到 <strong>20:00</strong></li>
     </ul>
   </div>
+</section>
 
-  <h3>費用結構（過去實際報價）</h3>
+<section>
+  <h2>💴 車型與報價 <small>過去實際訂單</small></h2>
   <div class="table-wrap">
     <table>
       <thead><tr><th>項目</th><th class="num">S 級<br>5 人座</th><th class="num">SUV<br>5 人座</th><th class="num">新款 SIENTA<br>WS · 7 人座</th></tr></thead>
@@ -401,48 +380,38 @@ footer { font-size: 12px; color: var(--muted); }
         <tr><td>ETC 吃到飽</td><td class="num">¥3,700</td><td class="num">¥3,700</td><td class="num">¥3,700</td></tr>
         <tr><td>座位 / 建議人數 / 推薦行李</td><td class="num">5 人</td><td class="num">5 人</td><td class="num">7 / 4 人 / 3 件</td></tr>
       </tbody>
-      <tfoot><tr><td>總計</td><td class="num">¥38,500</td><td class="num">¥50,500</td><td class="num">¥56,500</td></tr></tfoot>
+      <tfoot><tr><td>總計</td><td class="num">¥38,500</td><td class="num">¥50,500</td><td class="num"><strong>¥56,500</strong></td></tr></tfoot>
     </table>
   </div>
-  <p class="aside">保險和 ETC 合計 <strong>¥12,500 是固定成本</strong>，租越多天越攤薄 —— 這也是全程租車比「只租兩天 + 叫接送」划算的原因。訂金取車前付，尾款當天到營業所現場付。</p>
+  <p class="aside">保險 + ETC 合計 <strong>¥12,500 是固定成本</strong>，租越多天越攤薄。訂金先付，尾款取車當天到營業所現場付。</p>
 
   <div class="callout">
-    <p><strong>🚙 車型：建議選新款 SIENTA（7 人座）</strong></p>
+    <p><strong>🚙 建議選新款 SIENTA（7 人座）</strong></p>
     <ul>
-      <li><strong>只貴 ¥6,000（約 NT$1,260），5 人分攤每人 NT$250</strong></li>
-      <li>7 人座<strong>把第三排折下來 = 5 個座位 + 一個真正的行李空間</strong>；SUV 是固定 5 座，後車廂就那麼大，沒得調整</li>
-      <li>換飯店那兩天行李全在車上，這個彈性值回票價</li>
-      <li>⚠️ 但店家自己標「<strong>建議 4 人、推薦行李 3 件</strong>」—— 我們是 5 人，行李大概 4～5 件，<strong>還是偏緊</strong></li>
-      <li>👉 <strong>訂車時順便問更大的廂型車</strong>（Noah / Voxy / Serena 那級），價差不大的話更保險</li>
+      <li><strong>只貴 ¥6,000（約 NT$1,260）</strong>，5 人分攤每人 NT$250</li>
+      <li>7 人座<strong>把第三排折下來 = 5 個座位 + 一個真正的行李空間</strong>；SUV 是固定 5 座沒得調整</li>
+      <li>⚠️ 但店家標「<strong>建議 4 人、推薦行李 3 件</strong>」—— 我們 5 人、行李 4～5 件，<strong>還是偏緊</strong></li>
+      <li>👉 <strong>訂車時順便問更大的廂型車</strong>（Noah / Voxy / Serena 那級），全程自駕、車上待的時間長，寬敞一點更值得</li>
     </ul>
   </div>
 
-  <h3>季節價差</h3>
+  <h3>季節價差（SIENTA）</h3>
   <div class="table-wrap">
     <table>
-      <thead><tr><th>期間</th><th class="num">SIENTA 每天</th></tr></thead>
+      <thead><tr><th>期間</th><th class="num">每天</th></tr></thead>
       <tbody>
-        <tr><td><strong>一般時期（含 1 月中下旬）</strong></td><td class="num"><strong>¥11,000 起</strong></td></tr>
+        <tr class="pick"><td><strong>一般時期（含 1 月中下旬）</strong></td><td class="num"><strong>¥11,000 起</strong></td></tr>
         <tr><td>夏季 04/01 – 08/31</td><td class="num">¥12,000 起</td></tr>
         <tr><td>冬季 12/23 – 01/03</td><td class="num">¥13,000 起</td></tr>
         <tr><td>春季 02/03 – 02/10</td><td class="num">¥13,000 起</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="aside">✅ <strong>1/14 – 1/18 落在一般時期</strong>：冬季加價是 <strong>12/23 – 1/3</strong>，剛好避開；春季加價從 2/3 才開始。注意標價是「起」，實際報價可能更高。</p>
+  <p class="aside">✅ <strong>1/14 – 1/18 落在一般時期</strong>：冬季加價是 12/23 – 1/3，剛好避開；春季加價從 2/3 才開始。標價是「起」，實際以店家報價為準。</p>
+</section>
 
-  <div class="note">
-    <p><strong>📄 取車當天要帶的「正本」（每位駕駛都要）</strong></p>
-    <ul>
-      <li>護照</li>
-      <li>台灣有效<strong>汽車</strong>駕照（<strong>不是機車駕照</strong>）</li>
-      <li>台灣駕照的<strong>日文譯本</strong></li>
-      <li>⚠️ 駕照和日文譯本上的<strong>地址不一致</strong>的話，要一併帶<strong>台灣身分證正本</strong></li>
-      <li>證件不齊 = 當天無法取車，還要被收 50% 車輛費用</li>
-    </ul>
-  </div>
-
-  <h3>取消 / 更改規定</h3>
+<section>
+  <h2>📝 取消 / 更改規定</h2>
   <div class="table-wrap">
     <table>
       <thead><tr><th>時間點</th><th>費用</th></tr></thead>
@@ -455,7 +424,7 @@ footer { font-size: 12px; color: var(--muted); }
       </tbody>
     </table>
   </div>
-  <p class="aside">日期和路線最好在 <strong>2027/1/7</strong>（取車日 7 天前）之前定案，那之後改動就要收費了。</p>
+  <p class="aside">⚠️ <strong>行程最好在 2027/1/8 之前定案</strong>（取車日 1/15 的 7 天前），那之後改動就要收費。</p>
 
   <div class="panel">
     <h3>營業所</h3>
@@ -467,22 +436,17 @@ footer { font-size: 12px; color: var(--muted); }
   </div>
 </section>
 
+</div>
+
+
+<!-- ══════════════ 行程 ══════════════ -->
+<div class="tabpanel" id="p2" hidden>
+
 <section>
-  <h2>每日行程 <small>Day 2–4 已定案 · Day 1 / 5 待機票</small></h2>
-  <div class="callout">
-    <p><strong>🔑 關鍵簡化：第一天不租車</strong></p>
-    <ul>
-      <li>第一晚住<strong>小祿</strong>，離機場只有 3.5 公里，<strong>計程車 5–8 分鐘</strong>就到</li>
-      <li>→ <strong>誰落地誰自己叫車進飯店，不用取車、不用接人、不用對時間</strong></li>
-      <li>⚠️ <strong>不走單軌</strong>：小祿站電梯只有一座，5 個人帶行李很難行動</li>
-      <li>→ <strong>Day 1 完全不受機票影響</strong>，兩批人差幾小時都無所謂</li>
-      <li>隔天早上走路 3 分鐘到營業所取車，直接往北跑</li>
-      <li>晚上一律<strong>散策</strong>：Day 2、3 在美國村，Day 4 在國際通，全部走路不開車</li>
-    </ul>
-  </div>
+  <h2>必訪 vs 彈性 <small>時間不夠時砍哪個</small></h2>
   <div class="table-wrap">
     <table>
-      <thead><tr><th>日</th><th>必訪（不能砍）</th><th>彈性（時間不夠就砍）</th></tr></thead>
+      <thead><tr><th>日</th><th>必訪（不能砍）</th><th>彈性（可砍）</th></tr></thead>
       <tbody>
         <tr><td class="mono">1/15</td><td><strong>瀨長島</strong>、<strong>PARCO CITY</strong></td><td>泊港漁市場<br><span class="aside">不去就在瀨長島或 PARCO CITY 吃午餐</span></td></tr>
         <tr><td class="mono">1/16</td><td><strong>美麗海水族館</strong></td><td>古宇利島・古宇利大橋<br><span class="aside">砍掉少開約 50 分鐘，15:00 前就回得到北谷</span></td></tr>
@@ -490,36 +454,40 @@ footer { font-size: 12px; color: var(--muted); }
       </tbody>
     </table>
   </div>
-  <p class="aside">👉 <strong>必訪 5 個點全部室內或平路</strong>，下雨、太冷、長輩走不動都不受影響。真正會被天氣影響的是古宇利島（海風大）和港川（戶外巷弄），剛好都是彈性項目。</p>
+  <p class="aside">👉 <strong>必訪的 5 個點全部室內或平路</strong>，下雨、太冷、長輩走不動都不受影響。真正會被天氣左右的是古宇利島（海風大）和港川（戶外巷弄），剛好都是彈性項目。</p>
+</section>
 
+<section>
+  <h2>每日行程</h2>
   <div class="days">
+
     <div class="day">
       <div class="day-rail"><span class="day-num">DAY 1</span><span class="day-date mono">1/14</span><span class="day-dow">週四</span></div>
       <div class="day-body">
-        <div class="day-head"><h3>抵達 · 住小祿</h3><span class="tag fly">航班待定</span><span class="tag ">不用車</span></div>
+        <div class="day-head"><h3>抵達 · 住小祿</h3><span class="tag fly">MM926</span><span class="tag">不用車</span></div>
         <ul class="stops">
-          <li><span class="t none">—</span><span>✈️ 班機時間待定，但<strong>這天不需要車，所以誰幾點到都不影響</strong></span></li>
-          <li><span class="t none">—</span><span><strong>各自落地 → 出關直接搭計程車到 Y&rsquo;s Inn</strong>（機場到小祿約 3.5 公里、<strong>車程 5–8 分鐘</strong>）</span></li>
-          <li><span class="t none">—</span><span>兩批人各搭一台：台北組 2 人普通車約 ¥1,200；高雄組 3 人叫<strong>大型計程車</strong>約 ¥1,500–2,000</span></li>
-          <li><span class="t none">—</span><span><strong>不用預約</strong> —— 到達大廳外就是計程車招呼站，誰出關誰上車</span></li>
-          <li><span class="t none">—</span><span>晚餐：<strong>小祿站旁的 AEON 那霸店</strong>，從飯店走過去就到</span></li>
+          <li><span class="t">13:20</span><span>桃園機場報到（長輩搭約 09:30 的高鐵北上就來得及）</span></li>
+          <li><span class="t">15:20</span><span>起飛</span></li>
+          <li><span class="t">17:50</span><span>那霸落地</span></li>
+          <li><span class="t">18:30</span><span>出關 → <strong>搭計程車到 Y&rsquo;s Inn 那霸小祿駅前</strong>（約 3.5 公里、車程 5–8 分鐘）</span></li>
+          <li><span class="t none">—</span><span>5 人分兩台：普通車約 ¥1,200 + 大型計程車約 ¥1,500–2,000。<strong>不用預約</strong>，到達大廳外就是招呼站</span></li>
+          <li><span class="t">19:00</span><span>進飯店放行李</span></li>
+          <li><span class="t">19:30</span><span>晚餐：<strong>小祿站旁的 AEON 那霸店</strong>，走路就到</span></li>
         </ul>
-        <p class="easy">不用取車、不用接人、不用對時間，誰到了自己搭計程車進飯店就好。<strong>刻意不走單軌</strong>：小祿站電梯只有一座，5 個人帶行李很卡</p>
+        <p class="easy">純移動日 —— <strong>不租車、不排景點、不開夜路</strong>。就算延誤也只是晚點進飯店，不影響任何安排</p>
       </div>
     </div>
+
     <div class="day">
       <div class="day-rail"><span class="day-num">DAY 2</span><span class="day-date mono">1/15</span><span class="day-dow">週五</span></div>
       <div class="day-body">
-        <div class="day-head"><h3>取車 → 一路向北 → 美國村</h3><span class="tag car">取車</span><span class="tag ">換飯店</span></div>
+        <div class="day-head"><h3>取車 → 一路向北 → 美國村</h3><span class="tag car">取車</span><span class="tag">換飯店</span></div>
         <ul class="stops">
           <li><span class="t">08:40</span><span>Y&rsquo;s Inn 退房，<strong>走路 3 分鐘到沖繩行腳營業所</strong></span></li>
           <li><span class="t">09:00</span><span>取車，行李直接上車</span></li>
           <li><span class="t">09:15</span><span><strong>瀨長島 Umikaji Terrace</strong><span class="must">必訪</span>（約 10 分）—— 看海、看飛機起降、泡溫泉足湯；店家 10:00 開門</span></li>
-          <li><span class="t">11:00</span><span>出發</span></li>
-          <li><span class="t">11:20</span><span><strong>泊港漁市場（泊いゆまち）</strong><span class="flex">彈性</span>（約 20 分）—— 生魚片、海膽、海鮮丼，<strong>在這裡吃午餐</strong>；不去的話午餐改在瀨長島或 PARCO CITY</span></li>
-          <li><span class="t">13:00</span><span>出發</span></li>
+          <li><span class="t">11:20</span><span><strong>泊港漁市場（泊いゆまち）</strong><span class="flex">彈性</span>（約 20 分）—— 生魚片、海膽、海鮮丼，<strong>在這裡吃午餐</strong></span></li>
           <li><span class="t">13:15</span><span><strong>San-A 浦添西海岸 PARCO CITY</strong><span class="must">必訪</span>（約 15 分）—— 室內冷暖氣、電梯、座位多</span></li>
-          <li><span class="t">15:30</span><span>出發</span></li>
           <li><span class="t">15:50</span><span><strong>美國村飯店</strong> check in（約 20 分）</span></li>
           <li><span class="t">17:40</span><span>Sunset Beach 看日落（1 月約 18:00）</span></li>
           <li><span class="t">18:30</span><span><strong>美國村散策</strong>：Depot Island 逛街、摩天輪夜景、晚餐 —— 全部走路，<strong>晚上不開車</strong></span></li>
@@ -527,32 +495,33 @@ footer { font-size: 12px; color: var(--muted); }
         <p class="easy">全天車程只有約 65 分鐘，一路由南往北沒有回頭路；四個點都好停車、走動距離短</p>
       </div>
     </div>
+
     <div class="day">
       <div class="day-rail"><span class="day-num">DAY 3</span><span class="day-date mono">1/16</span><span class="day-dow">週六</span></div>
       <div class="day-body">
-        <div class="day-head"><h3>北部：美麗海 · 古宇利</h3><span class="tag car">自駕</span><span class="tag ">最長車程</span></div>
+        <div class="day-head"><h3>北部：美麗海 · 古宇利</h3><span class="tag car">自駕</span><span class="tag">最長車程</span></div>
         <ul class="stops">
           <li><span class="t">08:00</span><span>美國村出發（走沖繩自動車道）</span></li>
           <li><span class="t">09:15</span><span><strong>美麗海水族館</strong><span class="must">必訪</span>（約 1 小時 15 分）—— 黑潮之海、海豚秀；<strong>早上人最少</strong>，室內、有電梯、可免費借輪椅</span></li>
           <li><span class="t">12:30</span><span>園區內或本部町吃午餐</span></li>
-          <li><span class="t">13:15</span><span><strong>古宇利島・古宇利大橋</strong><span class="flex">彈性</span>（約 40 分）—— 開過全長 2km 的跨海大橋，島上看海；<strong>砍掉可少開約 50 分鐘</strong>，15:00 前就能回北谷</span></li>
-          <li><span class="t">15:00</span><span>出發回北谷</span></li>
+          <li><span class="t">13:15</span><span><strong>古宇利島・古宇利大橋</strong><span class="flex">彈性</span>（約 40 分）—— 開過全長 2km 的跨海大橋，島上看海</span></li>
+          <li><span class="t">15:00</span><span><strong>準時出發</strong>回北谷</span></li>
           <li><span class="t">16:20</span><span>回到美國村，先回房休息</span></li>
           <li><span class="t">17:30</span><span><strong>美國村散策</strong>：晚餐、摩天輪夜景 —— 一樣全部走路</span></li>
         </ul>
         <p class="easy">全天車程約 3 小時 15 分，是整趟最重的一天 —— 兩位駕駛輪流開。先水族館後古宇利，16:20 就回得到飯店，<strong>完全避開天黑開車</strong></p>
       </div>
     </div>
+
     <div class="day">
       <div class="day-rail"><span class="day-num">DAY 4</span><span class="day-date mono">1/17</span><span class="day-dow">週日</span></div>
       <div class="day-body">
-        <div class="day-head"><h3>南下 → 國際通</h3><span class="tag car">自駕</span><span class="tag ">換飯店</span></div>
+        <div class="day-head"><h3>南下 → 國際通</h3><span class="tag car">自駕</span><span class="tag">換飯店</span></div>
         <ul class="stops">
           <li><span class="t">09:30</span><span>美國村退房，<strong>行李上車</strong></span></li>
           <li><span class="t">10:00</span><span><strong>AEON Mall Rycom</strong><span class="must">必訪</span>（約 20 分）—— 沖繩最大商場，伴手禮一次買齊、吹暖氣</span></li>
           <li><span class="t">12:00</span><span>Rycom 美食街午餐</span></li>
-          <li><span class="t">13:30</span><span><strong>港川外人住宅</strong><span class="flex">彈性</span>（約 25 分）—— 老美軍宿舍改成的咖啡店和小店，走一小段就好；砍掉可以早點進國際通</span></li>
-          <li><span class="t">15:00</span><span>出發</span></li>
+          <li><span class="t">13:30</span><span><strong>港川外人住宅</strong><span class="flex">彈性</span>（約 25 分）—— 老美軍宿舍改成的咖啡店和小店，走一小段就好</span></li>
           <li><span class="t">15:30</span><span><strong>波上宮</strong><span class="must">必訪</span>（約 20 分）—— 沖繩總鎮守，建在斷崖上俯瞰波之上海灘，境內平坦好走</span></li>
           <li><span class="t">16:30</span><span><strong>國際通飯店</strong> check in，車停飯店</span></li>
           <li><span class="t">18:00</span><span><strong>國際通散策</strong>：第一牧志公設市場、商店街、晚餐 —— 全部走路，<strong>晚上不開車</strong></span></li>
@@ -560,19 +529,23 @@ footer { font-size: 12px; color: var(--muted); }
         <p class="easy">全天車程約 85 分鐘，跑完北部隔天刻意排鬆一點；波上宮離國際通只要 5 分鐘車程，順路收尾</p>
       </div>
     </div>
+
     <div class="day">
       <div class="day-rail"><span class="day-num">DAY 5</span><span class="day-date mono">1/18</span><span class="day-dow">週一</span></div>
       <div class="day-body">
-        <div class="day-head"><h3>返程</h3><span class="tag car">還車</span><span class="tag fly">航班待定</span></div>
+        <div class="day-head"><h3>返程</h3><span class="tag car">還車</span><span class="tag fly">MM929</span></div>
         <ul class="stops">
-          <li><span class="t none">—</span><span>✈️ <strong>這天等機票定案才排得準</strong></span></li>
-          <li><span class="t none">—</span><span>高雄組搭 <strong>IT289（14:00）</strong>→ 11:00 還車，早上約 2 小時</span></li>
-          <li><span class="t none">—</span><span>高雄組搭 <strong>CI133（19:45）</strong>→ 13:00 還車，早上約 4 小時，排得進首里城或 PARCO CITY</span></li>
-          <li><span class="t none">—</span><span>⚠️ 不管哪個版本，<strong>還車時間都在 4 天計費範圍內</strong>（1/15 09:00 起算）</span></li>
+          <li><span class="t">09:00</span><span>退房，<strong>行李上車</strong></span></li>
+          <li><span class="t">09:30</span><span>最後採買：PARCO CITY（10:00 開門）或 AEON 那霸店</span></li>
+          <li><span class="t">13:00</span><span><strong>小祿營業所還車</strong>（仍在 4 天計費內）→ <strong>免費接駁到機場</strong></span></li>
+          <li><span class="t">13:40</span><span>抵達機場 → <strong>先辦退稅</strong>（新制要帶著商品給海關確認，見檢查清單）</span></li>
+          <li><span class="t">14:50</span><span>報到、託運行李</span></li>
+          <li><span class="t">16:50</span><span><strong>MM929</strong> 起飛 → 17:35 抵達桃園</span></li>
         </ul>
-        <p class="easy">還車時間由高雄組的班機決定，所以這天要等機票定了才排</p>
+        <p class="easy">最後半天還有車，行李不用自己拖；還車後接駁直接送到航廈門口</p>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -580,160 +553,48 @@ footer { font-size: 12px; color: var(--muted); }
   <div class="panel">
     <h2>住宿 <small>每段 3 間房</small></h2>
     <dl>
-      <dt>1/14</dt><dd><strong>Y&rsquo;s Inn 那霸小祿駅前</strong> · 1 晚 · 離機場 3.5 公里（計程車 5–8 分鐘）、租車行走路 3 分鐘</dd>
+      <dt>1/14</dt><dd><strong>Y&rsquo;s Inn 那霸小祿駅前</strong> · 1 晚 · 離機場 3.5 公里、租車行走路 3 分鐘</dd>
       <dt>1/15–1/16</dt><dd><strong>美國村（北谷）</strong> · 2 晚 · 候選：Hilton 北谷、Vessel Campana、Beach Tower</dd>
       <dt>1/17</dt><dd><strong>國際通</strong> · 1 晚 · 候選：Hotel Collective、JAL City 那霸、東急 STAY</dd>
     </dl>
     <ul>
       <li><strong>房 A</strong> 爸媽（雙床）+ <strong>房 B</strong> 我和小孩 + <strong>房 C</strong> 哥，備註相鄰或同層</li>
-      <li>第一晚選小祿是<strong>一石二鳥</strong>：離機場只有 3.5 公里（計程車 5–8 分鐘），隔天取車走路 3 分鐘</li>
-      <li>⚠️ 換兩次飯店（1/15、1/17 早上），但兩次行李都直接上車，長輩不用拖</li>
-      <li>停車只要 <strong>3 晚</strong>（1/15–1/16 北谷、1/17 國際通）—— 1/14 沒車，省一晚</li>
+      <li>想省一間就把房 B 改訂三人房，但日本三人房少且擠</li>
+      <li>換兩次飯店（1/15、1/17 早上），但兩次行李都直接上車</li>
+      <li>停車只要 <strong>3 晚</strong> —— 1/14 沒車，省一晚</li>
     </ul>
   </div>
   <div class="panel">
-    <h2>租車</h2>
-    <dl>
-      <dt>期間</dt><dd class="mono">1/15 09:00 → 1/18 約 13:00</dd>
-      <dt></dt><dd>3 天 4 小時 → <strong>計費 4 天</strong></dd>
-      <dt>取／還</dt><dd>小祿營業所（Y&rsquo;s Inn 走路 3 分鐘）；還車後<strong>免費接駁到機場</strong></dd>
-      <dt>車型</dt><dd><strong>新款 SIENTA（7 人座，¥56,500）</strong>：第三排折下來 = 5 座 + 行李空間</dd>
-      <dt>駕駛</dt><dd>41 歲 + 36 歲，<strong>兩人都登記</strong>；1/16 北部那天務必輪流</dd>
-    </dl>
-    <p class="aside">1/14 不租車（計程車進飯店），所以<strong>比原本晚一天取車</strong>、停車也少一晚。</p>
+    <h2>費用概算 <small>新台幣粗估</small></h2>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><td>機票 ×5（樂桃，含託運、選位）</td><td class="num">37,500 – 50,000</td></tr>
+          <tr><td>住宿 3 間 × 4 晚</td><td class="num">33,000 – 50,000</td></tr>
+          <tr><td>景點門票（美麗海等 ×5）</td><td class="num">2,500 – 3,500</td></tr>
+          <tr><td>租車 4 天 SIENTA + 油、停車</td><td class="num">12,000 – 16,000</td></tr>
+          <tr><td>餐費（5 人 × 5 天）</td><td class="num">34,000 – 42,500</td></tr>
+          <tr><td>長輩高鐵來回 + 1/14 計程車 + 雜支</td><td class="num">4,500 – 6,000</td></tr>
+        </tbody>
+        <tfoot><tr><td>合計</td><td class="num">123,500 – 168,000</td></tr></tfoot>
+      </table>
+    </div>
+    <p class="aside">5 個人分攤約每人 <strong>NT$25,000 – 34,000</strong>。不含購物和旅平險。</p>
   </div>
 </div>
 
 <section>
-  <h2>費用概算 <small>新台幣 · 粗估，以實際訂購為準</small></h2>
+  <h2>❄️ 1 月的沖繩</h2>
   <div class="table-wrap">
     <table>
-      <thead><tr><th>項目</th><th class="num">估算</th></tr></thead>
+      <thead><tr><th>項目</th><th>2027 年 1 月中旬</th></tr></thead>
       <tbody>
-        <tr><td>機票 ×5（台北 2 + 高雄 3，含託運、選位）</td><td class="num">37,500 – 50,000</td></tr>
-        <tr><td>住宿 3 間 × 4 晚（北谷 2 + 國際通 2）</td><td class="num">36,000 – 54,000</td></tr>
-        <tr><td>景點門票（美麗海、萬座毛等，5 人自付）</td><td class="num">2,500 – 3,500</td></tr>
-        <tr><td>租車 4 天 SIENTA（¥56,500）+ 油、停車</td><td class="num">12,500 – 17,500</td></tr>
-        <tr><td>餐費（5 人 × 5 天）</td><td class="num">34,000 – 42,500</td></tr>
-        <tr><td>1/14 機場計程車 ×2 台 + 雜支（還車後接駁免費）</td><td class="num">2,200 – 3,200</td></tr>
-      </tbody>
-      <tfoot><tr><td>合計</td><td class="num">124,000 – 170,000</td></tr></tfoot>
-    </table>
-  </div>
-  <p class="aside">5 個人分攤約每人 <strong>NT$25,000 – 34,000</strong>。取消巴士團省下 NT$8,800–12,500，但要自付門票、多燒油，<strong>淨省約 NT$5,000–8,000</strong>。不含購物和旅平險。</p>
-</section>
-
-<section>
-  <h2>💰 還能再省一天租金嗎 <small>3 天 vs 4 天</small></h2>
-  <p>租車 24 小時制、不足一天進位，所以 <span class="mono">1/15 09:00 → 1/18 13:00</span> 是 3 天 4 小時，<strong>還是算 4 天</strong>。要壓到 3 天，還車得在 <span class="mono">1/18 09:00</span> 前 —— 那樣早上就全沒了，不划算。</p>
-  <div class="note">
-    <p><strong>真的想省，只有一個辦法：1/17 傍晚就還車</strong></p>
-    <ul>
-      <li>Day 4 跑完波上宮 → 先到國際通飯店卸行李 → 開 10 分鐘到小祿還車 → 再搭接駁或計程車回國際通</li>
-      <li>租期變成 <span class="mono">1/15 09:00 → 1/17 17:30</span> = 2 天 8.5 小時 → <strong>計費 3 天</strong></li>
-      <li>省下 <strong>¥11,000（約 NT$2,300）</strong>，停車也少一晚</li>
-      <li>❌ 代價：<strong>1/18 要帶 5 人份行李自己去機場</strong> —— 單軌有電梯問題（跟第一天同樣的理由），計程車 2 台約 ¥4,000</li>
-      <li>❌ 而且 Day 5 早上沒車，只能在國際通走路範圍活動</li>
-    </ul>
-  </div>
-  <p class="aside">👉 計程車費扣掉後淨省大概 NT$1,500。<strong>既然已經因為電梯問題不走單軌，這個方案就更沒理由了</strong> —— 留著車到最後一天，還車後<strong>沖繩行腳免費接駁直接送到機場</strong>，行李全程在車上，最輕鬆。</p>
-</section>
-
-<section>
-  <h2>1/18 回程：兩種版本 <small>高雄組搭 IT289 還是 CI133</small></h2>
-
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th></th><th>版本一 · IT289</th><th>版本二 · CI133</th></tr></thead>
-      <tbody>
-        <tr><td>高雄組班機</td><td class="mono">14:00 → 14:55</td><td class="mono">19:45 → 20:30</td></tr>
-        <tr><td>航空</td><td>虎航（廉航）</td><td><strong>華航（全服務）</strong></td></tr>
-        <tr><td>託運行李</td><td>要加購</td><td><strong>內含</strong></td></tr>
-        <tr><td>高雄組報到</td><td class="mono">12:00</td><td class="mono">17:45</td></tr>
-        <tr><td>還車時間</td><td class="mono">11:00</td><td class="mono">13:30</td></tr>
-        <tr><td><strong>早上可用時間</strong></td><td>09:00–11:00（<strong>2 小時</strong>）</td><td>09:00–13:30（<strong>4.5 小時</strong>）</td></tr>
-        <tr><td>長輩在機場等</td><td><strong>2.5 小時</strong></td><td>5 小時 45 分</td></tr>
-        <tr><td>台北組在機場等</td><td>5 小時 20 分</td><td><strong>2 小時 50 分</strong></td></tr>
-        <tr><td>長輩到家</td><td><strong>下午 3 點多</strong></td><td>晚上 9 點多</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p class="aside">兩邊的「機場等待總時數」其實差不多，差別只在<strong>誰在等</strong>。版本一讓 68／66 歲的長輩少等，版本二讓早上多出 2.5 小時、而且長輩有全服務航空和免加購行李。</p>
-
-  <div class="grid2">
-    <div class="callout">
-      <p><strong>📅 版本一 · IT289（目前排的）</strong></p>
-      <ul>
-        <li><span class="mono">09:00</span> 退房，行李上車</li>
-        <li><span class="mono">09:20</span> AEON 那霸店採買（PARCO CITY 10:00 才開，來不及）</li>
-        <li><span class="mono">11:00</span> 小祿還車 → 接駁到機場</li>
-        <li><span class="mono">11:30</span> 全員報到</li>
-        <li><span class="mono">14:00</span> 高雄組飛 → <strong>14:55 到高雄</strong></li>
-        <li><span class="mono">16:50</span> 台北組飛 → 17:35 到桃園</li>
-      </ul>
-    </div>
-    <div class="callout">
-      <p><strong>📅 版本二 · CI133</strong></p>
-      <ul>
-        <li><span class="mono">09:00</span> 退房，行李上車</li>
-        <li><span class="mono">09:30</span> <strong>PARCO CITY（10:00 開門）或首里城</strong>，時間充裕</li>
-        <li><span class="mono">12:30</span> 午餐</li>
-        <li><span class="mono">13:00</span> 小祿還車（仍在 4 天計費內）→ 免費接駁到機場</li>
-        <li><span class="mono">14:50</span> 台北組報到 → <span class="mono">16:50</span> 起飛</li>
-        <li><span class="mono">17:45</span> 高雄組報到 → <span class="mono">19:45</span> 起飛 → <strong>20:30 到高雄</strong></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="note">
-    <p><strong>💡 版本二如果嫌長輩等太久，兩個解法</strong></p>
-    <ul>
-      <li><strong>買機場貴賓室</strong>：那霸機場有付費貴賓室，3 人約 ¥4,600（約 NT$970），有座位、飲料、安靜，比在候機區乾等舒服很多</li>
-      <li><strong>多租一天車</strong>：14:30 先送台北組到機場，哥開車帶爸媽再玩兩小時，16:30 還車、17:00 到機場 —— 長輩只等 45 分鐘。代價是租車跳第 5 天，<strong>多 ¥11,000（約 NT$2,300）</strong></li>
-    </ul>
-  </div>
-</section>
-
-<section>
-  <h2>自駕取代巴士團 <small>值不值得，先看清楚代價</small></h2>
-  <div class="grid2">
-    <div class="callout">
-      <p><strong>✅ 好處</strong></p>
-      <ul>
-        <li>不用趕 08:20 在縣廳前集合，也不用等到 19:00 才回得了飯店</li>
-        <li>水族館想待多久就待多久，海豚秀可以挑場次</li>
-        <li>冷天想縮短戶外停留隨時可以調整</li>
-        <li>省下巴士團車資，長輩和小孩不用配合團體節奏</li>
-        <li><strong>有兩個駕駛可以輪流</strong>，這是之前沒有的條件</li>
-      </ul>
-    </div>
-    <div class="note">
-      <p><strong>⚠️ 代價</strong></p>
-      <ul>
-        <li><strong>1/16 全天車程約 3 小時 15 分</strong>，回程高速一段就 1 小時 20 分</li>
-        <li>已經把水族館排在早上、古宇利排在下午，<strong>15:00 離開就能 16:20 回到飯店</strong>，不會摸黑開高速</li>
-        <li>北部冬天風大，萬座毛、古宇利島體感很冷，長輩下車要有心理準備</li>
-        <li>美麗海門票要自己買（建議先在網路上買好，現場不用排隊）</li>
-        <li>沒有中文導遊解說</li>
-      </ul>
-    </div>
-  </div>
-  <p class="aside">💡 如果覺得 1/16 太硬：<strong>放棄古宇利島</strong>只跑美麗海，來回少約 50 分鐘；或那天改回 Klook 巴士團（但集合點在那霸縣廳前，住北谷要先南下，不順）。</p>
-</section>
-
-<section>
-  <h2>改到 1 月要注意的事 <small>❄️ 和原本 11 月的差別</small></h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>項目</th><th>11 月（原本）</th><th>2027 年 1 月</th></tr></thead>
-      <tbody>
-        <tr><td>氣溫</td><td>20 – 25°C</td><td><strong>14 – 19°C</strong>，海邊風大體感更低</td></tr>
-        <tr><td>衣物</td><td>薄外套</td><td><strong>保暖外套 + 長袖</strong>，長輩要帶帽子圍巾</td></tr>
-        <tr><td>日落</td><td>約 17:35</td><td><strong>約 18:00</strong>，可以晚一點看夕陽</td></tr>
-        <tr><td>日出</td><td>約 06:30</td><td>約 07:20，早上天亮得晚</td></tr>
-        <tr><td>租車季節</td><td>一般時期</td><td><strong>一般時期</strong>（冬季加價 12/23–1/3 剛好避開）✅</td></tr>
-        <tr><td>人潮</td><td>普通</td><td><strong>淡季</strong>，房價和機票通常較便宜 ✅</td></tr>
+        <tr><td>氣溫</td><td><strong>14 – 19°C</strong>，海邊風大體感更低</td></tr>
+        <tr><td>衣物</td><td><strong>保暖外套 + 長袖</strong>，長輩要帶帽子圍巾</td></tr>
+        <tr><td>日落</td><td>約 <strong>18:00</strong></td></tr>
+        <tr><td>日出</td><td>約 07:20，早上天亮得晚</td></tr>
+        <tr><td>租車季節</td><td><strong>一般時期</strong>（冬季加價 12/23–1/3 剛好避開）✅</td></tr>
+        <tr><td>人潮</td><td><strong>淡季</strong>，房價和機票通常較便宜 ✅</td></tr>
       </tbody>
     </table>
   </div>
@@ -741,53 +602,151 @@ footer { font-size: 12px; color: var(--muted); }
     <div class="callout">
       <p><strong>1 月的額外好處</strong></p>
       <ul>
-        <li>🐋 <strong>賞鯨季開始</strong>（約 1 月～4 月初），座間味、那霸都有出海行程 —— 長輩會暈船的話不建議</li>
-        <li>🌸 沖繩的<strong>寒緋櫻</strong>多在 1 月下旬開（本部八重岳、名護城跡），1 月中旬偏早，可能只有零星幾株</li>
+        <li>🐋 <strong>賞鯨季開始</strong>（約 1 月～4 月初）—— 長輩會暈船的話不建議</li>
+        <li>🌸 <strong>寒緋櫻</strong>多在 1 月下旬開（本部八重岳、名護城跡），1 月中旬偏早</li>
       </ul>
     </div>
     <div class="note">
-      <p><strong>1 月要留意的</strong></p>
+      <p><strong>要留意的</strong></p>
       <ul>
-        <li><strong>古宇利島、瀨長島冬天海風非常大</strong>，長輩下車要有心理準備，1/16 北部那天多帶一件</li>
+        <li><strong>古宇利島、瀨長島冬天海風非常大</strong>，1/16 那天多帶一件</li>
         <li>美麗海水族館是室內，冷天反而是好去處</li>
         <li>海灘只能散步，不能下水</li>
-        <li><strong>小孩的學校行事曆</strong>：1/14–1/18 是週四到週一，還沒放寒假的話要請 3 天假</li>
+        <li><strong>小孩的學校行事曆</strong>：1/14–1/18 是週四到週一，還沒放寒假要請 3 天假</li>
       </ul>
     </div>
   </div>
 </section>
 
+</div>
+
+
+<!-- ══════════════ 檢查清單 ══════════════ -->
+<div class="tabpanel" id="p3" hidden>
+
 <section>
-  <h2>待辦清單 <small class="progress" id="progress"></small></h2>
+  <h2>⚠️ 日本退稅新制 <small>2026/11/1 起，這趟適用</small></h2>
+  <div class="note">
+    <p><strong>從「免稅」改成「先付稅、出境再退」</strong></p>
+    <ul>
+      <li>買東西時<strong>先付含稅價</strong>，店家建立購買紀錄</li>
+      <li>出境時在機場<strong>海關 KIOSK 或櫃檯</strong>掃護照／免稅 QR Code，確認後才退稅</li>
+      <li>✅ 不再分「一般物品／消耗品」，<strong>不用封袋</strong>，消耗品金額上限取消</li>
+      <li>⏳ 購買日起 <strong>90 天內</strong>攜帶商品出境</li>
+    </ul>
+  </div>
+  <div class="note" style="background:var(--coral);color:#fff">
+    <p><strong>🚫 退稅品在出境前「不能拆封、不能使用」</strong></p>
+    <ul>
+      <li>海關在機場要<strong>親眼確認商品還在、而且是未使用狀態</strong>，確認過才退稅</li>
+      <li>零食、藥妝、保養品<strong>在日本當場拆來吃／用掉，那一筆就退不了</strong></li>
+      <li>衣服鞋子<strong>剪標籤、穿出門</strong>也可能被認定已使用</li>
+      <li>👉 <strong>買來要在日本用的東西，乾脆就別辦退稅</strong>；要退的就整包原封不動留到機場</li>
+      <li>⚠️ 新制雖然<strong>取消了封袋規定</strong>，但「未使用」這個條件沒有取消 —— 不要誤以為可以先拆</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <p><strong>對 1/18 的實際影響</strong></p>
+    <ul>
+      <li>海關要<strong>看得到商品</strong> → 退稅品<strong>不能先托運</strong>，要隨身帶去海關</li>
+      <li>→ 流程是：<strong>到機場先辦退稅 → 再去櫃檯報到託運</strong></li>
+      <li>我們 13:40 到機場、16:50 起飛，<strong>有 3 小時緩衝，夠用</strong></li>
+      <li>伴手禮主要在 1/17 的 AEON Rycom 和 1/18 早上買，<strong>收據集中保管</strong></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>行前準備 <small class="progress" id="progress"></small></h2>
+
+  <h3>🎫 訂購</h3>
   <ul class="checks" id="checks">
-    <li><label><input type="checkbox" id="c1"><span>訂<strong>台北</strong>機票 ×2：去 <strong>MM922</strong> / 回 <strong>MM929</strong>（或 MM925、JX871）</span></label></li>
-    <li><label><input type="checkbox" id="c1c"><span>訂<strong>高雄</strong>機票 ×3：去 <strong>IT288</strong> / 回 <strong>IT289</strong>（1/14 中午抵達就這一班，早訂）</span></label></li>
-    <li><label><input type="checkbox" id="c1e"><span>樂桃和虎航都是廉航，<strong>5 個人的託運行李都要加購</strong>、付費選位</span></label></li>
-    <li><label><input type="checkbox" id="c1d"><span>兩邊班機號碼、落地時間放同一個群組，落地各報一聲</span></label></li>
-    <li><label><input type="checkbox" id="c2z"><span>訂住宿：<strong>Y&rsquo;s Inn 那霸小祿駅前 3 間 × 1 晚</strong>（1/14）</span></label></li>
-    <li><label><input type="checkbox" id="c2"><span>訂住宿：美國村 <strong>3 間房 × 2 晚</strong>（1/15、1/16）</span></label></li>
-    <li><label><input type="checkbox" id="c2c"><span>訂住宿：國際通 <strong>3 間房 × 1 晚</strong>（1/17）</span></label></li>
-    <li><label><input type="checkbox" id="c3"><span><strong>先買好美麗海水族館門票 ×5</strong>（網路購票免排隊）</span></label></li>
-    <li><label><input type="checkbox" id="c4"><span>訂租車：沖繩行腳，<strong>1/15 09:00 取 → 1/18 約 13:00 還</strong>，<strong>新款 SIENTA（7 人座）</strong></span></label></li>
-    <li><label><input type="checkbox" id="c4b"><span>訂車時<strong>告知要機場接駁</strong>（去程接機、回程送機），請工作人員登記</span></label></li>
-    <li><label><input type="checkbox" id="c4c"><span>問更大廂型車（Noah / Voxy / Serena 級）的報價 —— SIENTA 標示建議 4 人 / 行李 3 件，我們 5 人偏緊</span></label></li>
-    <li><label><input type="checkbox" id="c5b"><span>核對駕照與日文譯本<strong>地址是否一致</strong>；不一致要帶身分證正本</span></label></li>
-    <li><label><input type="checkbox" id="c5"><span>到監理站辦駕照日文譯本 —— <strong>41 和 36 兩位駕駛都要辦</strong></span></label></li>
-    <li><label><input type="checkbox" id="c6"><span>護照效期要超過回國日</span></label></li>
-    <li><label><input type="checkbox" id="c7"><span>填 Visit Japan Web</span></label></li>
-    <li><label><input type="checkbox" id="c8"><span>旅平險 + 不便險（長輩提高醫療額度）</span></label></li>
-    <li><label><input type="checkbox" id="c9"><span>長輩常備藥、網卡或 eSIM、日圓</span></label></li>
-    <li><label><input type="checkbox" id="c10"><span>帶保暖外套（1 月約 14～19°C，海邊風大）</span></label></li>
+    <li><label><input type="checkbox" id="b1"><span>訂機票 ×5：<strong>去 MM926 / 回 MM929</strong>（訂前先上樂桃官網確認 2027/1 班表）</span></label></li>
+    <li><label><input type="checkbox" id="b2"><span>樂桃是廉航：<strong>5 人託運行李都要加購</strong>、付費選位（小孩和大人坐一起）</span></label></li>
+    <li><label><input type="checkbox" id="b3"><span>確認長輩高鐵：左營約 09:30 出發 → 桃園 → 機捷，13:20 前報到</span></label></li>
+    <li><label><input type="checkbox" id="b4"><span>訂住宿：<strong>Y&rsquo;s Inn 那霸小祿駅前 3 間 × 1 晚</strong>（1/14）</span></label></li>
+    <li><label><input type="checkbox" id="b5"><span>訂住宿：<strong>美國村 3 間 × 2 晚</strong>（1/15、1/16）</span></label></li>
+    <li><label><input type="checkbox" id="b6"><span>訂住宿：<strong>國際通 3 間 × 1 晚</strong>（1/17）—— 三段都備註相鄰或同層</span></label></li>
+    <li><label><input type="checkbox" id="b7"><span>訂租車：沖繩行腳，<strong>1/15 09:00 取 → 1/18 約 13:00 還</strong>，新款 SIENTA</span></label></li>
+    <li><label><input type="checkbox" id="b8"><span>訂車時<strong>告知要機場接駁</strong>（還車後送機），請工作人員登記</span></label></li>
+    <li><label><input type="checkbox" id="b9"><span>問更大廂型車（Noah / Voxy / Serena 級）的報價</span></label></li>
+    <li><label><input type="checkbox" id="b10"><span><strong>先買好美麗海水族館門票 ×5</strong>（網路購票免排隊）</span></label></li>
+    <li><label><input type="checkbox" id="b11"><span>旅平險 + 不便險（<strong>長輩提高醫療額度</strong>）</span></label></li>
+  </ul>
+
+  <h3>📄 證件</h3>
+  <ul class="checks">
+    <li><label><input type="checkbox" id="d1"><span><strong>護照效期要超過回國日</strong>（2027/1/18）—— 5 本都要檢查</span></label></li>
+    <li><label><input type="checkbox" id="d2"><span>到監理站辦<strong>駕照日文譯本</strong> —— <strong>41 和 36 兩位駕駛都要辦</strong></span></label></li>
+    <li><label><input type="checkbox" id="d3"><span>核對<strong>駕照與日文譯本的地址是否一致</strong>；不一致要帶<strong>身分證正本</strong></span></label></li>
+    <li><label><input type="checkbox" id="d4"><span>⚠️ 租車要帶<strong>汽車</strong>駕照正本，<strong>不是機車駕照</strong>（證件不齊會被收 50% 車輛費用）</span></label></li>
+    <li><label><input type="checkbox" id="d5"><span>填 <strong>Visit Japan Web</strong>（入境審查 + 海關申報），<strong>5 個人都要</strong>；出發前存好 QR Code 截圖</span></label></li>
+    <li><label><input type="checkbox" id="d6"><span>護照、駕照、日文譯本<strong>拍照備份</strong>存手機和雲端</span></label></li>
+  </ul>
+
+  <h3>🧳 行李</h3>
+  <ul class="checks">
+    <li><label><input type="checkbox" id="e1"><span><strong>保暖外套 + 長袖</strong>（1 月約 14–19°C，海邊風大體感更低）</span></label></li>
+    <li><label><input type="checkbox" id="e2"><span>長輩的<strong>帽子、圍巾</strong>（古宇利島和瀨長島海風很強）</span></label></li>
+    <li><label><input type="checkbox" id="e3"><span>長輩<strong>常備藥</strong>（含藥單或藥袋，過海關備查）</span></label></li>
+    <li><label><input type="checkbox" id="e4"><span><strong>網卡或 eSIM</strong> ×5（導航和聯絡要用）</span></label></li>
+    <li><label><input type="checkbox" id="e5"><span><strong>日圓現金</strong>（停車場、小店、漁市場很多只收現金）</span></label></li>
+    <li><label><input type="checkbox" id="e6"><span>行李控制在 <strong>SIENTA 後車廂放得下</strong>的量 —— 5 人同車，座位全滿</span></label></li>
+  </ul>
+
+  <h3>🛬 當地</h3>
+  <ul class="checks">
+    <li><label><input type="checkbox" id="f1"><span>加沖繩行腳的 <strong>Line / WhatsApp</strong>，接駁當天要通知</span></label></li>
+    <li><label><input type="checkbox" id="f2"><span>出發前再確認<strong>機場接駁集合點</strong>（國際線施工時改國內線 3 樓 5 號出口）</span></label></li>
+    <li><label><input type="checkbox" id="f3"><span><strong>退稅收據集中保管</strong>，1/18 到機場<strong>先退稅再報到託運</strong></span></label></li>
+    <li><label><input type="checkbox" id="f5"><span>🚫 <strong>退稅品出境前不能拆封、不能使用</strong> —— 拆了就退不了，要在日本用的別辦退稅</span></label></li>
+    <li><label><input type="checkbox" id="f4"><span>⚠️ 行程最好 <strong>2027/1/8 前</strong>定案（租車免費取消期限）</span></label></li>
   </ul>
 </section>
+
+<section>
+  <h2>待確認</h2>
+  <div class="note">
+    <ul>
+      <li><strong>2027 年 1 月的冬季班表</strong> —— MM926 / MM929 要上樂桃官網重新確認</li>
+      <li><strong>更大廂型車的報價</strong> —— SIENTA 標示建議 4 人 / 行李 3 件，我們 5 人偏緊</li>
+      <li><strong>美麗海水族館的實際票價</strong>（成人 / 兒童 / 長者）</li>
+      <li><strong>北谷和國際通飯店的停車費</strong></li>
+      <li><strong>小孩 1/14–1/18 的學校行事曆</strong>，還沒放寒假要請 3 天假</li>
+      <li><strong>長輩要不要改走方案乙或備案甲</strong>（見「機票」分頁）</li>
+    </ul>
+  </div>
+</section>
+
+</div>
 
 <footer>勾選狀態只存在你這台裝置的瀏覽器裡。</footer>
 </div>
 
 <script>
 (function () {
-  var KEY = 'okinawa2026-checks';
-  var boxes = Array.prototype.slice.call(document.querySelectorAll('#checks input'));
+  // 分頁
+  var tabs = [];
+  for (var i = 0; i < 4; i++) {
+    tabs.push({ btn: document.getElementById('tab-' + i), panel: document.getElementById('p' + i) });
+  }
+  var TKEY = 'okinawa-tab';
+  function show(i) {
+    tabs.forEach(function (t, j) {
+      t.btn.setAttribute('aria-selected', String(i === j));
+      t.panel.hidden = i !== j;
+    });
+    try { localStorage.setItem(TKEY, String(i)); } catch (e) {}
+  }
+  tabs.forEach(function (t, i) { t.btn.addEventListener('click', function () { show(i); window.scrollTo(0, 0); }); });
+  var startTab = 0;
+  try { startTab = parseInt(localStorage.getItem(TKEY) || '0', 10) || 0; } catch (e) {}
+  show(startTab >= 0 && startTab < 4 ? startTab : 0);
+
+  // 待辦勾選
+  var KEY = 'okinawa2027-checks';
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.checks input'));
   var saved = {};
   try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
   function update() {
@@ -803,7 +762,6 @@ footer { font-size: 12px; color: var(--muted); }
     });
   });
   update();
-
 })();
 </script>
 </body>
