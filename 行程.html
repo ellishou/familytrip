@@ -19,6 +19,9 @@
   --bingata: #e0a526;
   --bingata-soft: #fbf0d6;
   --coral: #c8553d;
+  --leaf: #2d7a56;
+  --plum: #8a4a78;
+  --sky: #2a6aa8;
   --f-display: "Noto Serif TC", "Songti TC", serif;
   --f-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
@@ -27,12 +30,14 @@
   :root:not([data-theme="light"]) {
     --bg: #0e1a1f; --surface: #15252c; --ink: #e3eef0; --muted: #93aab1; --line: #27404a;
     --sea: #5cc2cf; --sea-soft: #173a41; --bingata: #f0bd4f; --bingata-soft: #3a3019; --coral: #ec8a73;
+    --leaf: #6ecfa3; --plum: #d79fc9; --sky: #7db6e8;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0e1a1f; --surface: #15252c; --ink: #e3eef0; --muted: #93aab1; --line: #27404a;
   --sea: #5cc2cf; --sea-soft: #173a41; --bingata: #f0bd4f; --bingata-soft: #3a3019; --coral: #ec8a73;
+  --leaf: #6ecfa3; --plum: #d79fc9; --sky: #7db6e8;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -117,6 +122,16 @@ thead th { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacin
 .checks input:checked + span { color: var(--muted); text-decoration: line-through; }
 .progress { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
 input:focus-visible { outline: 2px solid var(--sea); outline-offset: 2px; }
+
+.k { font-size: 11px; font-weight: 700; padding: 0 6px; border-radius: 4px; margin-right: 7px;
+  white-space: nowrap; display: inline-block; border: 1px solid currentColor; }
+.k-fly { color: var(--coral); }
+.k-car { color: var(--bingata); }
+.k-stay { color: var(--sea); }
+.k-spot { color: var(--leaf); }
+.k-eat { color: var(--plum); }
+.k-shop { color: var(--sky); }
+.legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; color: var(--muted); align-items: center; }
 
 .must { font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 4px; background: var(--coral); color: #fff; margin-left: 6px; vertical-align: 2px; white-space: nowrap; }
 .flex { font-size: 11px; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); margin-left: 6px; vertical-align: 2px; white-space: nowrap; }
@@ -459,6 +474,15 @@ footer { font-size: 12px; color: var(--muted); }
 
 <section>
   <h2>每日行程</h2>
+  <div class="legend">
+    <span>類型：</span>
+    <span class="k k-fly">航班</span><span>搭機、機場</span>
+    <span class="k k-car">交通</span><span>取還車、移動</span>
+    <span class="k k-stay">住宿</span><span>進退房</span>
+    <span class="k k-spot">景點</span><span>景點</span>
+    <span class="k k-eat">用餐</span><span>吃飯</span>
+    <span class="k k-shop">購物</span><span>逛街採買</span>
+  </div>
   <div class="days">
 
     <div class="day">
@@ -466,13 +490,13 @@ footer { font-size: 12px; color: var(--muted); }
       <div class="day-body">
         <div class="day-head"><h3>抵達 · 住小祿</h3><span class="tag fly">MM926</span><span class="tag">不用車</span></div>
         <ul class="stops">
-          <li><span class="t">13:20</span><span>桃園機場報到（長輩搭約 09:30 的高鐵北上就來得及）</span></li>
-          <li><span class="t">15:20</span><span>起飛</span></li>
-          <li><span class="t">17:50</span><span>那霸落地</span></li>
-          <li><span class="t">18:30</span><span>出關 → <strong>搭計程車到 Y&rsquo;s Inn 那霸小祿駅前</strong>（約 3.5 公里、車程 5–8 分鐘）</span></li>
+          <li><span class="t">13:20</span><span><span class="k k-fly">航班</span>桃園機場報到（長輩搭約 09:30 的高鐵北上就來得及）</span></li>
+          <li><span class="t">15:20</span><span><span class="k k-fly">航班</span>起飛</span></li>
+          <li><span class="t">17:50</span><span><span class="k k-fly">航班</span>那霸落地</span></li>
+          <li><span class="t">18:30</span><span><span class="k k-car">交通</span>出關 → <strong>搭計程車到 Y&rsquo;s Inn 那霸小祿駅前</strong>（約 3.5 公里、車程 5–8 分鐘）</span></li>
           <li><span class="t none">—</span><span>5 人分兩台：普通車約 ¥1,200 + 大型計程車約 ¥1,500–2,000。<strong>不用預約</strong>，到達大廳外就是招呼站</span></li>
-          <li><span class="t">19:00</span><span>進飯店放行李</span></li>
-          <li><span class="t">19:30</span><span>晚餐：<strong>小祿站旁的 AEON 那霸店</strong>，走路就到</span></li>
+          <li><span class="t">19:00</span><span><span class="k k-stay">住宿</span>進飯店放行李</span></li>
+          <li><span class="t">19:30</span><span><span class="k k-eat">用餐</span>晚餐：<strong>小祿站旁的 AEON 那霸店</strong>，走路就到</span></li>
         </ul>
         <p class="easy">純移動日 —— <strong>不租車、不排景點、不開夜路</strong>。就算延誤也只是晚點進飯店，不影響任何安排</p>
       </div>
@@ -483,14 +507,14 @@ footer { font-size: 12px; color: var(--muted); }
       <div class="day-body">
         <div class="day-head"><h3>取車 → 一路向北 → 美國村</h3><span class="tag car">取車</span><span class="tag">換飯店</span></div>
         <ul class="stops">
-          <li><span class="t">08:40</span><span>Y&rsquo;s Inn 退房，<strong>走路 3 分鐘到沖繩行腳營業所</strong></span></li>
-          <li><span class="t">09:00</span><span>取車，行李直接上車</span></li>
-          <li><span class="t">09:15</span><span><strong>瀨長島 Umikaji Terrace</strong><span class="must">必訪</span>（約 10 分）—— 看海、看飛機起降、泡溫泉足湯；店家 10:00 開門</span></li>
-          <li><span class="t">11:20</span><span><strong>泊港漁市場（泊いゆまち）</strong><span class="flex">彈性</span>（約 20 分）—— 生魚片、海膽、海鮮丼，<strong>在這裡吃午餐</strong></span></li>
-          <li><span class="t">13:15</span><span><strong>San-A 浦添西海岸 PARCO CITY</strong><span class="must">必訪</span>（約 15 分）—— 室內冷暖氣、電梯、座位多</span></li>
-          <li><span class="t">15:50</span><span><strong>美國村飯店</strong> check in（約 20 分）</span></li>
-          <li><span class="t">17:40</span><span>Sunset Beach 看日落（1 月約 18:00）</span></li>
-          <li><span class="t">18:30</span><span><strong>美國村散策</strong>：Depot Island 逛街、摩天輪夜景、晚餐 —— 全部走路，<strong>晚上不開車</strong></span></li>
+          <li><span class="t">08:40</span><span><span class="k k-stay">住宿</span>Y&rsquo;s Inn 退房，<strong>走路 3 分鐘到沖繩行腳營業所</strong></span></li>
+          <li><span class="t">09:00</span><span><span class="k k-car">交通</span>取車，行李直接上車</span></li>
+          <li><span class="t">09:15</span><span><span class="k k-spot">景點</span><strong>瀨長島 Umikaji Terrace</strong><span class="must">必訪</span>（約 10 分）—— 看海、看飛機起降、泡溫泉足湯；店家 10:00 開門</span></li>
+          <li><span class="t">11:20</span><span><span class="k k-eat">用餐</span><strong>泊港漁市場（泊いゆまち）</strong><span class="flex">彈性</span>（約 20 分）—— 生魚片、海膽、海鮮丼，<strong>在這裡吃午餐</strong></span></li>
+          <li><span class="t">13:15</span><span><span class="k k-shop">購物</span><strong>San-A 浦添西海岸 PARCO CITY</strong><span class="must">必訪</span>（約 15 分）—— 室內冷暖氣、電梯、座位多</span></li>
+          <li><span class="t">15:50</span><span><span class="k k-stay">住宿</span><strong>美國村飯店</strong> check in（約 20 分）</span></li>
+          <li><span class="t">17:40</span><span><span class="k k-spot">景點</span>Sunset Beach 看日落（1 月約 18:00）</span></li>
+          <li><span class="t">18:30</span><span><span class="k k-eat">用餐</span><span class="k k-shop">購物</span><strong>美國村散策</strong>：Depot Island 逛街、摩天輪夜景、晚餐 —— 全部走路，<strong>晚上不開車</strong></span></li>
         </ul>
         <p class="easy">全天車程只有約 65 分鐘，一路由南往北沒有回頭路；四個點都好停車、走動距離短</p>
       </div>
@@ -501,13 +525,13 @@ footer { font-size: 12px; color: var(--muted); }
       <div class="day-body">
         <div class="day-head"><h3>北部：美麗海 · 古宇利</h3><span class="tag car">自駕</span><span class="tag">最長車程</span></div>
         <ul class="stops">
-          <li><span class="t">08:00</span><span>美國村出發（走沖繩自動車道）</span></li>
-          <li><span class="t">09:15</span><span><strong>美麗海水族館</strong><span class="must">必訪</span>（約 1 小時 15 分）—— 黑潮之海、海豚秀；<strong>早上人最少</strong>，室內、有電梯、可免費借輪椅</span></li>
-          <li><span class="t">12:30</span><span>園區內或本部町吃午餐</span></li>
-          <li><span class="t">13:15</span><span><strong>古宇利島・古宇利大橋</strong><span class="flex">彈性</span>（約 40 分）—— 開過全長 2km 的跨海大橋，島上看海</span></li>
-          <li><span class="t">15:00</span><span><strong>準時出發</strong>回北谷</span></li>
-          <li><span class="t">16:20</span><span>回到美國村，先回房休息</span></li>
-          <li><span class="t">17:30</span><span><strong>美國村散策</strong>：晚餐、摩天輪夜景 —— 一樣全部走路</span></li>
+          <li><span class="t">08:00</span><span><span class="k k-car">交通</span>美國村出發（走沖繩自動車道）</span></li>
+          <li><span class="t">09:15</span><span><span class="k k-spot">景點</span><strong>美麗海水族館</strong><span class="must">必訪</span>（約 1 小時 15 分）—— 黑潮之海、海豚秀；<strong>早上人最少</strong>，室內、有電梯、可免費借輪椅</span></li>
+          <li><span class="t">12:30</span><span><span class="k k-eat">用餐</span>園區內或本部町吃午餐</span></li>
+          <li><span class="t">13:15</span><span><span class="k k-spot">景點</span><strong>古宇利島・古宇利大橋</strong><span class="flex">彈性</span>（約 40 分）—— 開過全長 2km 的跨海大橋，島上看海</span></li>
+          <li><span class="t">15:00</span><span><span class="k k-car">交通</span><strong>準時出發</strong>回北谷</span></li>
+          <li><span class="t">16:20</span><span><span class="k k-stay">住宿</span>回到美國村，先回房休息</span></li>
+          <li><span class="t">17:30</span><span><span class="k k-eat">用餐</span><strong>美國村散策</strong>：晚餐、摩天輪夜景 —— 一樣全部走路</span></li>
         </ul>
         <p class="easy">全天車程約 3 小時 15 分，是整趟最重的一天 —— 兩位駕駛輪流開。先水族館後古宇利，16:20 就回得到飯店，<strong>完全避開天黑開車</strong></p>
       </div>
@@ -518,13 +542,13 @@ footer { font-size: 12px; color: var(--muted); }
       <div class="day-body">
         <div class="day-head"><h3>南下 → 國際通</h3><span class="tag car">自駕</span><span class="tag">換飯店</span></div>
         <ul class="stops">
-          <li><span class="t">09:30</span><span>美國村退房，<strong>行李上車</strong></span></li>
-          <li><span class="t">10:00</span><span><strong>AEON Mall Rycom</strong><span class="must">必訪</span>（約 20 分）—— 沖繩最大商場，伴手禮一次買齊、吹暖氣</span></li>
-          <li><span class="t">12:00</span><span>Rycom 美食街午餐</span></li>
-          <li><span class="t">13:30</span><span><strong>港川外人住宅</strong><span class="flex">彈性</span>（約 25 分）—— 老美軍宿舍改成的咖啡店和小店，走一小段就好</span></li>
-          <li><span class="t">15:30</span><span><strong>波上宮</strong><span class="must">必訪</span>（約 20 分）—— 沖繩總鎮守，建在斷崖上俯瞰波之上海灘，境內平坦好走</span></li>
-          <li><span class="t">16:30</span><span><strong>國際通飯店</strong> check in，車停飯店</span></li>
-          <li><span class="t">18:00</span><span><strong>國際通散策</strong>：第一牧志公設市場、商店街、晚餐 —— 全部走路，<strong>晚上不開車</strong></span></li>
+          <li><span class="t">09:30</span><span><span class="k k-stay">住宿</span>美國村退房，<strong>行李上車</strong></span></li>
+          <li><span class="t">10:00</span><span><span class="k k-shop">購物</span><strong>AEON Mall Rycom</strong><span class="must">必訪</span>（約 20 分）—— 沖繩最大商場，伴手禮一次買齊、吹暖氣</span></li>
+          <li><span class="t">12:00</span><span><span class="k k-eat">用餐</span>Rycom 美食街午餐</span></li>
+          <li><span class="t">13:30</span><span><span class="k k-spot">景點</span><strong>港川外人住宅</strong><span class="flex">彈性</span>（約 25 分）—— 老美軍宿舍改成的咖啡店和小店，走一小段就好</span></li>
+          <li><span class="t">15:30</span><span><span class="k k-spot">景點</span><strong>波上宮</strong><span class="must">必訪</span>（約 20 分）—— 沖繩總鎮守，建在斷崖上俯瞰波之上海灘，境內平坦好走</span></li>
+          <li><span class="t">16:30</span><span><span class="k k-stay">住宿</span><strong>國際通飯店</strong> check in，車停飯店</span></li>
+          <li><span class="t">18:00</span><span><span class="k k-eat">用餐</span><span class="k k-shop">購物</span><strong>國際通散策</strong>：第一牧志公設市場、商店街、晚餐 —— 全部走路，<strong>晚上不開車</strong></span></li>
         </ul>
         <p class="easy">全天車程約 85 分鐘，跑完北部隔天刻意排鬆一點；波上宮離國際通只要 5 分鐘車程，順路收尾</p>
       </div>
@@ -535,12 +559,12 @@ footer { font-size: 12px; color: var(--muted); }
       <div class="day-body">
         <div class="day-head"><h3>返程</h3><span class="tag car">還車</span><span class="tag fly">MM929</span></div>
         <ul class="stops">
-          <li><span class="t">09:00</span><span>退房，<strong>行李上車</strong></span></li>
-          <li><span class="t">09:30</span><span>最後採買：PARCO CITY（10:00 開門）或 AEON 那霸店</span></li>
-          <li><span class="t">13:00</span><span><strong>小祿營業所還車</strong>（仍在 4 天計費內）→ <strong>免費接駁到機場</strong></span></li>
-          <li><span class="t">13:40</span><span>抵達機場 → <strong>先辦退稅</strong>（新制要帶著商品給海關確認，見檢查清單）</span></li>
-          <li><span class="t">14:50</span><span>報到、託運行李</span></li>
-          <li><span class="t">16:50</span><span><strong>MM929</strong> 起飛 → 17:35 抵達桃園</span></li>
+          <li><span class="t">09:00</span><span><span class="k k-stay">住宿</span>退房，<strong>行李上車</strong></span></li>
+          <li><span class="t">09:30</span><span><span class="k k-shop">購物</span>最後採買：PARCO CITY（10:00 開門）或 AEON 那霸店</span></li>
+          <li><span class="t">13:00</span><span><span class="k k-car">交通</span><strong>小祿營業所還車</strong>（仍在 4 天計費內）→ <strong>免費接駁到機場</strong></span></li>
+          <li><span class="t">13:40</span><span><span class="k k-fly">航班</span>抵達機場 → <strong>先辦退稅</strong>（新制要帶著商品給海關確認，見檢查清單）</span></li>
+          <li><span class="t">14:50</span><span><span class="k k-fly">航班</span>報到、託運行李</span></li>
+          <li><span class="t">16:50</span><span><span class="k k-fly">航班</span><strong>MM929</strong> 起飛 → 17:35 抵達桃園</span></li>
         </ul>
         <p class="easy">最後半天還有車，行李不用自己拖；還車後接駁直接送到航廈門口</p>
       </div>
