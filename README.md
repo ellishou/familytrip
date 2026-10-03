@@ -6,7 +6,7 @@
 
 | 檔案 | 用途 |
 |---|---|
-| `index.html` | 完整行程網頁，**6 個分頁**：機票／交通／行程／住宿／費用／檢查清單；每日附 Leaflet 地圖 |
+| `index.html` | 完整行程網頁，**7 個分頁**：機票／交通／行程／住宿／飲食／費用／檢查清單；每日附 Leaflet 地圖 |
 | `行程.md` | 同一份內容的文字版 |
 | `行程.html` / `行程_artifact.html` | 網頁備份 |
 | 線上版 | https://ellishou.github.io/familytrip/ |
