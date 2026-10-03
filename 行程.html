@@ -182,28 +182,10 @@ tr.pick td { background: var(--sea-soft); }
 footer { font-size: 12px; color: var(--muted); }
 
 /* Tabs */
-.meals { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--sea) 4%, transparent); }
-.meals h4 { margin: 0 0 8px; font-family: var(--f-display); font-size: 15px; }
-.meals table { font-size: 13.5px; }
-.meals { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--sea) 4%, transparent); }
-.meals h4 { margin: 0 0 8px; font-family: var(--f-display); font-size: 15px; }
-.meals table { font-size: 13.5px; }
-.meals { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--sea) 4%, transparent); }
-.meals h4 { margin: 0 0 8px; font-family: var(--f-display); font-size: 15px; }
-.meals table { font-size: 13.5px; }
-.meals { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--sea) 4%, transparent); }
-.meals h4 { margin: 0 0 8px; font-family: var(--f-display); font-size: 15px; }
-.meals table { font-size: 13.5px; }
-.meals { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--sea) 4%, transparent); }
-.meals h4 { margin: 0 0 8px; font-family: var(--f-display); font-size: 15px; }
-.meals table { font-size: 13.5px; }
-.meals { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--sea) 4%, transparent); }
-.meals h4 { margin: 0 0 8px; font-family: var(--f-display); font-size: 15px; }
-.meals table { font-size: 13.5px; }
 section img { max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); display: block; }
-.meals { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--sea) 4%, transparent); }
-.meals h4 { margin: 0 0 8px; font-family: var(--f-display); font-size: 15px; }
-.meals table { font-size: 13.5px; }
+table.eats td label { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; }
+table.eats input { margin-top: 3px; flex: none; }
+table.eats tr:has(input:checked) { background: color-mix(in srgb, var(--leaf) 10%, transparent); }
 .meals { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--sea) 4%, transparent); }
 .meals h4 { margin: 0 0 8px; font-family: var(--f-display); font-size: 15px; }
 .meals table { font-size: 13.5px; }
@@ -870,6 +852,37 @@ section img { max-width: 100%; height: auto; border-radius: 10px; border: 1px so
 <div class="tabpanel" id="p4" hidden>
 
 <section>
+  <h2>🍜 想吃什麼 <small>沖繩經典 · 勾起來再去排</small></h2>
+  <p class="aside">勾選會<strong>存在這台裝置的瀏覽器裡</strong>，可以跟家人討論完再勾。推薦度是<strong>以「3 大 1 小、長輩優先」為標準</strong>打的，不是美食排行。</p>
+  <div class="table-wrap">
+    <table class="eats">
+      <thead><tr><th>想吃</th><th class="num">推薦</th><th>為什麼（以長輩和小孩為準）</th><th>排在哪天</th></tr></thead>
+      <tbody><tr><td><label><input type="checkbox" id="eat1"><span>🐷 <strong>阿古豬涮涮鍋</strong><span class="aside">あぐー豚しゃぶしゃぶ</span></span></label></td><td class="num">⭐⭐⭐</td><td><strong>最推薦給長輩的一餐</strong> —— 坐著吃、<strong>肉片薄好咀嚼</strong>、份量自己控制、湯頭清爽不油膩；冬天吃最舒服</td><td><strong>1/15 晚·國際通</strong><span class="aside">（可取代鳥貴族）</span></td></tr><tr><td><label><input type="checkbox" id="eat2"><span>🥩 <strong>沖繩燒肉</strong><span class="aside">燒肉乃我那霸 等，多半也有阿古豬</span></span></label></td><td class="num">⭐⭐⭐</td><td>一樣是坐著慢慢吃、<strong>可以點小份多樣</strong>；⚠️ 挑<strong>有抽風的店</strong>，長輩比較不會被油煙影響</td><td><strong>1/16 或 1/17 晚·美國村</strong></td></tr><tr><td><label><input type="checkbox" id="eat3"><span>🍙 <strong>豬肉蛋飯糰</strong><span class="aside">ポーク玉子おにぎり</span></span></label></td><td class="num">⭐⭐⭐</td><td><strong>小孩一定喜歡</strong>、長輩也好入口；<strong>可以外帶</strong> —— 當早餐、車上點心、回程飛機前墊肚子都行</td><td><strong>1/15 國際通</strong>買<br><strong>1/18 那霸機場店</strong>補貨</td></tr><tr><td><label><input type="checkbox" id="eat4"><span>🍜 <strong>沖繩麵</strong><span class="aside">沖縄そば／ソーキそば</span></span></label></td><td class="num">⭐⭐⭐</td><td><strong>最沒有踩雷風險的在地食物</strong> —— 清湯、軟麵、燉到爛的豬肋排，長輩接受度最高</td><td><strong>1/15 PARCO CITY</strong> 或<br><strong>1/17 午餐</strong>（名護、本部一帶最有名）</td></tr><tr><td><label><input type="checkbox" id="eat5"><span>🥩 <strong>沖繩牛排</strong><span class="aside">ステーキハウス（88、Jack's 等）</span></span></label></td><td class="num">⭐⭐</td><td>沖繩人<strong>喝完酒最後一餐吃牛排</strong>的在地文化；美國村和國際通都有<br>⚠️ 份量大，長輩建議點小份或分食</td><td>1/16 晚·美國村</td></tr><tr><td><label><input type="checkbox" id="eat6"><span>🌮 <strong>塔可飯</strong><span class="aside">タコライス</span></span></label></td><td class="num">⭐⭐</td><td><strong>小孩的主場</strong> —— 美軍文化留下來的，絞肉 + 起司 + 生菜蓋飯<br>⚠️ 長輩可能覺得「不像正餐」，當配菜點一份分著吃剛好</td><td><strong>1/16–17 晚·美國村</strong><span class="aside">（發源地就在中部）</span></td></tr><tr><td><label><input type="checkbox" id="eat7"><span>🍧 <strong>Blue Seal 冰淇淋</strong><span class="aside">紅芋、鹽金楚糕口味</span></span></label></td><td class="num">⭐⭐⭐</td><td>沖繩的國民冰；<strong>Fun Pass 有折扣</strong>，北谷店和豊崎店都在我們路線上</td><td><strong>1/14 豊崎</strong>／<strong>1/16–17 北谷店</strong></td></tr><tr><td><label><input type="checkbox" id="eat8"><span>🍺 <strong>A&amp;W</strong><span class="aside">沖繩限定速食・Root Beer</span></span></label></td><td class="num">⭐</td><td>只有沖繩有的美式速食；<strong>Root Beer 像漱口水，味道很挑人</strong><br>👉 當體驗點一杯大家喝喝看就好，<strong>不要排成正餐</strong></td><td>路上看到再說</td></tr><tr><td><label><input type="checkbox" id="eat9"><span>🥗 <strong>海葡萄</strong><span class="aside">海ぶどう</span></span></label></td><td class="num">⭐⭐</td><td>咬下去會啵啵的海藻，<strong>沾醬油就很好吃</strong>；多半是小菜或丼飯配料，不會單獨吃一餐</td><td>1/17 午餐海鮮店<br>或國際通居酒屋</td></tr><tr><td><label><input type="checkbox" id="eat10"><span>🍮 <strong>花生豆腐</strong><span class="aside">ジーマーミ豆腐</span></span></label></td><td class="num">⭐⭐</td><td>花生做的，<strong>口感像布丁、QQ 的</strong>，甜甜的；<strong>長輩通常都喜歡</strong>，超市也買得到</td><td>ユニオン超市買回飯店吃</td></tr><tr><td><label><input type="checkbox" id="eat11"><span>🍡 <strong>沖繩善哉</strong><span class="aside">ぜんざい・紅豆刨冰</span></span></label></td><td class="num">⭐</td><td>⚠️ <strong>1 月不太適合</strong> —— 是冰的，天冷長輩不會想吃。知道有這個就好</td><td>—</td></tr><tr><td><label><input type="checkbox" id="eat12"><span>🎁 <strong>伴手禮零食</strong><span class="aside">金楚糕、紅芋塔、黑糖</span></span></label></td><td class="num">⭐⭐⭐</td><td><strong>御菓子御殿有 Fun Pass 折扣</strong>；⚠️ <strong>退稅買的不能先拆封</strong>，想路上吃的要另外正常付稅買</td><td><strong>1/16 AEON Rycom 一次買齊</strong></td></tr></tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <p><strong>👉 如果只挑三樣，我會選這三個</strong></p>
+    <ul>
+      <li><strong>① 阿古豬涮涮鍋（1/15 晚·國際通）</strong> —— 坐著吃、肉薄好咬、份量自己控制、湯清爽；<strong>1 月天冷，這是長輩最會滿意的一餐</strong>。那天 09:30 才出門、全天只開 45 分鐘，晚上有體力好好吃一頓</li>
+      <li><strong>② 沖繩麵（1/17 午餐 或 1/15 PARCO CITY）</strong> —— <strong>最沒有踩雷風險的在地食物</strong>，清湯軟麵、豬肋排燉到爛，長輩接受度最高</li>
+      <li><strong>③ 豬肉蛋飯糰（1/15 國際通買、1/18 機場補）</strong> —— <strong>小孩一定喜歡</strong>，而且可以外帶：當早餐、1/17 車上點心、1/18 等飛機都用得上</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <p><strong>📌 排餐的時候注意</strong></p>
+    <ul>
+      <li>🔥 <strong>燒肉和涮涮鍋不要排在 1/17</strong> —— 那天開 3.5 小時車，回到北谷已經累了，<strong>走路就到的簡單晚餐比較實際</strong></li>
+      <li>🧒 <strong>塔可飯、A&amp;W、牛排是「小孩和美式」那一路</strong>，<strong>集中在美國村那兩晚</strong>（1/16、1/17）最順，那是它們的發源地</li>
+      <li>👴 <strong>長輩路線集中在國際通那兩晚</strong>（1/14、1/15）：阿古豬、沖繩麵、居酒屋都在走路範圍</li>
+      <li>🍽 <strong>1/15 晚餐是整趟最有餘裕的一頓</strong> —— 想吃好一點就排在這天；鳥貴族則留作「不想決定」的備案</li>
+      <li>⚠️ <strong>熱門店要訂位</strong>，尤其週五（1/15）和週六（1/16）晚上</li>
+    </ul>
+  </div>
+</section>
+
+<section>
   <h2>Day 1 <small class="mono">1/14（四）· 抵達日</small></h2>
   <p class="aside"><strong>住</strong>：ダイワロイネット那覇国際通り</p>
   <div class="table-wrap">
@@ -1087,12 +1100,12 @@ section img { max-width: 100%; height: auto; border-radius: 10px; border: 1px so
 
   <h3>📄 證件</h3>
   <ul class="checks">
-    <li><label><input type="checkbox" id="d1"><span><strong>護照效期要超過回國日</strong>（2027/1/18）—— <strong>4 本</strong>都要檢查</span></label></li>
-    <li><label><input type="checkbox" id="d2"><span>到監理站辦<strong>駕照日文譯本</strong>（<strong>只要辦 1 份</strong>，36 歲一人開）</span></label></li>
-    <li><label><input type="checkbox" id="d3"><span>核對<strong>駕照與日文譯本的地址是否一致</strong>；不一致要帶<strong>身分證正本</strong></span></label></li>
-    <li><label><input type="checkbox" id="d4"><span>⚠️ 租車要帶<strong>汽車</strong>駕照正本，<strong>不是機車駕照</strong>（證件不齊會被收 50% 車輛費用）</span></label></li>
-    <li><label><input type="checkbox" id="d5"><span>填 <strong>Visit Japan Web</strong>（入境審查 + 海關申報），<strong>4 個人都要</strong>；出發前存好 QR Code 截圖</span></label></li>
-    <li><label><input type="checkbox" id="d6"><span>護照、駕照、日文譯本<strong>拍照備份</strong>存手機和雲端</span></label></li>
+    <li><label><input type="checkbox" id="doc1"><span><strong>護照效期要超過回國日</strong>（2027/1/18）—— <strong>4 本</strong>都要檢查</span></label></li>
+    <li><label><input type="checkbox" id="doc2"><span>到監理站辦<strong>駕照日文譯本</strong>（<strong>只要辦 1 份</strong>，36 歲一人開）</span></label></li>
+    <li><label><input type="checkbox" id="doc3"><span>核對<strong>駕照與日文譯本的地址是否一致</strong>；不一致要帶<strong>身分證正本</strong></span></label></li>
+    <li><label><input type="checkbox" id="doc4"><span>⚠️ 租車要帶<strong>汽車</strong>駕照正本，<strong>不是機車駕照</strong>（證件不齊會被收 50% 車輛費用）</span></label></li>
+    <li><label><input type="checkbox" id="doc5"><span>填 <strong>Visit Japan Web</strong>（入境審查 + 海關申報），<strong>4 個人都要</strong>；出發前存好 QR Code 截圖</span></label></li>
+    <li><label><input type="checkbox" id="doc6"><span>護照、駕照、日文譯本<strong>拍照備份</strong>存手機和雲端</span></label></li>
   </ul>
 
   <h3>🧳 行李</h3>
@@ -1243,8 +1256,21 @@ section img { max-width: 100%; height: auto; border-radius: 10px; border: 1px so
   showDay(startDay >= 0 && startDay < 5 ? startDay : 0);
 
   // 待辦勾選
+  (function () {
+    var EK = 'okinawa2027-eats';
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(EK) || '{}'); } catch (e) {}
+    Array.prototype.slice.call(document.querySelectorAll('.eats input')).forEach(function (b) {
+      if (saved[b.id]) b.checked = true;
+      b.addEventListener('change', function () {
+        saved[b.id] = b.checked;
+        try { localStorage.setItem(EK, JSON.stringify(saved)); } catch (e) {}
+      });
+    });
+  })();
+
   var KEY = 'okinawa2027-checks';
-  var boxes = Array.prototype.slice.call(document.querySelectorAll('.checks input'));
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.checks input'));  // 不含飲食分頁的 .eats
   var saved = {};
   try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
   function update() {
