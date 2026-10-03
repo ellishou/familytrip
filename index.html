@@ -200,6 +200,10 @@ footer { font-size: 12px; color: var(--muted); }
 .meals { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--sea) 4%, transparent); }
 .meals h4 { margin: 0 0 8px; font-family: var(--f-display); font-size: 15px; }
 .meals table { font-size: 13.5px; }
+section img { max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); display: block; }
+.meals { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--sea) 4%, transparent); }
+.meals h4 { margin: 0 0 8px; font-family: var(--f-display); font-size: 15px; }
+.meals table { font-size: 13.5px; }
 .tabbar { position: sticky; top: 0; z-index: 10; background: var(--bg); padding-block: 10px; margin-block: -10px; display: flex; gap: 6px; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
 .tabbar button { font: inherit; font-size: 15px; font-weight: 700; font-family: var(--f-display); padding: 8px 18px; border-radius: 999px;
   border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; }
@@ -499,22 +503,6 @@ footer { font-size: 12px; color: var(--muted); }
 <div class="tabpanel" id="p2" hidden>
 
 <section>
-  <h2>必訪 vs 彈性 <small>時間不夠或長輩累了砍哪個</small></h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>日</th><th>必訪（不能砍）</th><th>彈性（可砍）</th></tr></thead>
-      <tbody>
-        <tr><td class="mono">1/14</td><td><strong>瀨長島</strong><span class="aside">（離機場 10 分）</span></td><td><strong>iias 沖繩豊崎</strong>／<strong>ASHIBINAA Outlet</strong><span class="aside">（<strong>兩個都是彈性</strong>）</span><br><span class="aside">兩個隔壁、相距 3 分，<strong>擇一逛，或兩個都不逛</strong>——長輩剛下飛機，累了就 15:00 直接進飯店休息<br>館內的 DMM 水族館本來就不排</span></td></tr>
-        <tr><td class="mono">1/15</td><td><strong>波上宮</strong>、<strong>PARCO CITY</strong></td><td>沖宮・奧武山公園<br><span class="aside">砍掉可直接去 PARCO CITY 吃早午餐</span></td></tr>
-        <tr><td class="mono">1/16</td><td><strong>AEON Rycom</strong><span class="aside">（午餐 + 伴手禮一次買齊）</span></td><td>—<br><span class="aside">這天<strong>本來就沒有要砍的東西</strong>：退房後直達 Rycom，想早點進飯店就提早離開</span></td></tr>
-        <tr><td class="mono">1/17</td><td><strong>美麗海水族館</strong></td><td><strong>古宇利海洋塔</strong>（省 50 分）／<strong>部瀨名海中公園</strong>（省 45 分）<br><span class="aside">👉 <strong>兩個都先排著</strong>，美麗海出來後（約 13:00）<strong>現場跟長輩討論</strong>要去哪邊<br>⚠️ 只有一位駕駛，兩個都去是 3 小時 30 分車程</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="aside">👉 <strong>必訪的點全部室內或平路</strong>，下雨、太冷、長輩走不動都不受影響。<strong>1/15 全天只開 45 分鐘</strong>，是刻意留的緩衝日 —— 長輩前一天剛飛完，這天不想出門也能直接在國際通待一整天。</p>
-</section>
-
-<section>
   <h2>每日行程</h2>
   <div class="legend">
     <span>類型：</span>
@@ -680,7 +668,7 @@ footer { font-size: 12px; color: var(--muted); }
           <li><span class="t">08:35</span><span><span class="k k-shop"><i>🛍</i>購物</span><strong><a href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E3%81%AE%E9%A7%85%E8%A8%B1%E7%94%B0%20%E3%82%84%E3%82%93%E3%81%B0%E3%82%8B%E7%89%A9%E7%94%A3%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" rel="noopener">道の駅許田</a></strong> —— 許田 IC 出口旁，下高速第一站<br><span class="aside">🚻 有<strong>無障礙廁所</strong>　·　🎟 <strong>現場買美麗海門票較便宜</strong>（大人 ¥2,000、中小學生 ¥650，<strong>只收現金</strong>）　·　8:30–19:00<br>⚠️ <strong>已經買了沖繩 Fun Pass 就不用在這裡買門票</strong>，單純停廁所和補給</span></span></li>
           <li><span class="t">09:00</span><span><span class="k k-car"><i>🚗</i>交通</span>出發往本部（<strong>約 25 分鐘</strong>）</span></li>
           <li><span class="t">09:25</span><span><span class="k k-spot"><i>📍</i>景點</span><strong><a href="https://www.google.com/maps/search/?api=1&query=%E6%B2%96%E7%B8%84%E7%BE%8E%E3%82%89%E6%B5%B7%E6%B0%B4%E6%97%8F%E9%A4%A8" target="_blank" rel="noopener">美麗海水族館</a></strong><span class="must">★ 必訪</span> —— 黑潮之海、海豚秀；<strong>早上人最少</strong>，室內、有電梯、可免費借輪椅</span></li>
-          <li><span class="t">🎟</span><span><span class="k k-shop"><i>🛍</i>購物</span><strong>門票怎麼買 —— 兩個方案</strong><br><span class="aside">✅ <strong>方案 ① 沖繩 Fun Pass 美麗海套票 —— 建議走這個</strong><br>　　<strong>美麗海是固定的，其餘設施到當地再自選</strong>，所以：<br>　　✅ <strong>固定的那個剛好是我們的必訪</strong> —— 美麗海一定會去，這部分零風險<br>　　✅ <strong>🎯 彈性完全保留</strong> —— <strong>不用事先指定</strong>，照原訂計畫<strong>美麗海出來後（約 13:00）再跟長輩討論</strong>，當場決定去<strong>古宇利海洋塔</strong>還是<strong>部瀨名海中公園</strong>，或兩個都不去<br>　　⚠️ <strong>只能在使用日前兩週內預訂</strong> → 1/17 要用的話，<strong>最早 2027/1/3 左右才能下單</strong>；<strong>12 月去找找不到是正常的，不是沒有這個東西</strong><br>　　⚠️ 訂之前還是要確認<strong>古宇利海洋塔和部瀨名有在可選清單裡</strong><br>② <strong>備案 —— 許田現場買</strong>：只有美麗海（大人 ¥2,000、中小學生 ¥650，<strong>限現金</strong>），海洋塔和部瀨名當天各自現場買<br>👉 Fun Pass 沒搶到、或可選清單裡沒有我們要的，就走這條；<strong>許田本來就是廁所站，順路不繞</strong></span></span></li>
+          <li><span class="t">🎟</span><span><span class="k k-shop"><i>🛍</i>購物</span><strong>門票怎麼買 —— 兩個方案</strong><br><span class="aside">✅ <strong>方案 ① 沖繩 Fun Pass 美麗海套票 —— 建議走這個</strong><br>　　<strong>美麗海是固定的，其餘設施到當地再自選</strong>，所以：<br>　　✅ <strong>固定的那個剛好是我們的必訪</strong> —— 美麗海一定會去，這部分零風險<br>　　✅ <strong>🎯 彈性完全保留</strong> —— <strong>不用事先指定</strong>，照原訂計畫<strong>美麗海出來後（約 13:00）再跟長輩討論</strong>，當場決定去<strong>古宇利海洋塔</strong>還是<strong>部瀨名海中公園</strong>，或兩個都不去<br>　　⚠️ <strong>只能在使用日前兩週內預訂</strong> → 1/17 要用的話，<strong>最早 2027/1/3 左右才能下單</strong>；<strong>12 月去找找不到是正常的，不是沒有這個東西</strong><br>　　✅ <strong>古宇利海洋塔在景點清單裡</strong>（第 2 項）<br>　　❌ <strong>但部瀨名海中公園不在清單裡</strong> —— 那天如果改去部瀨名，門票要另外付<br>　　⚠️ <strong>要買有含美麗海的版本</strong> —— 官方註明「<strong>超值系列不包含美麗海水族館門票及 Junglia Okinawa 門票</strong>」<br>② <strong>備案 —— 許田現場買</strong>：只有美麗海（大人 ¥2,000、中小學生 ¥650，<strong>限現金</strong>），海洋塔和部瀨名當天各自現場買<br>👉 Fun Pass 沒搶到、或可選清單裡沒有我們要的，就走這條；<strong>許田本來就是廁所站，順路不繞</strong></span></span></li>
           <li><span class="t">11:45</span><span><span class="k k-eat"><i>🍽</i>用餐</span><strong>午餐二選一</strong>　①<a href="https://www.google.com/maps/search/?api=1&query=%E6%B2%96%E7%B8%84%E7%BE%8E%E3%82%89%E6%B5%B7%E6%B0%B4%E6%97%8F%E9%A4%A8%20%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3%20%E3%82%A4%E3%83%8E%E3%83%BC" target="_blank" rel="noopener"><strong>INOH（イノー）</strong></a>：<strong>水族館 4F，不用出館</strong>，吃到飽（50 分鐘制）　②<a href="https://www.google.com/maps/search/?api=1&query=%E6%B5%B7%E4%BA%BA%E6%96%99%E7%90%86%20%E6%B5%B7%E9%82%A6%E4%B8%B8%20%E6%9C%AC%E9%83%A8%E7%94%BA" target="_blank" rel="noopener"><strong>海人料理 海邦丸</strong></a>：開車 3 分鐘，海鮮定食</span></li>
           <li><span class="t">13:25</span><span><span class="k k-spot"><i>📍</i>景點</span><strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%8F%A4%E5%AE%87%E5%88%A9%E3%82%AA%E3%83%BC%E3%82%B7%E3%83%A3%E3%83%B3%E3%82%BF%E3%83%AF%E3%83%BC" target="_blank" rel="noopener">古宇利海洋塔</a></strong><span class="flex">○ 彈性</span>（車程約 40 分）—— <strong>目標就是海洋塔，不是整個島</strong>；去程會開過古宇利大橋（車上看海就夠）<br><span class="aside">✅ <strong>自動駕駛車載到山上 + 塔內電梯 + 免費輪椅</strong>，長輩全程不用爬<br>🚫 <strong>心形岩不去</strong>（陡坡沙地，有跌倒風險）</span></span></li>
           <li><span class="t">15:15</span><span><span class="k k-spot"><i>📍</i>景點</span><strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%96%E3%82%BB%E3%83%8A%E6%B5%B7%E4%B8%AD%E5%85%AC%E5%9C%92" target="_blank" rel="noopener">部瀨名海中公園</a></strong><span class="flex">○ 彈性</span>（約 45 分）—— 回程順路；<strong>玻璃底船</strong>看珊瑚（不用下樓梯）</span></li>
@@ -954,6 +942,49 @@ footer { font-size: 12px; color: var(--muted); }
 </div>
 
 <div class="tabpanel" id="p5" hidden>
+
+<section>
+  <h2>🎟 沖繩 Fun Pass <small>對照我們的行程</small></h2>
+  <p class="aside">美麗海固定，<strong>其餘設施到當地再自選</strong>；<strong>只能在使用日前兩週內預訂</strong>（1/17 要用 → 約 <strong>2027/1/3</strong> 開放下單）。</p>
+
+  <div class="callout">
+    <p><strong>⚠️ 買之前先確認這兩件事</strong></p>
+    <ul>
+      <li>🚫 <strong>「超值系列」不包含美麗海水族館和 Junglia Okinawa</strong>（官方自己標註的）—— <strong>一定要買有含美麗海的版本</strong>，不然主要目的就沒了</li>
+      <li>🚫 <strong>部瀨名海中公園不在可選清單裡</strong> —— 1/17 如果改去部瀨名，<strong>門票要另外自費</strong></li>
+    </ul>
+  </div>
+
+  <h3>我們會真的用到的</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>日</th><th>項目</th><th>類別</th></tr></thead>
+      <tbody>
+        <tr class="pick"><td class="mono">1/17</td><td><strong>美麗海水族館</strong><span class="aside">（★ 必訪，整張票的主角）</span></td><td>景點門票</td></tr>
+        <tr class="pick"><td class="mono">1/17</td><td><strong>古宇利海洋塔</strong><span class="aside">（○ 彈性 —— 當天決定去就直接用）</span></td><td>景點門票</td></tr>
+        <tr><td class="mono">全程</td><td><strong>沖繩行腳租車</strong><span class="aside">（我們的租車公司，<strong>剛好在折扣名單上</strong>）</span></td><td>購物折扣</td></tr>
+        <tr><td class="mono">1/14</td><td><strong>iias</strong>（折扣）·　Blue Seal 豊崎店 · Yanbaru Gelato iias</td><td>購物／美食</td></tr>
+        <tr><td class="mono">1/15</td><td>Yanbaru Gelato <strong>浦添 PARCO City</strong><br>唐吉訶德國際通大道店 · 札幌藥妝（國際通）· 牧志下町屋台村</td><td>美食／購物折扣</td></tr>
+        <tr><td class="mono">1/16</td><td>Yanbaru Gelato <strong>AEON Mall Rycom</strong></td><td>美食</td></tr>
+        <tr><td class="mono">1/16–17</td><td><strong>Blue Seal 北谷店</strong><span class="aside">（美國村散策順路）</span></td><td>美食</td></tr>
+        <tr><td class="mono">1/17</td><td>古宇利島うみんちゅ Seafood<span class="aside">（有去古宇利才用得到）</span></td><td>美食</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="aside">👉 <strong>折扣名單裡剛好有「沖繩行腳租車」和「iias」</strong>，等於門票以外還能再回收一點 —— 下單前可以問租車公司這個折扣怎麼用。</p>
+
+  <h3>清單上有、但我們這次不排的</h3>
+  <p class="aside">
+    沖繩世界（玉泉洞）<span class="aside">· 石階多</span>　·　首里城公園／首里達磨寺　·　萬座毛　·　勝連城跡<span class="aside">· 城跡坡道</span>　·
+    DMM 水族館<span class="aside">· 在 iias 裡，但 1/17 已有美麗海</span>　·　名護鳳梨園／名護動植物園／沖繩水果樂園　·　東南植物樂園　·　琉球村　·
+    DINO 恐龍園　·　沖繩兒童王國　·　Little Universe　·　Triple Marine　·　ASMUI 聖地健行　·　CAVE OKINAWA　·　Junglia Okinawa
+  </p>
+  <p class="aside">💡 <strong>這些都在北部或中部</strong>，1/17 那天理論上順路 —— 但<strong>只有一位駕駛、車程已經 3.5 小時</strong>，不建議再加。列在這裡是讓你知道「票裡還有什麼」，不是建議去。</p>
+
+  <h3>使用地圖</h3>
+  <p><img src="funpass-map.jpg" alt="沖繩 Fun Pass 使用地圖：景點門票、美食餐飲、購物折扣一覽" loading="lazy"></p>
+  <p class="aside">圖片來源：沖繩 Fun Pass 官方宣傳圖。<strong>內容和合作店家會調整，下單前以官網為準。</strong></p>
+</section>
 
 <section>
   <h2>費用概算 <small>人均 · 新台幣粗估</small></h2>
